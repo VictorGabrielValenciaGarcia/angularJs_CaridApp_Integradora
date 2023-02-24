@@ -1,0 +1,7 @@
+{
+  "name": "angularJs_CaridApp_Integradora",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
