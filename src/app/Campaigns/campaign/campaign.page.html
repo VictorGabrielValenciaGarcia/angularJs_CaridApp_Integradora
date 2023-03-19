@@ -1,14 +1,11 @@
-<app-header-without-menu
-  title="Detalles de Campaña"
-></app-header-without-menu>
-
+<app-header-without-menu title="Detalles de Campaña"></app-header-without-menu>
 
 <ion-content>
   <ion-grid fixed>
     <ion-row class="ion-align-items-center">
 
       <ion-col size-lg="6" size-md="12" size-xs="12" class="ion-padding">
-          <img class="imageForm" [src]="objCampaingExample.imgBanner" />
+        <img class="imageForm" [src]="objCampaingExample.imgBanner" />
       </ion-col>
 
       <ion-col size-lg="6" size-md="12" size-xs="12">
@@ -17,7 +14,8 @@
 
           <ion-card-header class="ion-text-center">
             <ion-card-title>{{objCampaingExample.strNombreCampania | uppercase}}</ion-card-title>
-            <ion-card-subtitle><strong>{{objCampaingExample.strOrganizacion}}</strong> | <strong>{{objCampaingExample.strPrograma}}</strong></ion-card-subtitle>
+            <ion-card-subtitle><strong>{{objCampaingExample.strOrganizacion}}</strong> |
+              <strong>{{objCampaingExample.strPrograma}}</strong></ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
@@ -42,25 +40,30 @@
 
             <ion-grid fixed>
               <ion-row>
-                                <ion-col size="6">
-                    <h5 class="ion-text-center"><strong>Inicio:</strong> {{objCampaingExample.objFechaInicio.diaInicio}}/{{objCampaingExample.objFechaInicio.mesInicio}}/{{objCampaingExample.objFechaInicio.anioInicio}}</h5>
+                <ion-col size="6">
+                  <h5 class="ion-text-center"><strong>Inicio:</strong>
+                    {{objCampaingExample.objFechaInicio.diaInicio}}/{{objCampaingExample.objFechaInicio.mesInicio}}/{{objCampaingExample.objFechaInicio.anioInicio}}
+                  </h5>
                 </ion-col>
                 <ion-col size="6">
-                    <h5 class="ion-text-center"><strong>Fin:</strong> {{objCampaingExample.objFechaFin.diaFin}}/{{objCampaingExample.objFechaFin.mesFin}}/{{objCampaingExample.objFechaFin.anioFin}}</h5>
+                  <h5 class="ion-text-center"><strong>Fin:</strong>
+                    {{objCampaingExample.objFechaFin.diaFin}}/{{objCampaingExample.objFechaFin.mesFin}}/{{objCampaingExample.objFechaFin.anioFin}}
+                  </h5>
                 </ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-header>
 
 
-            <ion-grid style="margin-top: -2rem !important;">
-              <ion-row class="ion-justify-content-center ion-align-items-center">
-                <ion-col>
-                  <h5 class="ion-text-center" style="text-decoration: underline;"><strong>Tiempo Restante:</strong> </h5>
-                  <h5 class="ion-text-center"><strong>12</strong> meses - <strong>4</strong> días - <strong>6</strong> horas</h5>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+          <ion-grid style="margin-top: -2rem !important;">
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col>
+                <h5 class="ion-text-center" style="text-decoration: underline;"><strong>Tiempo Restante:</strong> </h5>
+                <h5 class="ion-text-center"><strong>12</strong> meses - <strong>4</strong> días - <strong>6</strong>
+                  horas</h5>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
         </ion-card>
 
@@ -81,17 +84,18 @@
                 <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
 
                   <ion-accordion-group *ngFor="let recurso of objCampaingExample.objListaEnceres">
-                    <ion-accordion value="first" >
+                    <ion-accordion value="first">
 
                       <!-- <ion-list > -->
-                        <ion-item detail="true" slot="header">
-                          <ion-icon class="ion-padding-end" color="success" [name]="recurso.strClasificacion" size="small"></ion-icon>
-                          <ion-label>{{ recurso.strProducto }}</ion-label>
-                        </ion-item>
+                      <ion-item detail="true" slot="header">
+                        <ion-icon class="ion-padding-end" color="success" [name]="recurso.strClasificacion"
+                          size="small"></ion-icon>
+                        <ion-label>{{ recurso.strProducto }}</ion-label>
+                      </ion-item>
 
-                        <div class="ion-text-justify ion-padding" style="background-color: #fcfcfc;" slot="content">
-                          <p>{{ recurso.strObservaciones }}</p>
-                        </div>
+                      <div class="ion-text-justify ion-padding" style="background-color: #fcfcfc;" slot="content">
+                        <p>{{ recurso.strObservaciones }}</p>
+                      </div>
                       <!-- </ion-list> -->
 
                     </ion-accordion>
@@ -120,7 +124,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button size="small" color="tertiary" size="large">
       <!-- <ion-icon name="help-circle-outline" size="large"></ion-icon> -->
       <!-- <ion-icon name="help-outline" size="large"></ion-icon> -->
@@ -147,213 +151,259 @@
 
 </ion-content>
 
-  <!-- Modal Select Support -->
+<!-- Modal Select Support -->
 
-  <ion-modal #modal trigger="open-modal" id="modal">
-    <ng-template>
-      <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;" >
-        <ion-toolbar class="ion-text-center">
-          ¿Como deseeas apoyar la campaña?
-        </ion-toolbar>
+<ion-modal #modal trigger="open-modal" id="modal">
+  <ng-template>
+    <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
+      <ion-toolbar class="ion-text-center">
+        ¿Como deseeas apoyar la campaña?
+      </ion-toolbar>
 
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center">
+
+          <ion-col size-xs="11" size-md="8" size-lg="8">
+            <ion-button mode="md" fill="outline" expand="block" (click)="showEconomicSuppor()" color="success">
+              <ion-text color="dark">
+                <h5>Por Transacción</h5>
+              </ion-text>
+            </ion-button>
+          </ion-col>
+
+          <ion-col size-xs="11" size-md="8" size-lg="8">
+            <ion-button mode="md" fill="outline" expand="block" (click)="showPhysicSupport()">
+              <ion-text color="dark">
+                <h5>Donacion Fisica</h5>
+              </ion-text>
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- Modal Select Report -->
+
+<ion-modal #modalReport trigger="open-modalReport" id="modalReport">
+  <ng-template>
+    <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
+      <ion-toolbar class="ion-text-center">
+        ¿Desea Reportar esta Campaña?
+      </ion-toolbar>
+
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+
+          <ion-col sizeXs="12" sizeLg="9" class="ion-margin-top">
+            <ion-item fill="solid" mode="md">
+              <ion-label position="floating">Seleccione el motivo de su Reporte</ion-label>
+              <ion-select value="" multiple="false">
+                <ion-select-option value="Contenido sexual">Contenido sexual</ion-select-option>
+                <ion-select-option value="Contenido violento o repulsivo">Contenido violento</ion-select-option>
+                <ion-select-option value="Contenido repulsivo">Contenido repulsivo</ion-select-option>
+                <ion-select-option value="Incitación al odio">Incitación al odio</ion-select-option>
+                <ion-select-option value="Actos peligrosos">Actos peligrosos</ion-select-option>
+                <ion-select-option value="Actos perjudiciales">Actos perjudiciales</ion-select-option>
+                <ion-select-option value="Maltrato infantil">Maltrato infantil</ion-select-option>
+                <ion-select-option value="Fomenta el terrorismo">Fomenta el terrorismo</ion-select-option>
+                <ion-select-option value="Engañoso o con spam">Engañoso o con spam</ion-select-option>
+                <ion-select-option value="Infringe mis derechos">Infringe mis derechos</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size-xs="6" size-md="6" size-lg="6">
+            <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="danger"
+              (click)="modalReportDismiss()">
+              <ion-text color="dark">
+                <h5>Cancelar</h5>
+              </ion-text>
+            </ion-button>
+          </ion-col>
+
+          <ion-col size-xs="6" size-md="6" size-lg="6">
+            <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="success">
+              <ion-text color="dark">
+                <h5>Reportar</h5>
+              </ion-text>
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- Modal Economic Support -->
+
+<ion-modal #modalEconomicSupport id="modalEconomicSupport">
+  <ng-template>
+    <ion-content>
+      <ion-toolbar class="ion-text-center">
         <ion-grid fixed>
-          <ion-row class="ion-justify-content-center">
-
-            <ion-col size-xs="11" size-md="8" size-lg="8">
-              <ion-button mode="md" fill="outline" expand="block" (click)="showEconomicSuppor()" color="success">
-                <ion-text color="dark">
-                  <h5>Por Transacción</h5>
-                </ion-text>
+          <ion-row>
+            <ion-col size="8">
+              <h5>Apoyo por Transacción</h5>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button (click)="EconomicSupportDismiss()" fill="outline" color="light">
+                Cancelar
               </ion-button>
             </ion-col>
-
-            <ion-col size-xs="11" size-md="8" size-lg="8">
-              <ion-button mode="md" fill="outline" expand="block" (click)="showPhysicSupport()">
-                <ion-text color="dark">
-                  <h5>Donacion Fisica</h5>
-                </ion-text>
-              </ion-button>
-            </ion-col>
-
           </ion-row>
         </ion-grid>
+      </ion-toolbar>
 
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size-xs="12" size-md="12" size-lg="12">
 
-  <!-- Modal Select Report -->
+            <form>
 
-  <ion-modal #modalReport trigger="open-modalReport" id="modalReport">
-    <ng-template>
-      <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;" >
-        <ion-toolbar class="ion-text-center">
-          ¿Desea Reportar esta Campaña?
-        </ion-toolbar>
+              <ion-grid>
+                <ion-row class="ion-justify-content-center ion-align-items-start">
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                    <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter"
+                      lines="none">
+                      <ion-label position="floating">Nombre(s)</ion-label>
+                      <ion-input clearInput="true" required type="text" maxlength="15"
+                        onkeyup="this.value = this.value.toUpperCase();"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                    <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter"
+                      lines="none">
+                      <ion-label position="floating">Apellidos</ion-label>
+                      <ion-input clearInput="true" required type="text" maxlength="30"
+                        onkeyup="this.value = this.value.toUpperCase();"></ion-input>
+                    </ion-item>
+                  </ion-col>
 
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                    <ion-item fill="solid" mode="md">
+                      <ion-label position="floating">Monto a Donar</ion-label>
+                      <ion-input clearInput="true" required type="number" min="0" max="9999"></ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-item-divider class="ion-margin-top">
+                    <ion-label>Tarjeta de Credito</ion-label>
+                  </ion-item-divider>
+
+                  <ion-col sizeXS="12" sizeLg="8" sizeMd="8" class="ion-margin-bottom ion-margin-top">
+                    <div class="card">
+                      <div class="intern">
+                        <img class="approximation" src="./assets/Images/aprox.png" alt="aproximation">
+                        <div class="card-number">
+                          <div class="number-vl">---- ---- ---- ----</div>
+                        </div>
+                        <div class="card-holder">
+                          <label>Propietario</label>
+                          <div class="name-vl cardInfo">---- ----</div>
+                        </div>
+                        <div class="card-infos">
+                          <div class="exp">
+                            <label>Expira en:</label>
+                            <div class="expiration-vl cardInfo">--/--</div>
+                          </div>
+                          <div class="cvv">
+                            <label>CVV</label>
+                            <div class="cvv-vl cardInfo">----</div>
+                          </div>
+                        </div>
+                        <img class="chip" src="./assets/Images/chip.png" alt="chip">
+                      </div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                    <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter"
+                      lines="none">
+                      <ion-label position="floating">Nombre(s)</ion-label>
+                      <ion-input clearInput="true" type="text" name="name-text" id="name-text" maxlength="30"
+                        placeholder="--- ---" required></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                    <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter"
+                      lines="none">
+                      <ion-label position="floating">Apellidos</ion-label>
+                      <ion-input clearInput="true" type="text" name="name-text" id="lastname-text" maxlength="30"
+                        placeholder="--- ---" required></ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                    <ion-item fill="solid" mode="md" lines="none">
+                      <ion-label position="floating">Número de Tarjeta</ion-label>
+                      <ion-input clearInput="true" name="card-number" id="card-number" maxlength="19"
+                        placeholder="---- ---- ---- ----" required></ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                    <ion-item fill="solid" mode="md" lines="none">
+                      <ion-label position="floating">CVV/CVC</ion-label>
+                      <ion-input clearInput="true" type="text" name="cvv-text" id="cvv-text" maxlength="4"
+                        placeholder="---" required ></ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col sizeLg="6" sizeMd="6" sizeXs="12 ">
+                    <ion-item fill="solid" mode="md">
+                      <ion-label position="stacked">Fecha de Expiración</ion-label>
+                      <ion-input clearInput="true" type="text" name="valid-thru-text" id="valid-thru-text" maxlength="5"
+                        placeholder="--/--" required onkeypress="return event.charCode >=48 && event.charCode <= 57">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+
+                  <ion-col sizeLg="8" sizeMd="8" sizeXs="8 ">
+                    <ion-button color="primary" type="submit" fill="outline" expand="block">
+                      Transferir
+                    </ion-button>
+                  </ion-col>
+
+                </ion-row>
+              </ion-grid>
+
+            </form>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- Modal Physic Support -->
+
+<ion-modal #modalPhysicSupport id="modalPhysicSupport">
+  <ng-template>
+    <ion-content>
+      <ion-toolbar class="ion-text-center">
         <ion-grid fixed>
-          <ion-row class="ion-justify-content-center ion-align-items-center">
-
-            <ion-col sizeXs="12" sizeLg="9" class="ion-margin-top">
-              <ion-item fill="solid" mode="md">
-                <ion-label position="floating">Seleccione el motivo de su Reporte</ion-label>
-                <ion-select value="" multiple="false">
-                  <ion-select-option value="Contenido sexual">Contenido sexual</ion-select-option>
-                  <ion-select-option value="Contenido violento o repulsivo">Contenido violento</ion-select-option>
-                  <ion-select-option value="Contenido repulsivo">Contenido repulsivo</ion-select-option>
-                  <ion-select-option value="Incitación al odio">Incitación al odio</ion-select-option>
-                  <ion-select-option value="Actos peligrosos">Actos peligrosos</ion-select-option>
-                  <ion-select-option value="Actos perjudiciales">Actos perjudiciales</ion-select-option>
-                  <ion-select-option value="Maltrato infantil">Maltrato infantil</ion-select-option>
-                  <ion-select-option value="Fomenta el terrorismo">Fomenta el terrorismo</ion-select-option>
-                  <ion-select-option value="Engañoso o con spam">Engañoso o con spam</ion-select-option>
-                  <ion-select-option value="Infringe mis derechos">Infringe mis derechos</ion-select-option>
-                </ion-select>
-              </ion-item>
+          <ion-row>
+            <ion-col size="8">
+              <h5>Apoyo por Entrega</h5>
             </ion-col>
-
-            <ion-col size-xs="6" size-md="6" size-lg="6">
-              <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="danger" (click)="modalReportDismiss()">
-                <ion-text color="dark">
-                  <h5>Cancelar</h5>
-                </ion-text>
+            <ion-col size="4">
+              <ion-button (click)="PhysicSupportDismiss()" fill="outline" color="light">
+                Cancelar
               </ion-button>
-            </ion-col>
-
-            <ion-col size-xs="6" size-md="6" size-lg="6">
-              <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="success">
-                <ion-text color="dark">
-                  <h5>Reportar</h5>
-                </ion-text>
-              </ion-button>
-            </ion-col>
-
-          </ion-row>
-        </ion-grid>
-
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-
-  <!-- Modal Economic Support -->
-
-  <ion-modal #modalEconomicSupport id="modalEconomicSupport">
-    <ng-template>
-      <ion-content>
-        <ion-toolbar class="ion-text-center">
-          <ion-grid fixed>
-            <ion-row>
-              <ion-col size="8">
-                <h5>Apoyo por Transacción</h5>
-              </ion-col>
-              <ion-col size="4">
-                <ion-button (click)="EconomicSupportDismiss()" fill="outline" color="light">
-                  Cancelar
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-toolbar>
-
-        <ion-grid>
-          <ion-row class="ion-justify-content-center">
-            <ion-col size-xs="11" size-md="11" size-lg="11">
-
-              <form>
-
-                <ion-grid>
-                  <ion-row class="ion-justify-content-center ion-align-items-start">
-                    <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
-                      <ion-item  fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter" lines="none">
-                        <ion-label position="floating">Nombre(s)</ion-label>
-                        <ion-input clearInput="true" required type="text" maxlength="15" onkeyup="this.value = this.value.toUpperCase();"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col sizeLg="6" sizeMd="6" sizeXs="12" >
-                      <ion-item  fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter" lines="none">
-                        <ion-label position="floating">Apellidos</ion-label>
-                        <ion-input clearInput="true" required type="text" maxlength="30" onkeyup="this.value = this.value.toUpperCase();"></ion-input>
-                      </ion-item>
-                    </ion-col>
-
-                    <ion-col sizeLg="12" sizeMd="12" sizeXs="12" >
-                      <ion-item  fill="solid" mode="md">
-                        <ion-label position="floating">Monto a Donar</ion-label>
-                        <ion-input clearInput="true" required type="number" min="0" max="9999"></ion-input>
-                      </ion-item>
-                    </ion-col>
-
-                    <ion-item-divider class="ion-margin-top">
-                      <ion-label>Tarjeta de Credito</ion-label>
-                    </ion-item-divider>
-
-                    <ion-col sizeLg="6" sizeMd="6" sizeXs="11">
-                      <ion-item  fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter" lines="none">
-                        <ion-label position="floating">Nombre(s)</ion-label>
-                        <ion-input clearInput="true" required type="text" maxlength="15" onkeyup="this.value = this.value.toUpperCase();"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col sizeLg="6" sizeMd="6" sizeXs="11" >
-                      <ion-item  fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter" lines="none">
-                        <ion-label position="floating">Apellidos</ion-label>
-                        <ion-input clearInput="true" required type="text" maxlength="30" onkeyup="this.value = this.value.toUpperCase();"></ion-input>
-                      </ion-item>
-                    </ion-col>
-
-                    <ion-col sizeLg="6" sizeMd="6" sizeXs="11" >
-                      <ion-item  fill="solid" mode="md" lines="none">
-                        <ion-label position="floating">Número de Tarjeta</ion-label>
-                        <ion-input clearInput="true" type="text" maxlength="16"></ion-input>
-                      </ion-item>
-                    </ion-col>
-
-                    <ion-col sizeLg="6" sizeMd="6" sizeXs="11" >
-                      <ion-item  fill="solid" mode="md" lines="none">
-                        <ion-label position="floating">CVV/CVC</ion-label>
-                        <ion-input clearInput="true" required type="text" maxlength="3"></ion-input>
-                      </ion-item>
-                    </ion-col>
-
-                    <ion-col sizeLg="6" sizeMd="6" sizeXs="11 " >
-                      <ion-item fill="solid" mode="md" >
-                        <ion-label position="stacked">Fecha de Expiración</ion-label>
-                        <ion-input type="month" clearInput="true"></ion-input>
-                      </ion-item>
-                    </ion-col>
-
-                    <ion-col sizeLg="8" sizeMd="8" sizeXs="8 " >
-                      <ion-button color="primary" type="submit" fill="outline" expand="block">
-                        Transferir
-                      </ion-button>
-                    </ion-col>
-
-                  </ion-row>
-                </ion-grid>
-
-              </form>
-
             </ion-col>
           </ion-row>
         </ion-grid>
+      </ion-toolbar>
 
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-
-  <!-- Modal Physic Support -->
-
-  <ion-modal #modalPhysicSupport id="modalPhysicSupport">
-    <ng-template>
-      <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;" >
-        <ion-toolbar class="ion-text-center">
-          Physic
-        </ion-toolbar>
-
-        <ion-button (click)="PhysicSupportDismiss()" expand="block" fill="clear" shape="round">
-          Click me
-        </ion-button>
-
-        <!-- <ion-grid fixed>
+      <!-- <ion-grid fixed>
           <ion-row class="ion-justify-content-center">
 
             <ion-col size-xs="11" size-md="8" size-lg="8">
@@ -375,8 +425,9 @@
           </ion-row>
         </ion-grid> -->
 
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
-  <!-- <ion-text color="danger">*</ion-text> -->
+<!-- <ion-text color="danger">*</ion-text> -->
+
