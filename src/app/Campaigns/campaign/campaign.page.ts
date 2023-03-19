@@ -9,10 +9,11 @@ import { getElement } from 'ionicons/dist/types/stencil-public-runtime';
 })
 export class CampaignPage implements OnInit {
 
-  @ViewChild(IonModal) modal: IonModal | undefined;
+  @ViewChild('modal') modal!: ModalController;
+  @ViewChild('modalThanks') modalThanks!: IonModal;
   @ViewChild('modalReport') modalReport!: ModalController;
-  @ViewChild('modalEconomicSupport') modalEconomicSupport!: IonModal;
   @ViewChild('modalPhysicSupport') modalPhysicSupport!: IonModal;
+  @ViewChild('modalEconomicSupport') modalEconomicSupport!: IonModal;
 
   objCampaingExample = {
     id: 1,
@@ -70,9 +71,12 @@ export class CampaignPage implements OnInit {
     this.objCampaingExample.objListaEnceres.forEach(element => {
       this.checkedList.push(false)
     });
+  }
 
-    // console.log(this,this.checkedList);
-
+  // Modal Interaction
+  
+  modalSupportDismiss(){
+    this.modal.dismiss()
   }
 
   modalReportDismiss(){
@@ -93,6 +97,17 @@ export class CampaignPage implements OnInit {
 
   PhysicSupportDismiss(){
     this.modalPhysicSupport.dismiss()
+  }
+
+  showThanks(){
+    this.modalThanks?.present()
+    this.PhysicSupportDismiss();
+    this.EconomicSupportDismiss();
+    this.modalSupportDismiss();
+  }
+
+  ThanksDismiss(){
+    this.modalThanks.dismiss()
   }
 
   // Elementos
