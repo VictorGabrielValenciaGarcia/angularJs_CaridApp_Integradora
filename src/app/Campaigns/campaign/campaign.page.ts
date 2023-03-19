@@ -60,15 +60,19 @@ export class CampaignPage implements OnInit {
     ]
   }
 
-  now = new Date();
-  today = new Date();
-  until = new Date(this.now.getFullYear() + 10, this.now.getMonth());
-
   verDescription : boolean = false;
+  checkedList : boolean[] = [];
+
 
   constructor() { }
 
   ngOnInit() {
+    this.objCampaingExample.objListaEnceres.forEach(element => {
+      this.checkedList.push(false)
+    });
+
+    // console.log(this,this.checkedList);
+
   }
 
   modalReportDismiss(){
@@ -95,6 +99,16 @@ export class CampaignPage implements OnInit {
 
   customCounterFormatter(inputLength: number, maxLength: number) {
     return `${maxLength - inputLength} carácteres disponibles`;
+  }
+
+  changeEvent(event:any, _id:number) {
+    if(event.checked){
+      // console.log(event.detail.checked);
+      this.checkedList[_id] = event.detail.checked;
+    }else{
+    //  console.log(event.detail.checked);
+      this.checkedList[_id] = event.detail.checked;
+   }
   }
 
 }

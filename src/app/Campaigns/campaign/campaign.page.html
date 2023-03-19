@@ -262,6 +262,7 @@
 
       <ion-grid>
         <ion-row class="ion-justify-content-center">
+
           <ion-col size-xs="12" size-md="12" size-lg="12">
 
             <form>
@@ -388,6 +389,7 @@
 <ion-modal #modalPhysicSupport id="modalPhysicSupport">
   <ng-template>
     <ion-content>
+
       <ion-toolbar class="ion-text-center">
         <ion-grid fixed>
           <ion-row>
@@ -403,27 +405,62 @@
         </ion-grid>
       </ion-toolbar>
 
-      <!-- <ion-grid fixed>
+      <ion-grid>
           <ion-row class="ion-justify-content-center">
 
-            <ion-col size-xs="11" size-md="8" size-lg="8">
-              <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="success">
-                <ion-text color="dark">
-                  <h5>Por Transacción</h5>
-                </ion-text>
-              </ion-button>
+            <ion-col size-xs="12" size-md="12" size-lg="12">
+
+              <ion-grid fixed>
+                <ion-row class="ion-align-items-center ion-align-items-center ion-justify-content-center">
+                  <ion-col size="3">
+                    <ion-button expand="block" fill="outline" shape="round" color="danger" size="default" disabled="true">
+                      Nota
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="9">
+                    <p class="ion-text-justify">Antes de realizar tu aporte, corrobora que existan <a>Centros de Entrega</a> cerca de ti.</p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+
             </ion-col>
 
-            <ion-col size-xs="11" size-md="8" size-lg="8">
-              <ion-button mode="md" fill="outline" expand="block" id="open-modal">
-                <ion-text color="dark">
-                  <h5>Donacion Fisica</h5>
-                </ion-text>
-              </ion-button>
+            <ion-col size="11">
+
+              <ion-list>
+                <p class="ion-text-justify">Seleccione los recursos con los que cuente y la cantidad que desea donar</p>
+              </ion-list>
+
+                <form>
+
+                  <ion-grid>
+                    <ion-row *ngFor="let recurso of objCampaingExample.objListaEnceres; let i = index">
+                      <ion-col size="9">
+                        <ion-item  mode="md" fill="solid">
+                          <ion-label>{{recurso.strProducto}}</ion-label>
+                          <ion-checkbox slot="start" (ionChange)="changeEvent($event, i)"></ion-checkbox>
+                        </ion-item>
+                      </ion-col>
+                      <ion-col size="3">
+                        <ion-item  mode="md" fill="solid">
+                          <ion-input type="number" value="0" [disabled]="!checkedList[i]"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="9">
+                        <ion-button color="success" type="submit" fill="outline" expand="block">
+                          Transferir
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </form>
+
             </ion-col>
 
           </ion-row>
-        </ion-grid> -->
+        </ion-grid>
 
     </ion-content>
   </ng-template>
@@ -431,3 +468,15 @@
 
 <!-- <ion-text color="danger">*</ion-text> -->
 
+<!--           <ion-col size-xs="12" size-md="12" size-lg="12">
+            <ion-accordion-group>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Agradecimientos</ion-label>
+                </ion-item>
+                <div class="ion-padding ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                  <p>Muchas gracias por apoyar "{{objCampaingExample.strNombreCampania}}". Con tu ayuda y apoyo </p>
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
+          </ion-col> -->
