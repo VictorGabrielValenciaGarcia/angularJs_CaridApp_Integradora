@@ -1,0 +1,160 @@
+<ion-header translucent="true" mode="ios">
+  <ion-toolbar>
+    <span class="fontType" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+      CaridApp
+    </span>
+  </ion-toolbar>
+</ion-header>
+
+<style>
+  .inputWrong{
+    border-color: #c92432;
+    color: #c92432;
+    /* background: #fffbfb; */
+  }
+  .errors{
+    color: #c92432;
+    font-size: 75%;
+    text-align: start;
+  }
+
+  .adjustErrors{
+    margin-top: -1rem;
+  }
+
+  ion-item{
+    margin-bottom: 2rem;
+  }
+
+</style>
+
+<ion-content>
+  <ion-grid fixed>
+
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+
+        <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size="6">
+              <ion-img src="./assets/Images/Cuyo_login2.png"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size-lg="6" size-md="6" size-xs="12">
+
+          <ion-card class="ion-padding">
+
+            <ion-card-header>
+              <ion-card-title class="ion-text-center">Inicio de Sesión</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <form [formGroup]="FormLogin" (ngSubmit)="logIn()">
+
+                <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                  <ion-label position="floating">Correo electronico</ion-label>
+                  <ion-input required clearInput="true" type="text" formControlName="email" maxlength="40" autocomplete="email"
+                  [class.inputWrong] = "FormLogin.get('email')?.invalid"></ion-input>
+                </ion-item>
+
+                <div class="adjustErrors">
+                  <p class="errors" *ngIf="(FormLogin.get('email')?.dirty || FormLogin.get('email')?.touched) && FormLogin.get('email')?.hasError('required')">Correo obligatorio</p>
+                  <p class="errors" *ngIf="FormLogin.get('email')?.hasError('maxlength')">Solo 40 Carácteres</p>
+                  <p class="errors" *ngIf="FormLogin.get('email')?.hasError('email')">No es un correo válido</p>
+                </div>
+
+                <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                  <ion-label position="floating">Contraseña</ion-label>
+                  <ion-input required clearInput="true" [type]="passInputType"  formControlName="password" maxlength="16" id="pass"
+                  [class.inputWrong] = "FormLogin.get('password')?.invalid"></ion-input>
+                </ion-item>
+
+                <div class="adjustErrors">
+                  <p class="errors" *ngIf="(FormLogin.get('password')?.dirty || FormLogin.get('password')?.touched) && FormLogin.get('password')?.hasError('required')">Contraseña obligatoria</p>
+                  <p class="errors" *ngIf="FormLogin.get('password')?.hasError('maxlength')">Solo 16 Carácteres</p>
+                  <p class="errors" *ngIf="FormLogin.get('password')?.hasError('minlength')">No hay contraseñas menores a 8 carácteres</p>
+                </div>
+
+                <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small">
+                  <ion-icon slot="start" name="eye-outline"></ion-icon>
+                  Mostrar Contraseña
+                </ion-button>
+                <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small">
+                  <ion-icon slot="start" name="eye-off-outline"></ion-icon>
+                  Ocultar Contraseña
+                </ion-button>
+
+                <ion-button type="submit" mode="md" expand="block" class="ion-padding" shape="round" [disabled]="FormLogin.invalid">
+                    <h5 class="typeLog">Iniciar Sesión</h5>
+                </ion-button>
+              </form>
+            </ion-card-content>
+
+            <ion-button routerLink="/register" expand="block" fill="clear" shape="round">
+              ¿Olvidaste tu contraseña?
+            </ion-button>
+
+
+
+          </ion-card>
+
+        </ion-col>
+
+        <ion-col size-xs="10" size-md="6" size-lg="4">
+          <ion-button color="danger" fill="outline" type="submit" mode="md" expand="block" (click)="logInWithGoogle()">
+          <!-- <ion-button (click)="logInGoogle()" color="danger" fill="outline" type="submit" mode="md" expand="block"> -->
+            <ion-text color="danger">
+              <h5>Ingresar con google</h5>
+            </ion-text>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size-xs="10" size-md="6" size-lg="4">
+          <ion-button mode="md" fill="outline" expand="block" id="open-modal">
+            <ion-text color="dark">
+              <h5>Registrarse</h5>
+            </ion-text>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+  <!-- Modal -->
+
+  <ion-modal #modal trigger="open-modal">
+    <ng-template>
+      <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;" >
+        <ion-toolbar class="ion-text-center">
+          ¿Como deseeas registrarte?
+        </ion-toolbar>
+
+        <ion-grid fixed>
+          <ion-row class="ion-justify-content-center">
+
+            <ion-col size-xs="11" size-md="8" size-lg="8">
+              <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="success" (click)="register('carid-Inst')">
+                <ion-text color="dark">
+                  <h5>Como institución</h5>
+                </ion-text>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size-xs="11" size-md="8" size-lg="8">
+              <ion-button mode="md" fill="outline" expand="block" id="open-modal" (click)="register('carid-User')">
+                <ion-text color="dark">
+                  <h5>Como usuario</h5>
+                </ion-text>
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>

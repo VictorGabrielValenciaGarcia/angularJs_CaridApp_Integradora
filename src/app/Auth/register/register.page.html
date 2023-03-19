@@ -1,0 +1,338 @@
+<ion-header translucent="true" mode="ios">
+  <ion-toolbar>
+      <ion-buttons mode="md" slot="start">
+        <ion-back-button defaultHref="/login"></ion-back-button>
+      </ion-buttons>
+      <span class="fontType" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+        CaridApp
+      </span>
+  </ion-toolbar>
+</ion-header>
+
+<style>
+  .inputWrong{
+    border-color: #c92432;
+    color: #c92432;
+    /* background: #fffbfb; */
+  }
+  .errors{
+    color: #c92432;
+    font-size: 75%;
+    text-align: start;
+  }
+
+  .adjustErrors{
+    margin-top: -1rem;
+  }
+
+  ion-item{
+    margin-bottom: 2rem;
+  }
+
+</style>
+
+<ion-content>
+
+  <div *ngIf="type === 'carid-User'" >
+
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+
+        <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size="6">
+              <ion-img src="./assets/Images/Cuyo_login2.png"></ion-img>
+              <ion-button id="open-modalInfo" expand="block" fill="outline" shape="round" >
+                ¿Quienes Somos?
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size-lg="5" size-md="5" size-xs="12" class="ion-margin-top">
+          <ion-card>
+
+              <form [formGroup]="RegisterForm" (ngSubmit)="register()">
+
+                <ion-slides mode="ios" pager="ios" scrollbar="ios" pager="true">
+
+                  <ion-slide>
+                    <ion-list>
+                      <ion-card-header>
+                        <ion-card-title class="ion-text-center">REGISTRARSE</ion-card-title>
+                        <ion-card-subtitle class="ion-text-center">- Datos Personales -</ion-card-subtitle>
+                      </ion-card-header>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Nombre(s)</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="nombre" maxlength="20"
+                        [class.inputWrong] = "RegisterForm.get('nombre')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('nombre')?.dirty || RegisterForm.get('nombre')?.touched) && RegisterForm.get('nombre')?.hasError('required')">Nombre necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('nombre')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('nombre')?.hasError('minlength')">No es un nombre válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Apellido Paterno</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="apellido_P" maxlength="15"
+                        [class.inputWrong] = "RegisterForm.get('apellido_P')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('apellido_P')?.dirty || RegisterForm.get('apellido_P')?.touched) && RegisterForm.get('apellido_P')?.hasError('required')">Apellido Paterno necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('apellido_P')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('apellido_P')?.hasError('minlength')">No es un apellido válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Apellido Materno</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="apellido_M" maxlength="15"
+                        [class.inputWrong] = "RegisterForm.get('apellido_M')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('apellido_M')?.dirty || RegisterForm.get('apellido_M')?.touched) && RegisterForm.get('apellido_M')?.hasError('required')">Apellido Materno necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('apellido_M')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('apellido_M')?.hasError('minlength')">No es un apellido válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md">
+                        <ion-label position="floating">Ingrese su Edad</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="edad" maxlength="3"
+                        [class.inputWrong] = "RegisterForm.get('edad')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('edad')?.dirty || RegisterForm.get('edad')?.touched) && RegisterForm.get('edad')?.hasError('required')">Edad necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('edad')?.hasError('max')">No es una edad válida</p>
+                        <p class="errors" *ngIf="RegisterForm.get('edad')?.hasError('min')">Solo mayores de 15 años</p>
+                      </div>
+
+                      <ion-item lines="none">
+                        <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
+                        <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                      </ion-item>
+
+                    </ion-list>
+
+                  </ion-slide>
+
+                  <ion-slide>
+                    <ion-list>
+                      <ion-card-header>
+                        <ion-card-title class="ion-text-center">REGISTRARSE</ion-card-title>
+                        <ion-card-subtitle class="ion-text-center">- Dirección Personal -</ion-card-subtitle>
+                      </ion-card-header>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Colonia / Localidad</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="colonia" maxlength="50"
+                        [class.inputWrong] = "RegisterForm.get('colonia')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('colonia')?.dirty || RegisterForm.get('colonia')?.touched) && RegisterForm.get('colonia')?.hasError('required')">Colonia / localidad necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('colonia')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('colonia')?.hasError('minlength')">No es un nombre válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Codigo postal</ion-label>
+                        <ion-input required clearInput="true" type="text" maxlength="5" formControlName="CP" autocomplete="postal-code"
+                        [class.inputWrong] = "RegisterForm.get('CP')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('CP')?.dirty || RegisterForm.get('CP')?.touched) && RegisterForm.get('CP')?.hasError('required')">Codigo Postal necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('CP')?.hasError('maxlength')">Solo 5 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('CP')?.hasError('minlength')">No es un CP válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Calle / Avenida</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="calle" maxlength="25" autocomplete="street-addres"
+                        [class.inputWrong] = "RegisterForm.get('calle')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('calle')?.dirty || RegisterForm.get('calle')?.touched) && RegisterForm.get('calle')?.hasError('required')">Calle / Avenida necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('calle')?.hasError('maxlength')">Solo 25 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('calle')?.hasError('minlength')">No es un nombre válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md">
+                        <ion-label position="floating">No. Casa</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="no_Casa" maxlength="4"
+                        [class.inputWrong] = "RegisterForm.get('no_Casa')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('no_Casa')?.dirty || RegisterForm.get('no_Casa')?.touched) && RegisterForm.get('no_Casa')?.hasError('required')">Numero de domicilio requerido</p>
+                        <p class="errors" *ngIf="RegisterForm.get('no_Casa')?.hasError('max')">No es un número válido</p>
+                        <p class="errors" *ngIf="RegisterForm.get('no_Casa')?.hasError('min')">No es un número válido</p>
+                      </div>
+
+                      <ion-item lines="none">
+                        <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
+                        <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </ion-slide>
+
+                  <ion-slide>
+                    <ion-list>
+                      <ion-card-header>
+                        <ion-card-title class="ion-text-center">REGISTRARSE</ion-card-title>
+                        <ion-card-subtitle class="ion-text-center">- Detalles de la Cuenta -</ion-card-subtitle>
+                      </ion-card-header>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Nombre de Usuario</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="username" maxlength="15"
+                        [class.inputWrong] = "RegisterForm.get('username')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('username')?.dirty || RegisterForm.get('username')?.touched) && RegisterForm.get('username')?.hasError('required')">Username necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('username')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('username')?.hasError('minlength')">Username mínimo de 5 carácteres</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Correo Electronico</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="correo" maxlength="40" autocomplete="email"
+                        [class.inputWrong] = "RegisterForm.get('correo')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('correo')?.dirty || RegisterForm.get('correo')?.touched) && RegisterForm.get('correo')?.hasError('required')">E-mail necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('correo')?.hasError('maxlength')">Solo 40 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('correo')?.hasError('email')">No es un correo válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Numero de Telefono</ion-label>
+                        <ion-input required clearInput="true" type="tel" formControlName="telefono" mode="md" maxlength="15"
+                        [class.inputWrong] = "RegisterForm.get('telefono')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('telefono')?.dirty || RegisterForm.get('telefono')?.touched) && RegisterForm.get('telefono')?.hasError('required')">Telefono necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('telefono')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('telefono')?.hasError('minlength')">No es un número telefónico</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Contraseña</ion-label>
+                        <ion-input required [type]="passInputType" formControlName="password" maxlength="16" id="pass"
+                        [class.inputWrong] = "RegisterForm.get('password')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterForm.get('password')?.dirty || RegisterForm.get('password')?.touched) && RegisterForm.get('password')?.hasError('required')">Contraseña necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterForm.get('password')?.hasError('maxlength')">Solo 16 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterForm.get('password')?.hasError('minlength')">Contraseña minima de 8 carácteres</p>
+                      </div>
+
+                      <!-- <ion-item>
+                        <ion-label position="floating">Confirme su Contraseña</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="passwordValidation"></ion-input>
+                      </ion-item> -->
+                      <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+                        <ion-icon slot="start" name="eye-outline"></ion-icon>
+                        Mostrar Contraseña
+                      </ion-button>
+                      <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+                        <ion-icon slot="start" name="eye-off-outline"></ion-icon>
+                        Ocultar Contraseña
+                      </ion-button>
+
+                        <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
+                                    fill="outline" shape="round" class="ion-margin-top" [disabled]="RegisterForm.invalid">
+                          Registrarse
+                        </ion-button>
+
+                    </ion-list>
+                  </ion-slide>
+
+                </ion-slides>
+
+              </form>
+
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="type === 'carid-Inst'" >
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+
+        <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size="6">
+              <ion-img src="./assets/Images/Cuyo_login2.png"></ion-img>
+              <ion-button id="open-modalInfo" expand="block" fill="outline" shape="round" >
+                ¿Quienes Somos?
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="type != 'carid-Inst' && type != 'carid-User'">
+
+    <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="6">
+          <ion-img src="./assets/Images/Cuyo_login2.png"></ion-img>
+          <!-- <ion-button id="open-modalInfo" expand="block" fill="outline" shape="round" >
+            ¿Quienes Somos?
+          </ion-button> -->
+        </ion-col>
+      </ion-row>
+    </ion-col>
+
+    <ion-col size-lg="5" size-md="5" size-xs="12" class="ion-margin-top">
+      <ion-card>
+
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">UPPSS!!</ion-card-title>
+          <br>
+          <h3 class="ion-text-center">Esta ventana no existe. <br> Porfavor regrese a la ventana de Logeo</h3>
+        </ion-card-header>
+
+      </ion-card>
+    </ion-col>
+  </div>
+
+
+  <!-- Modal -->
+
+  <ion-modal #modal trigger="open-modalInfo">
+    <ng-template>
+      <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;" >
+        <ion-toolbar class="ion-text-center">
+          ¿Quienes Somos?
+        </ion-toolbar>
+
+        <ion-label class="ion-text-center">
+          <p class="ion-text-center ion-padding-top ion-margin-top">
+            Ash nazg durbatulûk, ash nazg gimbatul,
+            ash nazg thrakatulûk, agh burzum-ishi krimpatul.
+          </p>
+        </ion-label>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

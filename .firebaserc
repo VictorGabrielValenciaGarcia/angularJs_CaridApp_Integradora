@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "fir-bd-caridapp-int2023"
+  },
+  "targets": {
+    "fir-bd-caridapp-int2023": {
+      "hosting": {
+        "app": [
+          "fir-bd-caridapp-int2023"
+        ]
+      }
+    }
+  }
+}

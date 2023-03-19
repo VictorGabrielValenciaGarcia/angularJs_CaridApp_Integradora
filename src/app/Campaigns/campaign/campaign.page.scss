@@ -1,0 +1,61 @@
+.imageForm {
+ border-top-left-radius: 15% !important;
+ border-top-right-radius: 1.5% !important;
+ border-bottom-right-radius: 15% !important;
+ border-bottom-left-radius: 1.5% !important;
+
+ object-fit: contain;
+}
+
+// Modal
+#modal {
+  --height: 28%;
+    width: 90%;
+    margin-left: 5%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+#modalReport {
+  --height: 28%;
+    width: 90%;
+    margin-left: 5%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+#modalPhysicSupport {
+  --height: 28%;
+    width: 90%;
+    margin-left: 5%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+#modalEconomicSupport {
+  --height: 80%;
+    width: 90%;
+    margin-left: 5%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgb(231, 231, 231);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}
+
+#modalPhysicSupport ion-toolbar {
+--background: rgb(144, 14, 101);
+--color: white;
+}
+
+#modalEconomicSupport ion-toolbar {
+--background: rgb(94, 144, 14);
+--color: white;
+}
