@@ -9,13 +9,11 @@ import { SesionControlService } from '../Services/sesion-control.service';
 export class CampaignsMenuPage implements OnInit {
 
   constructor(
-    private sessionS: SesionControlService
   ) { }
 
   ngOnInit() {
   }
 
   logOut() {
-    this.sessionS.logOut();
   }
 }

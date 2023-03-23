@@ -12,6 +12,7 @@ export const environment = {
     authDomain: 'fir-bd-caridapp-int2023.firebaseapp.com',
     messagingSenderId: '350051610514',
   },
+  MAPBOX_KEY: 'pk.eyJ1IjoiZGVwaW5henVsIiwiYSI6ImNsZmg1YWwxOTAxZG8zcXJ4amk0eTF6aG0ifQ.vZ0prhTgB22m_bO3ltBfiQ',
   production: false
 };
 

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CampaignsMenuPageRoutingModule } from './campaigns-menu-routing.module';
+import { MiCampaignsPageRoutingModule } from './mi-campaigns-routing.module';
 
-import { CampaignsMenuPage } from './campaigns-menu.page';
+import { MiCampaignsPage } from './mi-campaigns.page';
 import { SharedModule } from 'src/app/Shared/shared.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModule } from 'src/app/Shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    CampaignsMenuPageRoutingModule,
+    MiCampaignsPageRoutingModule,
     SharedModule
   ],
-  declarations: [CampaignsMenuPage]
+  declarations: [MiCampaignsPage]
 })
-export class CampaignsMenuPageModule {}
+export class MiCampaignsPageModule {}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
+// import { Geolocation } from '@capacitor/geolocation';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
@@ -20,7 +20,10 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth())
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Geolocation
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

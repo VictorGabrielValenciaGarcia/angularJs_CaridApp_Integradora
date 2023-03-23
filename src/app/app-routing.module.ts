@@ -34,6 +34,22 @@ const routes: Routes = [
     loadChildren: () => import('./Campaigns/campaign/campaign.module').then( m => m.CampaignPageModule)
   },
   {
+    path: 'centers-map/:id',
+    loadChildren: () => import('./Campaigns/centers-map/centers-map.module').then( m => m.CentersMapPageModule)
+  },
+  {
+    path: 'dashboard/:type',
+    loadChildren: () => import('./Instituciones/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'mi-centers',
+    loadChildren: () => import('./Instituciones/mi-centers/mi-centers.module').then( m => m.MiCentersPageModule)
+  },
+  {
+    path: 'mi-campaigns',
+    loadChildren: () => import('./Instituciones/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'

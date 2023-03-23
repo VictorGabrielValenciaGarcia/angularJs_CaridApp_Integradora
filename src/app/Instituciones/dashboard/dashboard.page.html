@@ -1,0 +1,63 @@
+<app-header title="Centro de Control" >
+</app-header>
+
+<app-side-nav></app-side-nav>
+
+<ion-content id="main">
+
+  <div *ngIf="type === 'carid-Inst-Role'">
+
+    <ion-grid fixed>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+        <ion-col sizeXs="12" sizeMd="6" sizeLg="4" *ngFor="let i of interactions" >
+          <ion-card (click)="goToRoute(i.route)">
+            <ion-grid fixed>
+              <ion-row class="ion-justify-content-center ion-align-items-center ">
+                <ion-col sizeXs="3" sizeLg="6" sizeMd="5">
+                  <img [src]="i.image" style="width: 250px;">
+                </ion-col>
+                <ion-col size="9" sizeLg="12" sizeMd="7">
+                  <h3  class="ion-text-center">{{ i.title }}</h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <div *ngIf="type === 'carid-Admin-Role'"></div>
+
+  <div *ngIf="type != 'carid-Inst-Role' && type != 'carid-Admin-Role'">
+
+    <ion-grid>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col size="8">
+                <ion-img src="./assets/Images/Cuyo_login2.png"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col size-lg="4" size-md="4" size-xs="12" class="ion-margin-top">
+            <ion-card>
+
+              <ion-card-header>
+                <ion-card-title class="ion-text-center">UPPSS!!</ion-card-title>
+                <br>
+                <h3 class="ion-text-center">Esta ventana no existe. <br> Porfavor regrese a la ventana de Logeo</h3>
+              </ion-card-header>
+
+            </ion-card>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+</ion-content>
+

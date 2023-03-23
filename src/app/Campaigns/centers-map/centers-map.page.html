@@ -1,0 +1,31 @@
+<ion-header translucent="true" mode="ios">
+  <ion-toolbar style="background-color: #7ac4f5">
+
+    <ion-buttons mode="md" slot="start">
+      <ion-back-button defaultHref="/campaign/{{ idCampaing }}"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Center's Map</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="map" id="mapbox" tabindex="0"></div>
+
+  <ion-slides (ionSlideDidChange)="onSlideDidChange()">
+    <ion-slide *ngFor="let marker of centerMarkers" >
+
+      <ion-card color="danger">
+        <ion-card-header>
+          <h5 style="font-weight: bolder;">{{ marker.title }}</h5>
+          <ion-card-subtitle>{{ marker.subtitle }}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+

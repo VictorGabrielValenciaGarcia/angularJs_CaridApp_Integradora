@@ -1,0 +1,33 @@
+#map-mapbox{
+  position: absolute;
+  width: 100%;
+  height: 100% !important ;
+
+}
+
+.map{
+  width: 100%;
+  height: 100% !important ;
+}
+
+#map-container{
+  width: auto;
+  height: 100vh ;
+}
+
+ion-slides {
+  height: 200px;
+  position: absolute;
+  bottom: 6px;
+  width: 100%;
+}
+
+.imgMark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: inherit;
+  border-radius: 50%;
+}
+

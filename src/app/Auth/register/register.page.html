@@ -290,28 +290,30 @@
 
   <div *ngIf="type != 'carid-Inst' && type != 'carid-User'">
 
-    <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
-      <ion-row class="ion-justify-content-center ion-align-items-center">
-        <ion-col size="6">
-          <ion-img src="./assets/Images/Cuyo_login2.png"></ion-img>
-          <!-- <ion-button id="open-modalInfo" expand="block" fill="outline" shape="round" >
-            ¿Quienes Somos?
-          </ion-button> -->
-        </ion-col>
+    <ion-grid>
+      <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col size="8">
+                <ion-img src="./assets/Images/Cuyo_login2.png"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col size-lg="4" size-md="4" size-xs="12" class="ion-margin-top">
+            <ion-card>
+
+              <ion-card-header>
+                <ion-card-title class="ion-text-center">UPPSS!!</ion-card-title>
+                <br>
+                <h3 class="ion-text-center">Esta ventana no existe. <br> Porfavor regrese a la ventana de Logeo</h3>
+              </ion-card-header>
+
+            </ion-card>
+          </ion-col>
       </ion-row>
-    </ion-col>
+    </ion-grid>
 
-    <ion-col size-lg="5" size-md="5" size-xs="12" class="ion-margin-top">
-      <ion-card>
-
-        <ion-card-header>
-          <ion-card-title class="ion-text-center">UPPSS!!</ion-card-title>
-          <br>
-          <h3 class="ion-text-center">Esta ventana no existe. <br> Porfavor regrese a la ventana de Logeo</h3>
-        </ion-card-header>
-
-      </ion-card>
-    </ion-col>
   </div>
 
 

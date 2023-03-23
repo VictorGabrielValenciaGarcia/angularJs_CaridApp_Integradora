@@ -133,7 +133,7 @@
     </ion-fab-button>
 
     <ion-fab-list side="start">
-      <ion-fab-button routerLink="/mapa" color="dark">
+      <ion-fab-button (click)="viewMap(idCampaing)" color="dark">
         <ion-icon name="map-outline"></ion-icon>
       </ion-fab-button>
 
@@ -418,7 +418,7 @@
                     </ion-button>
                   </ion-col>
                   <ion-col size="9">
-                    <p class="ion-text-justify">Antes de realizar tu aporte, corrobora que existan <a>Centros de Entrega</a> cerca de ti.</p>
+                    <p class="ion-text-justify">Antes de realizar tu aporte, corrobora que existan <a (click)="viewMap(idCampaing)">Centros de Entrega</a> cerca de ti.</p>
                   </ion-col>
                 </ion-row>
               </ion-grid>

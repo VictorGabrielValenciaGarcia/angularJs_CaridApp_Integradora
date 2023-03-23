@@ -1,7 +1,11 @@
 <ion-header translucent="true" mode="ios">
   <ion-toolbar style="background-color: #7ac4f5">
 
-    <ion-title>{{ title }}</ion-title>
+    <ion-buttons mode="md" slot="start">
+      <ion-back-button defaultHref="/dashboard/carid-Inst-Role"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Centos de Acopio</ion-title>
 
     <ion-buttons slot="end">
       <ion-menu-button autoHide="true" color="dark" menu="first" > </ion-menu-button>
@@ -9,3 +13,10 @@
 
   </ion-toolbar>
 </ion-header>
+
+
+<app-side-nav></app-side-nav>
+
+<ion-content id="main">
+
+</ion-content>

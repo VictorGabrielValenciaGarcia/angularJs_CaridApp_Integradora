@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonModal, ModalController } from '@ionic/angular';
 import { getElement } from 'ionicons/dist/types/stencil-public-runtime';
 
@@ -64,8 +65,20 @@ export class CampaignPage implements OnInit {
   verDescription : boolean = false;
   checkedList : boolean[] = [];
 
+  idCampaing : string = '0';
 
-  constructor() { }
+  constructor(
+    private ar : ActivatedRoute,
+    private router : Router,
+
+  ) {
+    this.ar.params.subscribe(
+      (_id:any)=>{
+        this.idCampaing = _id.id;
+        // console.log(this.idCampaing);
+      }
+    )
+  }
 
   ngOnInit() {
     this.objCampaingExample.objListaEnceres.forEach(element => {
@@ -74,7 +87,7 @@ export class CampaignPage implements OnInit {
   }
 
   // Modal Interaction
-  
+
   modalSupportDismiss(){
     this.modal.dismiss()
   }
@@ -108,6 +121,14 @@ export class CampaignPage implements OnInit {
 
   ThanksDismiss(){
     this.modalThanks.dismiss()
+  }
+
+  viewMap(_id:string){
+    this.modalThanks.dismiss()
+    this.PhysicSupportDismiss();
+    this.EconomicSupportDismiss();
+    this.modalSupportDismiss();
+    this.router.navigate(['/centers-map/',_id]);
   }
 
   // Elementos
