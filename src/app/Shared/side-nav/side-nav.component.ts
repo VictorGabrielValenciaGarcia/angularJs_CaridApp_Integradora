@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SesionControlService } from 'src/app/Services/sesion-control.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -9,7 +10,8 @@ import { SesionControlService } from 'src/app/Services/sesion-control.service';
 export class SideNavComponent implements OnInit {
 
   constructor(
-    private sessionS: SesionControlService
+    private sessionS: SesionControlService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -17,6 +19,10 @@ export class SideNavComponent implements OnInit {
 
   logOut() {
     this.sessionS.logOut();
+  }
+
+  goToClass(){
+    this.router.navigate(['/settings'])
   }
 
 }

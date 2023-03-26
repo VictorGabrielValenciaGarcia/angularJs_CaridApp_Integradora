@@ -10,7 +10,7 @@ export class DashboardPage implements OnInit {
 
   type: string = "";
 
-  interactions : any = [
+  interactionsInst : any = [
     {
       image: './assets/Images/allCampaings.png',
       title : 'Todas las Campañas',
@@ -18,7 +18,7 @@ export class DashboardPage implements OnInit {
     },
     {
       image: './assets/Images/myCampaings.png',
-      title : 'Solo mis Campañas',
+      title : 'Mis Campañas',
       route : './mi-campaigns',
     },
     {

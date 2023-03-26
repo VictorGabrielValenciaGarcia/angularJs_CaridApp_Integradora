@@ -1,11 +1,11 @@
-<app-header-without-menu title="Detalles de Campaña"></app-header-without-menu>
+<app-header-without-menu title="Detalles de Campaña" route="/campaigns/animales"></app-header-without-menu>
 
 <ion-content>
   <ion-grid fixed>
     <ion-row class="ion-align-items-center">
 
       <ion-col size-lg="6" size-md="12" size-xs="12" class="ion-padding">
-        <img class="imageForm" [src]="objCampaingExample.imgBanner" />
+        <img class="imageForm" [src]="objCampaingExample.strImage_Campania" />
       </ion-col>
 
       <ion-col size-lg="6" size-md="12" size-xs="12">
@@ -13,9 +13,9 @@
         <ion-card class="ion-padding">
 
           <ion-card-header class="ion-text-center">
-            <ion-card-title>{{objCampaingExample.strNombreCampania | uppercase}}</ion-card-title>
-            <ion-card-subtitle><strong>{{objCampaingExample.strOrganizacion}}</strong> |
-              <strong>{{objCampaingExample.strPrograma}}</strong></ion-card-subtitle>
+            <ion-card-title>{{objCampaingExample.strNombre_Campania | uppercase}}</ion-card-title>
+            <ion-card-subtitle><strong>{{objCampaingExample.numId_Institucion}}</strong> |
+              <strong>{{objCampaingExample.strPrograma_Sector_Campania}}</strong></ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
@@ -25,7 +25,7 @@
                   <ion-label>Ver Concepto</ion-label>
                 </ion-item>
                 <div class="ion-padding ion-text-justify" style="background-color: #fcfcfc;" slot="content">
-                  {{objCampaingExample.strDescripcion}}
+                  {{objCampaingExample.strDescripcion_Campania}}
                 </div>
               </ion-accordion>
             </ion-accordion-group>
@@ -42,12 +42,12 @@
               <ion-row>
                 <ion-col size="6">
                   <h5 class="ion-text-center"><strong>Inicio:</strong>
-                    {{objCampaingExample.objFechaInicio.diaInicio}}/{{objCampaingExample.objFechaInicio.mesInicio}}/{{objCampaingExample.objFechaInicio.anioInicio}}
+                    {{objCampaingExample.strFecha_Inicio_Campania}}
                   </h5>
                 </ion-col>
                 <ion-col size="6">
                   <h5 class="ion-text-center"><strong>Fin:</strong>
-                    {{objCampaingExample.objFechaFin.diaFin}}/{{objCampaingExample.objFechaFin.mesFin}}/{{objCampaingExample.objFechaFin.anioFin}}
+                    {{objCampaingExample.strFecha_Fin_Campania}}
                   </h5>
                 </ion-col>
               </ion-row>
@@ -83,18 +83,18 @@
                 </ion-item>
                 <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
 
-                  <ion-accordion-group *ngFor="let recurso of objCampaingExample.objListaEnceres">
+                  <ion-accordion-group *ngFor="let recurso of objCampaingExample.arrLista_Enseres_Campania">
                     <ion-accordion value="first">
 
                       <!-- <ion-list > -->
                       <ion-item detail="true" slot="header">
                         <ion-icon class="ion-padding-end" color="success" [name]="recurso.strClasificacion"
                           size="small"></ion-icon>
-                        <ion-label>{{ recurso.strProducto }}</ion-label>
+                        <ion-label>{{ recurso.strNombre_Enser }}</ion-label>
                       </ion-item>
 
                       <div class="ion-text-justify ion-padding" style="background-color: #fcfcfc;" slot="content">
-                        <p>{{ recurso.strObservaciones }}</p>
+                        <p>{{ recurso.strRequisitos }}</p>
                       </div>
                       <!-- </ion-list> -->
 
@@ -434,10 +434,10 @@
                 <form>
 
                   <ion-grid>
-                    <ion-row *ngFor="let recurso of objCampaingExample.objListaEnceres; let i = index">
+                    <ion-row *ngFor="let recurso of objCampaingExample.arrLista_Enseres_Campania; let i = index">
                       <ion-col size="9">
                         <ion-item  mode="md" fill="solid">
-                          <ion-label>{{recurso.strProducto}}</ion-label>
+                          <ion-label>{{recurso.strNombre_Enser}}</ion-label>
                           <ion-checkbox slot="start" (ionChange)="changeEvent($event, i)"></ion-checkbox>
                         </ion-item>
                       </ion-col>
@@ -488,7 +488,7 @@
       </ion-toolbar>
 
       <div class="ion-padding-end ion-padding-start ion-text-justify" style="background-color: #fcfcfc;">
-        <p>!Muchas gracias por apoyar a "{{objCampaingExample.strNombreCampania}}". Con tu ayuda y apoyo haremos todos los esfuerzos
+        <p>!Muchas gracias por apoyar a "{{objCampaingExample.strNombre_Campania}}". Con tu ayuda y apoyo haremos todos los esfuerzos
           necesarios para alcanzar nuestros objetivos! </p>
       </div>
 

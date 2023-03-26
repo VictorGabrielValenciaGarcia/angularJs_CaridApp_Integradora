@@ -1,0 +1,156 @@
+<app-header-without-menu title="Visualizar Centro" route="/mi-centers"></app-header-without-menu>
+
+<ion-content>
+
+
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+
+      <ion-col sizeLg="5" sizeMd="6" sizeXs="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">{{ centerP.strNombre_CentroA }}</ion-card-title>
+            <ion-card-subtitle class="ion-text-center">~ {{ centerP.numId_Institucion }} ~</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content style="margin-top: -1.3rem !important;">
+            <ion-img [src]="centerP.strImage_CentroA" class="ion-padding"></ion-img>
+            <ion-list>
+
+              <ion-accordion-group class="ion-margin-top">
+                <ion-accordion value="first">
+
+                  <ion-item slot="header" color="light">
+                    <ion-label>Contactos Oficiales</ion-label>
+                  </ion-item>
+
+                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                    <ion-item lines="none">
+                      <ion-label>
+                        <p>Whatsapp</p>
+                        <h2>{{ centerP.mapContactos_CentroA.strWhatsApp }}</h2>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                      <ion-label>
+                        <p>Telefono Directo</p>
+                        <h2>{{ centerP.mapContactos_CentroA.strTelefono }}</h2>
+                      </ion-label>
+                    </ion-item>
+                  </div>
+                </ion-accordion>
+              </ion-accordion-group>
+
+              <ion-accordion-group class="ion-margin-top">
+                <ion-accordion value="first">
+
+                  <ion-item slot="header" color="light">
+                    <ion-label>Departamentos</ion-label>
+                  </ion-item>
+
+                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                    <ion-item *ngFor="let correo of centerP.mapContactos_CentroA.arrCorreos_CentroA">
+                      <ion-label>
+                        <p>{{ correo.strDepartamento }}</p>
+                        <h3 class="ion-padding-start"><strong>Correo:</strong> {{ correo.strCorreo }}</h3>
+                        <h3 class="ion-padding-start"><strong>Gerente:</strong> {{ correo.strEncargado }}</h3>
+                        <h3 class="ion-padding-start"><strong>Telefono:</strong> {{ correo.strTelefono_Departamento }}</h3>
+                      </ion-label>
+                    </ion-item>
+                  </div>
+                </ion-accordion>
+              </ion-accordion-group>
+
+              <ion-accordion-group class="ion-margin-top">
+                <ion-accordion value="first">
+
+                  <ion-item slot="header" color="light">
+                    <ion-label>Redes Sociales</ion-label>
+                  </ion-item>
+
+                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                    <ion-item>
+                      <ion-label>
+                        <p>Facebook</p>
+                        <h2>{{ centerP.mapContactos_CentroA.strFacebook }}</h2>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>
+                        <p>Instagram</p>
+                        <h2>{{ centerP.mapContactos_CentroA.strInstagram }}</h2>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>
+                        <p>TikTok</p>
+                        <h2>{{ centerP.mapContactos_CentroA.strTikTok }}</h2>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>
+                        <p>Twitter</p>
+                        <h2>{{ centerP.mapContactos_CentroA.strTwitter }}</h2>
+                      </ion-label>
+                    </ion-item>
+                  </div>
+                </ion-accordion>
+              </ion-accordion-group>
+
+            </ion-list>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col sizeLg="5" offsetLg="1" sizeMd="6" sizeXs="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Dirección</ion-card-title>
+          </ion-card-header>
+          <ion-card-content style="margin-top: -1.3rem !important;">
+            <ion-list>
+              <ion-item>
+                <ion-label class="ion-text-center">{{ centerP.mapDireccion_Fisica_CentroA.strCalle }}
+                  #{{ centerP.mapDireccion_Fisica_CentroA.numNumero_Exterior }},
+                  {{ centerP.mapDireccion_Fisica_CentroA.strColonia }};
+                  {{ centerP.mapDireccion_Fisica_CentroA.strEstado }}.</ion-label>
+              </ion-item>
+
+              <ion-accordion-group class="ion-margin-top">
+                <ion-accordion value="first">
+
+                  <ion-item slot="header" color="light">
+                    <ion-label>Detalles</ion-label>
+                  </ion-item>
+
+                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                    <ion-item lines="none">
+                      <ion-label><strong>No. Interior:</strong> {{ centerP.mapDireccion_Fisica_CentroA.numNumero_Interior }}</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                      <ion-label><strong>Municipio:</strong> {{ centerP.mapDireccion_Fisica_CentroA.strMunicipio }}</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                      <ion-label><strong>Ciudad:</strong> {{ centerP.mapDireccion_Fisica_CentroA.strCiudad }}</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                      <ion-label><strong>C.P:</strong> {{ centerP.mapDireccion_Fisica_CentroA.numCP }}</ion-label>
+                    </ion-item>
+                  </div>
+                </ion-accordion>
+              </ion-accordion-group>
+
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <div class="map" id="mapbox" tabindex="0"></div>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

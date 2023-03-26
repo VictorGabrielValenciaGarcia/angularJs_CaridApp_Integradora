@@ -8,15 +8,15 @@
       <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let campaign of Campaigns">
         <ion-card (click)="verCampaign(campaign.id, campaign)">
 
-          <ion-img [src]="campaign.imgBanner" alt="Banner de la Campaña"/>
+          <ion-img [src]="campaign.strImage_Campania" alt="Banner de la Campaña"/>
 
             <ion-card-header>
-              <ion-card-title class="ion-margin ion-text-center">{{campaign.strNombreCampania.length > 18 ? campaign.strNombreCampania.slice(0, 18) + '...' :  campaign.strNombreCampania | uppercase}} </ion-card-title>
-              <ion-card-subtitle class="ion-text-center">~ {{campaign.strOrganizacion}} ~</ion-card-subtitle>
+              <ion-card-title class="ion-margin ion-text-center">{{campaign.strNombre_Campania.length > 18 ? campaign.strNombre_Campania.slice(0, 18) + '...' :  campaign.strNombre_Campania | uppercase}} </ion-card-title>
+              <ion-card-subtitle class="ion-text-center">~ {{campaign.numId_Institucion}} ~</ion-card-subtitle>
             </ion-card-header>
 
             <ion-card-content class="ion-text-justify">
-              {{campaign.strDescripcion.length > 250 ? campaign.strDescripcion.slice(0, 120) :  campaign.strDescripcion}} ...
+              {{campaign.strDescripcion_Campania.length > 250 ? campaign.strDescripcion_Campania.slice(0, 120) :  campaign.strDescripcion_Campania}} ...
             </ion-card-content>
 
         </ion-card>

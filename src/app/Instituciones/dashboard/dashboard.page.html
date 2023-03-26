@@ -3,20 +3,19 @@
 
 <app-side-nav></app-side-nav>
 
-<ion-content id="main">
+<ion-content id="main" *ngIf="type === 'carid-Inst-Role'">
 
-  <div *ngIf="type === 'carid-Inst-Role'">
-
-    <ion-grid fixed>
+  <div style="margin-top: 6% !important;">
+    <ion-grid style="padding: 2% !important;">
       <ion-row class="ion-align-items-center ion-justify-content-center">
-        <ion-col sizeXs="12" sizeMd="6" sizeLg="4" *ngFor="let i of interactions" >
+        <ion-col sizeXs="12" sizeMd="6" sizeLg="4" *ngFor="let i of interactionsInst" >
           <ion-card (click)="goToRoute(i.route)">
             <ion-grid fixed>
               <ion-row class="ion-justify-content-center ion-align-items-center ">
-                <ion-col sizeXs="3" sizeLg="6" sizeMd="5">
-                  <img [src]="i.image" style="width: 250px;">
+                <ion-col sizeXs="4" sizeLg="8" sizeMd="5">
+                  <ion-img [src]="i.image"></ion-img>
                 </ion-col>
-                <ion-col size="9" sizeLg="12" sizeMd="7">
+                <ion-col sizeXs="8" sizeLg="12" sizeMd="7">
                   <h3  class="ion-text-center">{{ i.title }}</h3>
                 </ion-col>
               </ion-row>
@@ -26,12 +25,14 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
   </div>
 
-  <div *ngIf="type === 'carid-Admin-Role'"></div>
+</ion-content>
 
-  <div *ngIf="type != 'carid-Inst-Role' && type != 'carid-Admin-Role'">
+<ion-content id="main" *ngIf="type === 'carid-Admin-Role'">
+</ion-content>
+
+<ion-content id="main" *ngIf="type != 'carid-Inst-Role' && type != 'carid-Admin-Role'">
 
     <ion-grid>
       <ion-row class="ion-align-items-center ion-justify-content-center">
@@ -56,8 +57,6 @@
           </ion-col>
       </ion-row>
     </ion-grid>
-
-  </div>
 
 </ion-content>
 

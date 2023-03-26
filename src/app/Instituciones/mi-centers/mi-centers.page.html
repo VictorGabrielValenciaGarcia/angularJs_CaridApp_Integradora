@@ -17,6 +17,47 @@
 
 <app-side-nav></app-side-nav>
 
-<ion-content id="main">
+<ion-content id="main" [scrollEvents]="true" #scrollElement>
+
+  <div style="margin-top: 7% !important;">
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+
+        <ion-col sizeLg="5" sizeXs="12" sizeMd="6" [scrollTop]="true">
+          <ion-card style="height:365px;" scroll-y="true" scroll-x="false"  class="groupList">
+            <ion-card-header>
+              <ion-card-title class="ion-text-center">Centros Registrados</ion-card-title>
+              <ion-card-subtitle class="ion-text-center">- Panel de Control -</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+                <ion-list>
+                  <ion-item button="" detail mode="md" fill="outline" lines="none" (click)="centerInteraction(campaign, i)"
+                    class="ion-margin-bottom" *ngFor="let campaign of campaignList; let i = index" >
+                    <ion-label>{{ campaign.strNombre_CentroA }}</ion-label>
+                  </ion-item>
+                </ion-list>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col sizeLg="6" sizeXs="12" sizeMd="6" offsetLg="1">
+
+          <!-- <ion-card style="height: 200px !important;"> -->
+            <div class="map" id="mapbox" tabindex="0"></div>
+          <!-- </ion-card> -->
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" routerLink="/create-center">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

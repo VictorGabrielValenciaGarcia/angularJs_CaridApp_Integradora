@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonModal, ModalController } from '@ionic/angular';
 import { getElement } from 'ionicons/dist/types/stencil-public-runtime';
+import Campania, { Estado, Programa_Sector } from '../../Interfaces/Campania.interface';
 
 @Component({
   selector: 'app-campaign',
@@ -17,50 +18,36 @@ export class CampaignPage implements OnInit {
   @ViewChild('modalEconomicSupport') modalEconomicSupport!: IonModal;
 
   objCampaingExample = {
-    id: 1,
-    imgBanner: './assets/Images/Examples/exampleCampaign.jpg',
-    strNombreCampania: 'ComiPett',
-    strOrganizacion: 'Anima International',
-    strPrograma: 'PettRescue',
-    strDescripcion: 'Una colaboración entre Anima Denmark y Open Cages (“Jaulas Abiertas”), Anima International trabaja en nueve países europeos. Juntos, promueven leyes que luchan contra el tratamiento cruel de los animales en las granjas industriales. Fueron nombrados “Top Charity” por Animal Charity Evaluators en 2019. Su visión es la de un futuro libre de crueldad para las industrias de la comida y de la moda.',
-    objFechaInicio: {
-      diaInicio: '01',
-      mesInicio: '12',
-      anioInicio: 2022
-    },
-    objFechaFin: {
-      diaFin: 25,
-      mesFin: '02',
-      anioFin: 2023
-    },
-    objListaEnceres: [
-      {
-        strProducto: 'Donacion economica',
-        strClasificacion: 'logo-usd',
-        strObservaciones: 'Transferencia electronica, donacion al centro de acopio',
-      },
-      {
-        strProducto: 'Donacion economica',
-        strClasificacion: 'logo-usd',
-        strObservaciones: 'Transferencia electronica, donacion al centro de acopio',
-      },
-      {
-        strProducto: 'Donacion economica',
-        strClasificacion: 'logo-usd',
-        strObservaciones: 'Transferencia electronica, donacion al centro de acopio',
-      },
-      {
-        strProducto: 'Donacion economica',
-        strClasificacion: 'logo-usd',
-        strObservaciones: 'Transferencia electronica, donacion al centro de acopio',
-      },
-      {
-        strProducto: 'Donacion economica',
-        strClasificacion: 'logo-usd',
-        strObservaciones: 'Transferencia electronica, donacion al centro de acopio',
-      },
-    ]
-  }
+      id: 1,
+      arrCentros_Acopio_Campania : [1,2,3],
+      arrLista_Enseres_Campania : [
+        {
+          strClasificacion: 'Dinero en efectivo',
+          strRequisitos: 'Transferencia electronica, donacion al centro de acopio',
+          strNombre_Enser: 'Donacion economica',
+        },
+        {
+          strClasificacion: 'Dinero en efectivo',
+          strRequisitos: 'Transferencia electronica, donacion al centro de acopio',
+          strNombre_Enser: 'Donacion economica',
+        },
+        {
+          strClasificacion: 'Dinero en efectivo',
+          strRequisitos: 'Transferencia electronica, donacion al centro de acopio',
+          strNombre_Enser: 'Donacion economica',
+        },
+      ],
+      strFecha_Inicio_Campania : '23 feb 2023',
+      strFecha_Fin_Campania : '23 mar 2023',
+      numCantidad_Amonestaciones_Campania : 0,
+      numCantidad_Reportes : 0,
+      numId_Institucion : 1,
+      strDescripcion_Campania : 'Una colaboración entre Anima Denmark y Open Cages (“Jaulas Abiertas”), Anima International trabaja en nueve países europeos. Juntos, promueven leyes que luchan contra el tratamiento cruel de los animales en las granjas industriales. Fueron nombrados “Top Charity” por Animal Charity Evaluators en 2019. Su visión es la de un futuro libre de crueldad para las industrias de la comida y de la moda.',
+      strEstado_Campania : Estado.Vigente,
+      strNombre_Campania : 'ComiPett',
+      strPrograma_Sector_Campania : Programa_Sector.Animal,
+      strImage_Campania : './assets/Images/Examples/exampleCampaign.jpg',
+    };
 
   verDescription : boolean = false;
   checkedList : boolean[] = [];
@@ -81,7 +68,7 @@ export class CampaignPage implements OnInit {
   }
 
   ngOnInit() {
-    this.objCampaingExample.objListaEnceres.forEach(element => {
+    this.objCampaingExample.arrLista_Enseres_Campania.forEach(element => {
       this.checkedList.push(false)
     });
   }

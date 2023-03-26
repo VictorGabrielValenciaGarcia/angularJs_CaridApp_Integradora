@@ -42,18 +42,32 @@ const routes: Routes = [
     loadChildren: () => import('./Instituciones/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
+    path: 'mi-campaigns',
+    loadChildren: () => import('./Instituciones/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule)
+  },
+  {
     path: 'mi-centers',
     loadChildren: () => import('./Instituciones/mi-centers/mi-centers.module').then( m => m.MiCentersPageModule)
   },
   {
-    path: 'mi-campaigns',
-    loadChildren: () => import('./Instituciones/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule)
+    path: 'center-details/:id',
+    loadChildren: () => import('./Instituciones/center-details/center-details.module').then( m => m.CenterDetailsPageModule)
   },
+  {
+    path: 'create-center',
+    loadChildren: () => import('./Instituciones/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+  },
+  // {
+  //   path: 'create-center',
+  //   loadChildren: () => import('./Instituciones/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+  // },
+
   {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'
   },
+
 ];
 
 @NgModule({

@@ -7,14 +7,8 @@ import { environment } from '../../../environments/environment.prod';
 import { MapServiceService } from '../../Services/map-service.service';
 import { IonSlides } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-
-interface centerMarker {
-  lat: number,
-  long:number,
-  title?: string,
-  subtitle?: string,
-  image?: string,
-}
+import CentroAcopio from '../../Interfaces/CentroAcopio.interface';
+import { Contacto } from '../../Interfaces/CentroAcopio.interface';
 
 @Component({
   selector: 'app-centers-map',
@@ -35,31 +29,131 @@ export class CentersMapPage implements OnInit {
 
   idCampaing : string = '0';
 
-  centerMarkers: centerMarker[] = [
+  centerMarkers: CentroAcopio[] = [
     {
-      lat: -17.386378,
-      long: -66.1628018,
-      title: 'Parque De la Familia',
-      image: './assets/Images/lineDivider3.png',
+      strNombre_CentroA : 'Parque De la Familia',
+      strImage_CentroA : './assets/Images/lineDivider3.png',
+      numId_Institucion : 1,
+
+      mapContactos_CentroA : {
+        arrCorreos_CentroA : [],
+        strFacebook : "",
+        strInstagram : "",
+        strTelefono : "",
+        strTikTok : "",
+        strTwitter : "",
+        strWhatsApp : "",
+      },
+
+      mapDireccion_Fisica_CentroA :{
+        numCP:71295,
+        numNumero_Exterior:12,
+        numNumero_Interior:12,
+        strCalle: "",
+        strCiudad: "",
+        strColonia: "",
+        strEstado: "",
+        strMunicipio: "",
+      },
+
+      mapDireccion_GPS_CentroA :{
+        latitud : -17.386378,
+        longitud: -66.1628018,
+      },
     },
     {
-      lat: -17.4005556,
-      long: -66.1741667,
-      title: 'Mariscal Santa Cruz',
-      image: './assets/Images/lineDivider3.png',
+      strNombre_CentroA : 'Mariscal Santa Cruz',
+      strImage_CentroA : './assets/Images/lineDivider3.png',
+      numId_Institucion : 1,
+
+      mapContactos_CentroA : {
+        arrCorreos_CentroA : [],
+        strFacebook : "",
+        strInstagram : "",
+        strTelefono : "",
+        strTikTok : "",
+        strTwitter : "",
+        strWhatsApp : "",
+      },
+
+      mapDireccion_Fisica_CentroA :{
+        numCP:71295,
+        numNumero_Exterior:12,
+        numNumero_Interior:12,
+        strCalle: "",
+        strCiudad: "",
+        strColonia: "",
+        strEstado: "",
+        strMunicipio: "",
+      },
+
+      mapDireccion_GPS_CentroA :{
+        latitud : -17.4005556,
+        longitud: -66.1741667,
+      },
     },
     {
-      lat: -17.3810618,
-      long: -66.1550974,
-      title: 'Parque de Educación Vial',
-      image: './assets/Images/lineDivider3.png',
+      strNombre_CentroA : 'Parque de Educación Vial',
+      strImage_CentroA : './assets/Images/lineDivider3.png',
+      numId_Institucion : 1,
+
+      mapContactos_CentroA : {
+        arrCorreos_CentroA : [],
+        strFacebook : "",
+        strInstagram : "",
+        strTelefono : "",
+        strTikTok : "",
+        strTwitter : "",
+        strWhatsApp : "",
+      },
+
+      mapDireccion_Fisica_CentroA :{
+        numCP:71295,
+        numNumero_Exterior:12,
+        numNumero_Interior:12,
+        strCalle: "",
+        strCiudad: "",
+        strColonia: "",
+        strEstado: "",
+        strMunicipio: "",
+      },
+
+      mapDireccion_GPS_CentroA :{
+        latitud : -17.3810618,
+        longitud : -66.1550974,
+      },
     },
     {
-      lat: -17.4128145,
-      long: -66.158299,
-      title: 'Parque Kanata',
-      image: './assets/Images/lineDivider3.png',
-    }
+      strNombre_CentroA : 'Parque Kanata',
+      strImage_CentroA : './assets/Images/lineDivider3.png',
+      numId_Institucion : 1,
+
+      mapContactos_CentroA : {
+        arrCorreos_CentroA : [],
+        strFacebook : "",
+        strInstagram : "",
+        strTelefono : "",
+        strTikTok : "",
+        strTwitter : "",
+        strWhatsApp : "",
+      },
+
+      mapDireccion_Fisica_CentroA :{
+        numCP:71295,
+        numNumero_Exterior:12,
+        numNumero_Interior:12,
+        strCalle: "",
+        strCiudad: "",
+        strColonia: "",
+        strEstado: "",
+        strMunicipio: "",
+      },
+
+      mapDireccion_GPS_CentroA :{
+        latitud : -17.4128145,
+        longitud : -66.158299,
+      },
+    },
   ];
 
   constructor(
@@ -89,14 +183,39 @@ export class CentersMapPage implements OnInit {
   buildMap(){
     this.longitude = this.mapS.locations[0];
     this.latitude = this.mapS.locations[1];
-    // console.log(this.longitude, this.latitude)
-    let currentMark : centerMarker = {
-      lat: this.mapS.locations[0],
-      long: this.mapS.locations[1],
-      title: 'Depinazul',
-      subtitle: 'Usted Abrio el Mapa Aqui',
-      image: './assets/Images/pilotProfile.jpeg',
-    }
+
+    let currentMark : CentroAcopio =     {
+      strNombre_CentroA : 'Depinazul',
+      strSubtitulo_CentroA : 'Usted Abrio el Mapa Aqui',
+      strImage_CentroA : './assets/Images/lineDivider3.png',
+      numId_Institucion : 0,
+
+      mapContactos_CentroA : {
+        arrCorreos_CentroA : [],
+        strFacebook : "",
+        strInstagram : "",
+        strTelefono : "",
+        strTikTok : "",
+        strTwitter : "",
+        strWhatsApp : "",
+      },
+
+      mapDireccion_Fisica_CentroA :{
+        numCP:71295,
+        numNumero_Exterior:12,
+        numNumero_Interior:12,
+        strCalle: "",
+        strCiudad: "",
+        strColonia: "",
+        strEstado: "",
+        strMunicipio: "",
+      },
+
+      mapDireccion_GPS_CentroA :{
+        longitud : this.mapS.locations[1],
+        latitud : this.mapS.locations[0],
+      },
+    };
 
     this.centerMarkers.unshift(currentMark)
 
@@ -126,7 +245,7 @@ export class CentersMapPage implements OnInit {
           <ion-grid>
             <ion-row class="ion-justify-content-center">
               <ion-col size=12>
-                <img src="${_marks.image}"
+                <img src="${_marks.strImage_CentroA}"
                   style="display: block;
                   width: 100%;
                   height: 100%;
@@ -135,7 +254,7 @@ export class CentersMapPage implements OnInit {
                   border-radius: 50%;">
               </ion-col>
               <ion-col size=12>
-                <h3 class="ion-text-center" style="margin-top: -0.1rem; margin-bottom: -0.2rem;">${_marks.title}</h3>
+                <h3 class="ion-text-center" style="margin-top: -0.1rem; margin-bottom: -0.2rem;">${_marks.strNombre_CentroA}</h3>
               </ion-col>
               <ion-col size=12>
                 <img src="./assets/Images/lineDivider4.png"
@@ -149,7 +268,7 @@ export class CentersMapPage implements OnInit {
             </ion-row>
           </ion-grid>`);
         popup.setMaxWidth('225px');
-        new Marker({color:'red'}).setLngLat([_marks.long, _marks.lat]).setPopup(popup).addTo(this.map);
+        new Marker({color:'red'}).setLngLat([_marks.mapDireccion_GPS_CentroA.longitud, _marks.mapDireccion_GPS_CentroA.latitud]).setPopup(popup).addTo(this.map);
       });
     this.map.resize();
 
@@ -164,7 +283,7 @@ export class CentersMapPage implements OnInit {
   async onSlideDidChange() {
     const currentSlide = await this.slides.getActiveIndex();
     const marker = this.centerMarkers[currentSlide];
-    this.map.panTo({lat: marker.lat, lng: marker.long});
+    this.map.panTo({lat: marker.mapDireccion_GPS_CentroA.latitud, lng: marker.mapDireccion_GPS_CentroA.longitud});
   }
 
   viewMap(_id:string){

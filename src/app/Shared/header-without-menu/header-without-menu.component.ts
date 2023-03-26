@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderWithoutMenuComponent implements OnInit {
 
   @Input() title = '';
+  @Input() route = '';
 
   constructor() { }
 
