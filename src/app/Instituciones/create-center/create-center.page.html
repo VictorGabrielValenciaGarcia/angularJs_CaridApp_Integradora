@@ -1,9 +1,456 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>createCenter</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header-without-menu title="Control de Centros" route="/mi-centers">
+</app-header-without-menu>
 
-<ion-content>
+<ion-content class="ion-padding-top ion-padding-bottom">
+
+  <ion-grid >
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col sizeXs="12" sizeMd="11" sizeLg="11">
+        <ion-card>
+          <ion-card-content>
+
+            <ion-grid>
+              <form [formGroup]="createCenterForm" (ngSubmit)="createCenter()">
+
+                <ion-row class="ion-justify-content-evenly">
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+                    <h1 class="ion-text-center formTitle">Detalles Básicos</h1>
+                    <ion-list>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Nombre del Centro</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strNombre_CentroA" maxlength="60" minlength="3"
+                          [class.inputWrong] = "createCenterForm.get('strNombre_CentroA')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCenterForm.get('strNombre_CentroA')?.dirty || createCenterForm.get('strNombre_CentroA')?.touched) && createCenterForm.get('strNombre_CentroA')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strNombre_CentroA')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strNombre_CentroA')?.hasError('minlength')">No es un nombre válido</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strNombre_CentroA')?.hasError('pattern')">Solo letras, numeros, espacios , puntos y _</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Imagen (URL)</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strImage_CentroA"
+                          [class.inputWrong] = "createCenterForm.get('strImage_CentroA')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCenterForm.get('strImage_CentroA')?.dirty || createCenterForm.get('strImage_CentroA')?.touched) && createCenterForm.get('strImage_CentroA')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strImage_CentroA')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strImage_CentroA')?.hasError('minlength')">No es un nombre válido</p>
+                        </div>
+                      </div>
+
+                      <ion-input type="number" value="1" name="numId_Institucion" hidden></ion-input>
+                      <br>
+
+                      <ion-item-divider>
+                        <ion-label>Redes Sociales</ion-label>
+                      </ion-item-divider>
+
+                      <ion-grid>
+                        <ion-row class="ion-justify-content-center ion-align-items-start">
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md">
+                                <ion-label position="stacked">Facebook</ion-label>
+                                <ion-input clearInput="true" type="text" formControlName="strFacebook" maxlength="30" minlength="3"
+                                [class.inputWrong] = "createCenterForm.get('strFacebook')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('strFacebook')?.dirty || createCenterForm.get('strFacebook')?.touched) && createCenterForm.get('strFacebook')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strFacebook')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strFacebook')?.hasError('minlength')">No es una cuenta válida</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strFacebook')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md">
+                                <ion-label position="stacked">Instagram</ion-label>
+                                <ion-input clearInput="true" type="text" formControlName="strInstagram" maxlength="30" minlength="3"
+                                [class.inputWrong] = "createCenterForm.get('strInstagram')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('strInstagram')?.dirty || createCenterForm.get('strInstagram')?.touched) && createCenterForm.get('strInstagram')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strInstagram')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strInstagram')?.hasError('minlength')">No es una cuenta válida</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strInstagram')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md">
+                                <ion-label position="stacked">TikTok</ion-label>
+                                <ion-input clearInput="true" type="text" formControlName="strTikTok" maxlength="30" minlength="3"
+                                [class.inputWrong] = "createCenterForm.get('strTikTok')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('strTikTok')?.dirty || createCenterForm.get('strTikTok')?.touched) && createCenterForm.get('strTikTok')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTikTok')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTikTok')?.hasError('minlength')">No es una cuenta válida</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTikTok')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md">
+                                <ion-label position="stacked">Twitter</ion-label>
+                                <ion-input clearInput="true" type="text" formControlName="strTwitter" maxlength="30" minlength="3"
+                                [class.inputWrong] = "createCenterForm.get('strTwitter')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('strTwitter')?.dirty || createCenterForm.get('strTwitter')?.touched) && createCenterForm.get('strTwitter')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTwitter')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTwitter')?.hasError('minlength')">No es una cuenta válida</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTwitter')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                <ion-label position="stacked">WhatsApp</ion-label>
+                                <ion-input required type="text" formControlName="strWhatsApp" maxlength="18" minlength="10"
+                                [class.inputWrong] = "createCenterForm.get('strWhatsApp')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('strWhatsApp')?.dirty || createCenterForm.get('strWhatsApp')?.touched) && createCenterForm.get('strWhatsApp')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strWhatsApp')?.hasError('maxlength')">Solo 18 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strWhatsApp')?.hasError('minlength')">No es un telefono válido</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strWhatsApp')?.hasError('pattern')">La estructura tiene que ser igual a +(00)000-000-0000 </p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                <ion-label position="stacked">Telefono</ion-label>
+                                <ion-input required type="text" formControlName="strTelefono" maxlength="18" minlength="10"
+                                [class.inputWrong] = "createCenterForm.get('strTelefono')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('strTelefono')?.dirty || createCenterForm.get('strTelefono')?.touched) && createCenterForm.get('strTelefono')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTelefono')?.hasError('maxlength')">Solo 18 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTelefono')?.hasError('minlength')">No es un telefono válido</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strTelefono')?.hasError('pattern')">La estructura tiene que ser igual a +(00)000-000-0000 </p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                        </ion-row>
+                      </ion-grid>
+
+                    </ion-list>
+
+                  </ion-col>
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+                    <h1 class="ion-text-center formTitle">Dirección Física</h1>
+                    <ion-list>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Calle</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strCalle" maxlength="70" minlength="3"
+                          [class.inputWrong] = "createCenterForm.get('strCalle')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCenterForm.get('strCalle')?.dirty || createCenterForm.get('strCalle')?.touched) && createCenterForm.get('strCalle')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strCalle')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strCalle')?.hasError('minlength')">No es un nombre válido</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strCalle')?.hasError('pattern')">Solo Letras y Espacios</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Ciudad</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strCiudad" maxlength="70" minlength="3"
+                          [class.inputWrong] = "createCenterForm.get('strCiudad')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCenterForm.get('strCiudad')?.dirty || createCenterForm.get('strCiudad')?.touched) && createCenterForm.get('strCiudad')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strCiudad')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strCiudad')?.hasError('minlength')">No es un nombre válido</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strCiudad')?.hasError('pattern')">Solo Letras y Espacios</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Colonia</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strColonia" maxlength="70" minlength="3"
+                          [class.inputWrong] = "createCenterForm.get('strColonia')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCenterForm.get('strColonia')?.dirty || createCenterForm.get('strColonia')?.touched) && createCenterForm.get('strColonia')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strColonia')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strColonia')?.hasError('minlength')">No es un nombre válido</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strColonia')?.hasError('pattern')">Solo Letras y Espacios</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Municipio</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strMunicipio" maxlength="70" minlength="3"
+                          [class.inputWrong] = "createCenterForm.get('strMunicipio')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCenterForm.get('strMunicipio')?.dirty || createCenterForm.get('strMunicipio')?.touched) && createCenterForm.get('strMunicipio')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strMunicipio')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strMunicipio')?.hasError('minlength')">No es un nombre válido</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strMunicipio')?.hasError('pattern')">Solo Letras y Espacios</p>
+                        </div>
+                      </div>
+
+                      <ion-grid>
+                        <ion-row class="ion-justify-content-center ion-align-items-center">
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md">
+                                <ion-label position="floating">Número Interior</ion-label>
+                                <ion-input  clearInput="true" type="number" formControlName="numNumero_Interior" max="2000" min="1"
+                                [class.inputWrong] = "createCenterForm.get('numNumero_Interior')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('numNumero_Interior')?.dirty || createCenterForm.get('numNumero_Interior')?.touched) && createCenterForm.get('numNumero_Interior')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numNumero_Interior')?.hasError('max')">El valor limite es de 2000</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numNumero_Interior')?.hasError('min')">No es un número válido</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numNumero_Interior')?.hasError('pattern')">Solo números enteros positivos</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md">
+                                <ion-label position="floating">Número Exterior</ion-label>
+                                <ion-input  clearInput="true" type="number" formControlName="numNumero_Exterior" max="2000" min="1"
+                                [class.inputWrong] = "createCenterForm.get('numNumero_Exterior')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('numNumero_Exterior')?.dirty || createCenterForm.get('numNumero_Exterior')?.touched) && createCenterForm.get('numNumero_Exterior')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numNumero_Exterior')?.hasError('max')">Solo 60 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numNumero_Exterior')?.hasError('min')">No es un nombre válido</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numNumero_Exterior')?.hasError('pattern')">Solo números enteros positivos</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md">
+                                <ion-label position="floating">Código Postal</ion-label>
+                                <ion-input required clearInput="true" type="text" formControlName="numCP" maxlength="6" minlength="5"
+                                [class.inputWrong] = "createCenterForm.get('numCP')?.invalid"></ion-input>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('numCP')?.dirty || createCenterForm.get('numCP')?.touched) && createCenterForm.get('numCP')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numCP')?.hasError('maxlength')">CP máximo de 6 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numCP')?.hasError('minlength')">No es un CP válido</p>
+                                <p class="errors" *ngIf="createCenterForm.get('numCP')?.hasError('pattern')">Solo números enteros positivos</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                          <ion-col sizeLg="6" sizeMd="6" sizeXs="12">
+                            <div>
+                              <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                <ion-label position="floating">Estado</ion-label>
+                                <ion-select value="peperoni" multiple="false" placeholder="Seleccione un Estado" formControlName="strEstado">
+                                  <ion-select-option value="{{ estado }}" *ngFor="let estado of estados" >{{ estado }}</ion-select-option>
+                                </ion-select>
+                              </ion-item>
+
+                              <div class="adjustErrors">
+                                <p class="errors" *ngIf="(createCenterForm.get('strEstado')?.dirty || createCenterForm.get('strEstado')?.touched) && createCenterForm.get('strEstado')?.hasError('required')">* Este campo es obligatorio</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strEstado')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                                <p class="errors" *ngIf="createCenterForm.get('strEstado')?.hasError('minlength')">No es un nombre válido</p>
+                              </div>
+                            </div>
+                          </ion-col>
+
+                        </ion-row>
+                      </ion-grid>
+
+                    </ion-list>
+                  </ion-col>
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+                    <h1 class="ion-text-center formTitle">Localización</h1>
+
+                    <ion-card>
+                      <ion-card-content>
+                        <p class="ion-text-center">Por favor utilice el <b>puntero</b> en el mapa para señalar la <b>ubicación</b> de su <i>Centro de Acopio</i> </p>
+                      </ion-card-content>
+                    </ion-card>
+
+                    <!-- <ion-searchbar mode="ios" placeholder="Buscar ubicación" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar> -->
+
+                    <div class="map" id="mapbox" tabindex="0"></div>
+
+                    <ion-list>
+
+                      <ion-item class="formSpace" fill="solid" mode="md">
+                        <ion-label position="floating">Latitud</ion-label>
+                        <ion-input [disabled]="true" type="number" [value]="latitude_Center" formControlName="latitud" readonly="true"
+                        [class.inputWrong] = "createCenterForm.get('longitud')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <ion-item class="formSpace" fill="solid" mode="md" style="margin-top: -0.5rem !important;">
+                        <ion-label position="floating">Longitud</ion-label>
+                        <ion-input [disabled]="true" type="number" [value]="longitude_Center" formControlName="longitud" readonly="true"
+                        [class.inputWrong] = "createCenterForm.get('longitud')?.invalid"></ion-input>
+                      </ion-item>
+
+                    </ion-list>
+
+                  </ion-col>
+
+                </ion-row>
+
+                <ion-row class="ion-justify-content-center ion-align-items-center">
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12">
+                    <h1 class="ion-text-center formTitle">Correos Oficiales</h1>
+                  </ion-col>
+                  <ion-col sizeLg="2" sizeMd="3" sizeXs="12">
+                    <ion-button fill="outline" color="tertiary" size="small" expand="block" (click)="addNewInputFields()">
+                      <ion-icon slot="start" name="add" ></ion-icon>
+                      Añadir Correo
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="ion-justify-content-center ion-align-items-center">
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" formArrayName="arrCorreos_CentroA" *ngFor="let correos of arrCorreos_CentroA.controls ; let i = index" >
+
+                    <div [formGroupName]="i">
+
+                        <ion-accordion-group class="ion-margin-bottom">
+                          <ion-accordion value="first">
+
+                            <ion-item slot="header" color="light">
+                              <ion-button (click)="removeInputField(i)" color="medium" slot="start" fill="clear" *ngIf="i > 0" >
+                                <ion-icon slot="icon-only" color="medium" name="remove-circle"></ion-icon>
+                              </ion-button>
+                              <ion-label>
+                                Correo No.{{ i+1 }}
+                              </ion-label>
+                            </ion-item>
+
+                            <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+
+                              <div>
+                                <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                  <ion-label position="floating">Departamento</ion-label>
+                                  <ion-input required clearInput="true" type="text" formControlName="strDepartamento" maxlength="60" minlength="3"
+                                  [class.inputWrong] = "correos.get('strDepartamento')?.invalid"></ion-input>
+                                </ion-item>
+
+                                <div class="adjustErrors">
+                                  <p class="errors" *ngIf="(correos.get('strDepartamento')?.dirty || correos.get('strDepartamento')?.touched) && correos.get('strDepartamento')?.hasError('required')">* Este campo es obligatorio</p>
+                                  <p class="errors" *ngIf="correos.get('strDepartamento')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                                  <p class="errors" *ngIf="correos.get('strDepartamento')?.hasError('minlength')">No es un nombre válido</p>
+                                  <p class="errors" *ngIf="correos.get('strDepartamento')?.hasError('pattern')">Solo letras, puntos y espacios</p>
+                                </div>
+                              </div>
+
+                              <div>
+                                <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                  <ion-label position="floating">Correo</ion-label>
+                                  <ion-input required email="true" clearInput="true" type="email" formControlName="strCorreo" maxlength="40" minlength="3"
+                                  [class.inputWrong] = "correos.get('strCorreo')?.invalid"></ion-input>
+                                </ion-item>
+
+                                <div class="adjustErrors">
+                                  <p class="errors" *ngIf="(correos.get('strCorreo')?.dirty || correos.get('strCorreo')?.touched) && correos.get('strCorreo')?.hasError('required')">* Este campo es obligatorio</p>
+                                  <p class="errors" *ngIf="correos.get('strCorreo')?.hasError('maxlength')">Solo 40 Carácteres</p>
+                                  <p class="errors" *ngIf="correos.get('strCorreo')?.hasError('email')">No es un correo válido</p>
+                                </div>
+                              </div>
+
+                              <div>
+                                <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                  <ion-label position="floating">Teléfono</ion-label>
+                                  <ion-input required clearInput="true" type="phone" formControlName="strTelefono_Departamento" maxlength="18" minlength="10"
+                                  [class.inputWrong] = "correos.get('strTelefono_Departamento')?.invalid"></ion-input>
+                                </ion-item>
+
+                                <div class="adjustErrors">
+                                  <p class="errors" *ngIf="(correos.get('strTelefono_Departamento')?.dirty || correos.get('strTelefono_Departamento')?.touched) && correos.get('strTelefono_Departamento')?.hasError('required')">* Este campo es obligatorio</p>
+                                  <p class="errors" *ngIf="correos.get('strTelefono_Departamento')?.hasError('maxlength')">Solo 18 Carácteres</p>
+                                  <p class="errors" *ngIf="correos.get('strTelefono_Departamento')?.hasError('minlength')">No es un teléfono válido</p>
+                                  <p class="errors" *ngIf="correos.get('strTelefono_Departamento')?.hasError('pattern')">La estructura tiene que ser igual a +(00)000-000-0000</p>
+                                </div>
+                              </div>
+
+                              <div>
+                                <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                  <ion-label position="floating">Encargado</ion-label>
+                                  <ion-input required clearInput="true" type="text" formControlName="strEncargado" maxlength="60" minlength="10"
+                                  [class.inputWrong] = "correos.get('strEncargado')?.invalid"></ion-input>
+                                </ion-item>
+
+                                <div class="adjustErrors">
+                                  <p class="errors" *ngIf="(correos.get('strEncargado')?.dirty || correos.get('strEncargado')?.touched) && correos.get('strEncargado')?.hasError('required')">* Este campo es obligatorio</p>
+                                  <p class="errors" *ngIf="correos.get('strEncargado')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                                  <p class="errors" *ngIf="correos.get('strEncargado')?.hasError('minlength')">No es muy profesional</p>
+                                  <p class="errors" *ngIf="correos.get('strEncargado')?.hasError('pattern')">Solo letras y espacios</p>
+                                </div>
+                              </div>
+                            </div>
+                          </ion-accordion>
+                        </ion-accordion-group>
+
+                    </div>
+
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="ion-justify-content-center">
+                  <ion-button color="success" type="submit" expand="block" fill="solid" shape="round" [disabled]="createCenterForm.invalid">
+                    Crear Centro
+                  </ion-button>
+                </ion-row>
+
+              </form>
+            </ion-grid>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

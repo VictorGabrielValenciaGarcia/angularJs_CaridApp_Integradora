@@ -82,9 +82,9 @@ export class CenterDetailsPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    // if(!this.map){
+    if(!this.map){
       this.buildMap();
-    // }
+    }
   }
 
   buildMap(){
