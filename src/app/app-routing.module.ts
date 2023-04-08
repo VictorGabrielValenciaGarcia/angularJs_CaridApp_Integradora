@@ -43,30 +43,43 @@ const routes: Routes = [
   },
   {
     path: 'mi-campaigns',
-    loadChildren: () => import('./Instituciones/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule)
+    loadChildren: () => import('./Instituciones/Campaigns/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule)
   },
   {
     path: 'mi-centers',
-    loadChildren: () => import('./Instituciones/mi-centers/mi-centers.module').then( m => m.MiCentersPageModule)
+    loadChildren: () => import('./Instituciones/Centers/mi-centers/mi-centers.module').then( m => m.MiCentersPageModule)
   },
   {
     path: 'center-details/:id',
-    loadChildren: () => import('./Instituciones/center-details/center-details.module').then( m => m.CenterDetailsPageModule)
+    loadChildren: () => import('./Instituciones/Centers/center-details/center-details.module').then( m => m.CenterDetailsPageModule)
   },
   {
     path: 'create-center',
-    loadChildren: () => import('./Instituciones/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+    loadChildren: () => import('./Instituciones/Centers/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+  },
+  {
+    path: 'create-center/:id',
+    loadChildren: () => import('./Instituciones/Centers/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+  },
+  {
+    path: 'create-campaigns',
+    loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule)
   },
   // {
-  //   path: 'create-center',
-  //   loadChildren: () => import('./Instituciones/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+  //   path: 'create-campaigns/:id',
+  //   loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule)
   // },
+  {
+    path: 'campaign-details',
+    loadChildren: () => import('./Instituciones/Campaigns/campaign-details/campaign-details.module').then( m => m.CampaignDetailsPageModule)
+  },
 
   {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'
   },
+
 
 ];
 

@@ -8,6 +8,7 @@ import { MiCentersPageRoutingModule } from './mi-centers-routing.module';
 
 import { MiCentersPage } from './mi-centers.page';
 import { SharedModule } from 'src/app/Shared/shared.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/Shared/shared.module';
     FormsModule,
     IonicModule,
     MiCentersPageRoutingModule,
-    SharedModule
+    SharedModule,
+    Ng2SearchPipeModule
   ],
   declarations: [MiCentersPage]
 })

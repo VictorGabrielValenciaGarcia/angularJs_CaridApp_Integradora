@@ -6,13 +6,13 @@ export interface Contacto {
 }
 
 export default interface CentroAcopio {
-  // $key?: string,
-  // id?:number,
+
+  id?:number,
 
   strNombre_CentroA:string,
   strSubtitulo_CentroA?:string,
   strImage_CentroA:string,
-  numId_Institucion : number,
+  numId_Institucion : string,
 
   mapContactos_CentroA : {
     arrCorreos_CentroA : Contacto[],

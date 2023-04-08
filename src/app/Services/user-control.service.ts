@@ -31,7 +31,7 @@ import Usuario from '../Interfaces/Usuario.interface';
 export class UserControlService {
 
   constructor(
-    private firestore: Firestore,
+    private firestore: Firestore, 
     private auth: Auth,
   ) { }
 

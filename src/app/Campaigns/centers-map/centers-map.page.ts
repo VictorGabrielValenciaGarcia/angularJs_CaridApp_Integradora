@@ -33,7 +33,7 @@ export class CentersMapPage implements OnInit {
     {
       strNombre_CentroA : 'Parque De la Familia',
       strImage_CentroA : './assets/Images/lineDivider3.png',
-      numId_Institucion : 1,
+      numId_Institucion : '1',
 
       mapContactos_CentroA : {
         arrCorreos_CentroA : [],
@@ -64,7 +64,7 @@ export class CentersMapPage implements OnInit {
     {
       strNombre_CentroA : 'Mariscal Santa Cruz',
       strImage_CentroA : './assets/Images/lineDivider3.png',
-      numId_Institucion : 1,
+      numId_Institucion : '1',
 
       mapContactos_CentroA : {
         arrCorreos_CentroA : [],
@@ -95,7 +95,7 @@ export class CentersMapPage implements OnInit {
     {
       strNombre_CentroA : 'Parque de Educación Vial',
       strImage_CentroA : './assets/Images/lineDivider3.png',
-      numId_Institucion : 1,
+      numId_Institucion : '1',
 
       mapContactos_CentroA : {
         arrCorreos_CentroA : [],
@@ -126,7 +126,7 @@ export class CentersMapPage implements OnInit {
     {
       strNombre_CentroA : 'Parque Kanata',
       strImage_CentroA : './assets/Images/lineDivider3.png',
-      numId_Institucion : 1,
+      numId_Institucion : '1',
 
       mapContactos_CentroA : {
         arrCorreos_CentroA : [],
@@ -188,7 +188,7 @@ export class CentersMapPage implements OnInit {
       strNombre_CentroA : 'Depinazul',
       strSubtitulo_CentroA : 'Usted Abrio el Mapa Aqui',
       strImage_CentroA : './assets/Images/lineDivider3.png',
-      numId_Institucion : 0,
+      numId_Institucion : '0',
 
       mapContactos_CentroA : {
         arrCorreos_CentroA : [],

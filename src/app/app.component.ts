@@ -14,13 +14,11 @@ export class AppComponent {
     protected plataform : Platform,
     private mapS : MapServiceService
   ) {
-    // this.plataform.ready().then(async () => {
       this.getGeoLocation();
-    // })
   }
 
-  async getGeoLocation() {
-    const coordinates = await Geolocation.getCurrentPosition()
+  getGeoLocation() {
+    const coordinates = Geolocation.getCurrentPosition()
       .then((resp) => {
         console.log(resp);
         this.mapS.locations = [

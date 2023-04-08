@@ -2,19 +2,18 @@
 
 <ion-content>
 
-
-  <ion-grid fixed>
+  <ion-grid fixed  style="padding-top: 2rem;">
     <ion-row class="ion-justify-content-center ion-align-items-center">
 
       <ion-col sizeLg="5" sizeMd="6" sizeXs="12">
         <ion-card>
           <ion-card-header>
-            <ion-card-title class="ion-text-center">{{ centerP.strNombre_CentroA }}</ion-card-title>
-            <ion-card-subtitle class="ion-text-center">~ {{ centerP.numId_Institucion }} ~</ion-card-subtitle>
+            <ion-card-title class="ion-text-center">{{ center?.strNombre_CentroA }}</ion-card-title>
+            <ion-card-subtitle class="ion-text-center">~ {{ center?.numId_Institucion }} ~</ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content style="margin-top: -1.3rem !important;">
-            <ion-img [src]="centerP.strImage_CentroA" class="ion-padding"></ion-img>
+            <ion-img [src]="center?.strImage_CentroA" class="ion-padding"></ion-img>
             <ion-list>
 
               <ion-accordion-group class="ion-margin-top">
@@ -28,13 +27,13 @@
                     <ion-item lines="none">
                       <ion-label>
                         <p>Whatsapp</p>
-                        <h2>{{ centerP.mapContactos_CentroA.strWhatsApp }}</h2>
+                        <h2>{{ center?.mapContactos_CentroA?.strWhatsApp }}</h2>
                       </ion-label>
                     </ion-item>
                     <ion-item lines="none">
                       <ion-label>
                         <p>Telefono Directo</p>
-                        <h2>{{ centerP.mapContactos_CentroA.strTelefono }}</h2>
+                        <h2>{{ center?.mapContactos_CentroA?.strTelefono }}</h2>
                       </ion-label>
                     </ion-item>
                   </div>
@@ -49,7 +48,7 @@
                   </ion-item>
 
                   <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
-                    <ion-item *ngFor="let correo of centerP.mapContactos_CentroA.arrCorreos_CentroA">
+                    <ion-item *ngFor="let correo of center?.mapContactos_CentroA?.arrCorreos_CentroA">
                       <ion-label>
                         <p>{{ correo.strDepartamento }}</p>
                         <h3 class="ion-padding-start"><strong>Correo:</strong> {{ correo.strCorreo }}</h3>
@@ -72,25 +71,25 @@
                     <ion-item>
                       <ion-label>
                         <p>Facebook</p>
-                        <h2>{{ centerP.mapContactos_CentroA.strFacebook }}</h2>
+                        <h2>{{ center?.mapContactos_CentroA?.strFacebook }}</h2>
                       </ion-label>
                     </ion-item>
                     <ion-item>
                       <ion-label>
                         <p>Instagram</p>
-                        <h2>{{ centerP.mapContactos_CentroA.strInstagram }}</h2>
+                        <h2>{{ center?.mapContactos_CentroA?.strInstagram }}</h2>
                       </ion-label>
                     </ion-item>
                     <ion-item>
                       <ion-label>
                         <p>TikTok</p>
-                        <h2>{{ centerP.mapContactos_CentroA.strTikTok }}</h2>
+                        <h2>{{ center?.mapContactos_CentroA?.strTikTok }}</h2>
                       </ion-label>
                     </ion-item>
                     <ion-item>
                       <ion-label>
                         <p>Twitter</p>
-                        <h2>{{ centerP.mapContactos_CentroA.strTwitter }}</h2>
+                        <h2>{{ center?.mapContactos_CentroA?.strTwitter }}</h2>
                       </ion-label>
                     </ion-item>
                   </div>
@@ -111,10 +110,10 @@
           <ion-card-content style="margin-top: -1.3rem !important;">
             <ion-list>
               <ion-item>
-                <ion-label class="ion-text-center">{{ centerP.mapDireccion_Fisica_CentroA.strCalle }}
-                  #{{ centerP.mapDireccion_Fisica_CentroA.numNumero_Exterior }},
-                  {{ centerP.mapDireccion_Fisica_CentroA.strColonia }};
-                  {{ centerP.mapDireccion_Fisica_CentroA.strEstado }}.</ion-label>
+                <ion-label class="ion-text-center">{{ center?.mapDireccion_Fisica_CentroA?.strCalle }}
+                  #{{ center?.mapDireccion_Fisica_CentroA?.numNumero_Exterior }},
+                  {{ center?.mapDireccion_Fisica_CentroA?.strColonia }};
+                  {{ center?.mapDireccion_Fisica_CentroA?.strEstado }}.</ion-label>
               </ion-item>
 
               <ion-accordion-group class="ion-margin-top">
@@ -126,16 +125,17 @@
 
                   <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
                     <ion-item lines="none">
-                      <ion-label><strong>No. Interior:</strong> {{ centerP.mapDireccion_Fisica_CentroA.numNumero_Interior }}</ion-label>
+                      <ion-label *ngIf="center?.mapDireccion_Fisica_CentroA?.numNumero_Interior" ><strong>No. Interior:</strong> {{ center?.mapDireccion_Fisica_CentroA?.numNumero_Interior }}</ion-label>
+                      <ion-label *ngIf="!center?.mapDireccion_Fisica_CentroA?.numNumero_Interior" ><strong>No. Interior:</strong> Ninguno</ion-label>
                     </ion-item>
                     <ion-item lines="none">
-                      <ion-label><strong>Municipio:</strong> {{ centerP.mapDireccion_Fisica_CentroA.strMunicipio }}</ion-label>
+                      <ion-label><strong>Municipio:</strong> {{ center?.mapDireccion_Fisica_CentroA?.strMunicipio }}</ion-label>
                     </ion-item>
                     <ion-item lines="none">
-                      <ion-label><strong>Ciudad:</strong> {{ centerP.mapDireccion_Fisica_CentroA.strCiudad }}</ion-label>
+                      <ion-label><strong>Ciudad:</strong> {{ center?.mapDireccion_Fisica_CentroA?.strCiudad }}</ion-label>
                     </ion-item>
                     <ion-item lines="none">
-                      <ion-label><strong>C.P:</strong> {{ centerP.mapDireccion_Fisica_CentroA.numCP }}</ion-label>
+                      <ion-label><strong>C.P:</strong> {{ center?.mapDireccion_Fisica_CentroA?.numCP }}</ion-label>
                     </ion-item>
                   </div>
                 </ion-accordion>
@@ -145,12 +145,17 @@
           </ion-card-content>
         </ion-card>
 
-        <div class="map" id="mapbox" tabindex="0"></div>
+        <div class="mapOfCenterCSS" id="mapOfCenter"></div>
 
       </ion-col>
 
     </ion-row>
   </ion-grid>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="goToEdit(center?.id)">
+      <ion-icon name="pencil"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

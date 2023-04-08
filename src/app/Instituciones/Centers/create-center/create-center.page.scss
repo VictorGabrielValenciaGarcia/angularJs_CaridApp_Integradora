@@ -20,6 +20,9 @@
   .formSpace{
     margin-bottom: 2rem;
   }
+  .formSpaceCoor{
+    margin-bottom: 1.5rem;
+  }
 
   .formTitle{
     background-color: #a5fa9891;
@@ -33,8 +36,9 @@
 
   // Mapa
 
-  .map{
+  .mapFormSelect{
     width: 100%;
     height: 280px !important ;
     padding: 10px;
+    margin-bottom: 0.5rem;
   }
