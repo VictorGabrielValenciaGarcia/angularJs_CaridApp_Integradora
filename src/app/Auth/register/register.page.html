@@ -52,7 +52,7 @@
         <ion-col size-lg="5" size-md="5" size-xs="12" class="ion-margin-top">
           <ion-card>
 
-              <form [formGroup]="RegisterForm" (ngSubmit)="register()">
+              <form [formGroup]="RegisterUserForm" (ngSubmit)="registerUser()">
 
                 <ion-slides mode="ios" pager="ios" scrollbar="ios" pager="true">
 
@@ -65,50 +65,54 @@
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Nombre(s)</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="nombre" maxlength="20"
-                        [class.inputWrong] = "RegisterForm.get('nombre')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" formControlName="strNombre" maxlength="30"
+                        [class.inputWrong] = "RegisterUserForm.get('strNombre')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('nombre')?.dirty || RegisterForm.get('nombre')?.touched) && RegisterForm.get('nombre')?.hasError('required')">Nombre necesario para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('nombre')?.hasError('maxlength')">Solo 20 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('nombre')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strNombre')?.dirty || RegisterUserForm.get('strNombre')?.touched) && RegisterUserForm.get('strNombre')?.hasError('required')">Nombre necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strNombre')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strNombre')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strNombre')?.hasError('pattern')">Solo letras y espacios</p>
                       </div>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Apellido Paterno</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="apellido_P" maxlength="15"
-                        [class.inputWrong] = "RegisterForm.get('apellido_P')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" formControlName="strApellido_Paterno" maxlength="15"
+                        [class.inputWrong] = "RegisterUserForm.get('strApellido_Paterno')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('apellido_P')?.dirty || RegisterForm.get('apellido_P')?.touched) && RegisterForm.get('apellido_P')?.hasError('required')">Apellido Paterno necesario para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('apellido_P')?.hasError('maxlength')">Solo 15 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('apellido_P')?.hasError('minlength')">No es un apellido válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strApellido_Paterno')?.dirty || RegisterUserForm.get('strApellido_Paterno')?.touched) && RegisterUserForm.get('strApellido_Paterno')?.hasError('required')">Apellido Paterno necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strApellido_Paterno')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strApellido_Paterno')?.hasError('minlength')">No es un apellido válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strApellido_Paterno')?.hasError('pattern')">Solo letras y espacios</p>
                       </div>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Apellido Materno</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="apellido_M" maxlength="15"
-                        [class.inputWrong] = "RegisterForm.get('apellido_M')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" formControlName="strApellido_Materno" maxlength="15"
+                        [class.inputWrong] = "RegisterUserForm.get('strApellido_Materno')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('apellido_M')?.dirty || RegisterForm.get('apellido_M')?.touched) && RegisterForm.get('apellido_M')?.hasError('required')">Apellido Materno necesario para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('apellido_M')?.hasError('maxlength')">Solo 15 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('apellido_M')?.hasError('minlength')">No es un apellido válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strApellido_Materno')?.dirty || RegisterUserForm.get('strApellido_Materno')?.touched) && RegisterUserForm.get('strApellido_Materno')?.hasError('required')">Apellido Materno necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strApellido_Materno')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strApellido_Materno')?.hasError('minlength')">No es un apellido válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strApellido_Materno')?.hasError('pattern')">Solo letras y espacios</p>
                       </div>
 
                       <ion-item fill="solid" mode="md">
                         <ion-label position="floating">Ingrese su Edad</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="edad" maxlength="3"
-                        [class.inputWrong] = "RegisterForm.get('edad')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" formControlName="numEdad_Usuario" maxlength="3"
+                        [class.inputWrong] = "RegisterUserForm.get('numEdad_Usuario')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('edad')?.dirty || RegisterForm.get('edad')?.touched) && RegisterForm.get('edad')?.hasError('required')">Edad necesaria para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('edad')?.hasError('max')">No es una edad válida</p>
-                        <p class="errors" *ngIf="RegisterForm.get('edad')?.hasError('min')">Solo mayores de 15 años</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('numEdad_Usuario')?.dirty || RegisterUserForm.get('numEdad_Usuario')?.touched) && RegisterUserForm.get('numEdad_Usuario')?.hasError('required')">Edad necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numEdad_Usuario')?.hasError('max')">No es una edad válida</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numEdad_Usuario')?.hasError('min')">Solo mayores de 15 años</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numEdad_Usuario')?.hasError('pattern')">Solo números Enteros Positivos</p>
                       </div>
 
                       <ion-item lines="none">
@@ -129,50 +133,54 @@
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Colonia / Localidad</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="colonia" maxlength="50"
-                        [class.inputWrong] = "RegisterForm.get('colonia')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" formControlName="strColonia" maxlength="50"
+                        [class.inputWrong] = "RegisterUserForm.get('strColonia')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('colonia')?.dirty || RegisterForm.get('colonia')?.touched) && RegisterForm.get('colonia')?.hasError('required')">Colonia / localidad necesaria para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('colonia')?.hasError('maxlength')">Solo 50 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('colonia')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strColonia')?.dirty || RegisterUserForm.get('strColonia')?.touched) && RegisterUserForm.get('strColonia')?.hasError('required')">Colonia / localidad necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strColonia')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strColonia')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strColonia')?.hasError('pattern')">Solo letras, espacios y puntos</p>
                       </div>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Codigo postal</ion-label>
-                        <ion-input required clearInput="true" type="text" maxlength="5" formControlName="CP" autocomplete="postal-code"
-                        [class.inputWrong] = "RegisterForm.get('CP')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" maxlength="5" formControlName="numCP" autocomplete="postal-code"
+                        [class.inputWrong] = "RegisterUserForm.get('numCP')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('CP')?.dirty || RegisterForm.get('CP')?.touched) && RegisterForm.get('CP')?.hasError('required')">Codigo Postal necesario para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('CP')?.hasError('maxlength')">Solo 5 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('CP')?.hasError('minlength')">No es un CP válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('numCP')?.dirty || RegisterUserForm.get('numCP')?.touched) && RegisterUserForm.get('numCP')?.hasError('required')">Codigo Postal necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numCP')?.hasError('maxlength')">Solo 5 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numCP')?.hasError('minlength')">No es un CP válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numCP')?.hasError('pattern')">Solo números Enteros Positivos</p>
                       </div>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Calle / Avenida</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="calle" maxlength="25" autocomplete="street-addres"
-                        [class.inputWrong] = "RegisterForm.get('calle')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" formControlName="strCalle" maxlength="25" autocomplete="street-addres"
+                        [class.inputWrong] = "RegisterUserForm.get('strCalle')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('calle')?.dirty || RegisterForm.get('calle')?.touched) && RegisterForm.get('calle')?.hasError('required')">Calle / Avenida necesaria para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('calle')?.hasError('maxlength')">Solo 25 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('calle')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strCalle')?.dirty || RegisterUserForm.get('strCalle')?.touched) && RegisterUserForm.get('strCalle')?.hasError('required')">Calle / Avenida necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strCalle')?.hasError('maxlength')">Solo 25 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strCalle')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strCalle')?.hasError('pattern')">Solo letras y espacios</p>
                       </div>
 
                       <ion-item fill="solid" mode="md">
                         <ion-label position="floating">No. Casa</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="no_Casa" maxlength="4"
-                        [class.inputWrong] = "RegisterForm.get('no_Casa')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="text" formControlName="numNumero_Casa" maxlength="4"
+                        [class.inputWrong] = "RegisterUserForm.get('numNumero_Casa')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('no_Casa')?.dirty || RegisterForm.get('no_Casa')?.touched) && RegisterForm.get('no_Casa')?.hasError('required')">Numero de domicilio requerido</p>
-                        <p class="errors" *ngIf="RegisterForm.get('no_Casa')?.hasError('max')">No es un número válido</p>
-                        <p class="errors" *ngIf="RegisterForm.get('no_Casa')?.hasError('min')">No es un número válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('numNumero_Casa')?.dirty || RegisterUserForm.get('numNumero_Casa')?.touched) && RegisterUserForm.get('numNumero_Casa')?.hasError('required')">Numero de domicilio requerido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numNumero_Casa')?.hasError('max')">No es un número válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numNumero_Casa')?.hasError('min')">No es un número válido</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('numNumero_Casa')?.hasError('pattern')">Solo números Enteros Positivos</p>
                       </div>
 
                       <ion-item lines="none">
@@ -190,51 +198,53 @@
                       </ion-card-header>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                        <ion-label position="floating">Nombre de Usuario</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="username" maxlength="15"
-                        [class.inputWrong] = "RegisterForm.get('username')?.invalid"></ion-input>
+                        <ion-label position="floating">Correo Electronico</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strCorreo" maxlength="40" autocomplete="email"
+                        [class.inputWrong] = "RegisterUserForm.get('strCorreo')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('username')?.dirty || RegisterForm.get('username')?.touched) && RegisterForm.get('username')?.hasError('required')">Username necesario para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('username')?.hasError('maxlength')">Solo 15 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('username')?.hasError('minlength')">Username mínimo de 5 carácteres</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strCorreo')?.dirty || RegisterUserForm.get('strCorreo')?.touched) && RegisterUserForm.get('strCorreo')?.hasError('required')">E-mail necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strCorreo')?.hasError('maxlength')">Solo 40 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strCorreo')?.hasError('email')">No es un correo válido</p>
                       </div>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                        <ion-label position="floating">Correo Electronico</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="correo" maxlength="40" autocomplete="email"
-                        [class.inputWrong] = "RegisterForm.get('correo')?.invalid"></ion-input>
+                        <ion-label position="floating">Nombre de Usuario</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strUsername" maxlength="20" value=""
+                        [class.inputWrong] = "RegisterUserForm.get('strUsername')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('correo')?.dirty || RegisterForm.get('correo')?.touched) && RegisterForm.get('correo')?.hasError('required')">E-mail necesario para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('correo')?.hasError('maxlength')">Solo 40 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('correo')?.hasError('email')">No es un correo válido</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strUsername')?.dirty || RegisterUserForm.get('strUsername')?.touched) && RegisterUserForm.get('strUsername')?.hasError('required')">Username necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strUsername')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strUsername')?.hasError('minlength')">Username mínimo de 5 carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strUsername')?.hasError('pattern')">Solo letras, numeros, espacios y _</p>
                       </div>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Numero de Telefono</ion-label>
-                        <ion-input required clearInput="true" type="tel" formControlName="telefono" mode="md" maxlength="15"
-                        [class.inputWrong] = "RegisterForm.get('telefono')?.invalid"></ion-input>
+                        <ion-input required clearInput="true" type="tel" formControlName="strTelefono" mode="md" maxlength="18" minlength="10"
+                        [class.inputWrong] = "RegisterUserForm.get('strTelefono')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('telefono')?.dirty || RegisterForm.get('telefono')?.touched) && RegisterForm.get('telefono')?.hasError('required')">Telefono necesario para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('telefono')?.hasError('maxlength')">Solo 15 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('telefono')?.hasError('minlength')">No es un número telefónico</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strTelefono')?.dirty || RegisterUserForm.get('strTelefono')?.touched) && RegisterUserForm.get('strTelefono')?.hasError('required')">Telefono necesario para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strTelefono')?.hasError('maxlength')">Solo 18 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strTelefono')?.hasError('minlength')">No es un número telefónico</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strTelefono')?.hasError('pattern')">La estructura tiene que ser igual a +(00)000-000-0000 </p>
                       </div>
 
                       <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                         <ion-label position="floating">Contraseña</ion-label>
-                        <ion-input required [type]="passInputType" formControlName="password" maxlength="16" id="pass"
-                        [class.inputWrong] = "RegisterForm.get('password')?.invalid"></ion-input>
+                        <ion-input required [type]="passInputType" formControlName="strPassword" maxlength="16" id="pass" value=""
+                        [class.inputWrong] = "RegisterUserForm.get('strPassword')?.invalid"></ion-input>
                       </ion-item>
 
                       <div class="adjustErrors">
-                        <p class="errors" *ngIf="(RegisterForm.get('password')?.dirty || RegisterForm.get('password')?.touched) && RegisterForm.get('password')?.hasError('required')">Contraseña necesaria para el registro</p>
-                        <p class="errors" *ngIf="RegisterForm.get('password')?.hasError('maxlength')">Solo 16 Carácteres</p>
-                        <p class="errors" *ngIf="RegisterForm.get('password')?.hasError('minlength')">Contraseña minima de 8 carácteres</p>
+                        <p class="errors" *ngIf="(RegisterUserForm.get('strPassword')?.dirty || RegisterUserForm.get('strPassword')?.touched) && RegisterUserForm.get('strPassword')?.hasError('required')">Contraseña necesaria para el registro</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strPassword')?.hasError('maxlength')">Solo 16 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strPassword')?.hasError('minlength')">Contraseña minima de 8 carácteres</p>
                       </div>
 
                       <!-- <ion-item>
@@ -251,7 +261,7 @@
                       </ion-button>
 
                         <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                                    fill="outline" shape="round" class="ion-margin-top" [disabled]="RegisterForm.invalid">
+                                    fill="outline" shape="round" class="ion-margin-top" [disabled]="RegisterUserForm.invalid">
                           Registrarse
                         </ion-button>
 

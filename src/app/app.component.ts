@@ -12,7 +12,7 @@ import { MapServiceService } from './Services/map-service.service';
 export class AppComponent {
   constructor(
     protected plataform : Platform,
-    private mapS : MapServiceService
+    private mapS : MapServiceService,
   ) {
       this.getGeoLocation();
   }

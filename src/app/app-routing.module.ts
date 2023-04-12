@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { canActivate, redirectUnauthorizedTo, loggedIn, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
 
@@ -14,11 +14,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./campaigns-menu/campaigns-menu.module').then( m => m.CampaignsMenuPageModule),
     // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
-
   },
   {
     path: 'login',
-    loadChildren: () => import('./Auth/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./Auth/login/login.module').then( m => m.LoginPageModule),
   },
   {
     path: 'register/:type',
@@ -27,7 +26,7 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./Auth/settings/settings.module').then( m => m.SettingsPageModule),
-    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'campaign/:id',
@@ -39,31 +38,38 @@ const routes: Routes = [
   },
   {
     path: 'dashboard/:type',
-    loadChildren: () => import('./Instituciones/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    loadChildren: () => import('./Instituciones/dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'mi-campaigns',
-    loadChildren: () => import('./Instituciones/Campaigns/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule)
+    loadChildren: () => import('./Instituciones/Campaigns/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule),
+    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'mi-centers',
-    loadChildren: () => import('./Instituciones/Centers/mi-centers/mi-centers.module').then( m => m.MiCentersPageModule)
+    loadChildren: () => import('./Instituciones/Centers/mi-centers/mi-centers.module').then( m => m.MiCentersPageModule),
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'center-details/:id',
-    loadChildren: () => import('./Instituciones/Centers/center-details/center-details.module').then( m => m.CenterDetailsPageModule)
+    loadChildren: () => import('./Instituciones/Centers/center-details/center-details.module').then( m => m.CenterDetailsPageModule),
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'create-center',
-    loadChildren: () => import('./Instituciones/Centers/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+    loadChildren: () => import('./Instituciones/Centers/create-center/create-center.module').then( m => m.CreateCenterPageModule),
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'create-center/:id',
-    loadChildren: () => import('./Instituciones/Centers/create-center/create-center.module').then( m => m.CreateCenterPageModule)
+    loadChildren: () => import('./Instituciones/Centers/create-center/create-center.module').then( m => m.CreateCenterPageModule),
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'create-campaigns',
-    loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule)
+    loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule),
+    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   // {
   //   path: 'create-campaigns/:id',
@@ -71,7 +77,8 @@ const routes: Routes = [
   // },
   {
     path: 'campaign-details',
-    loadChildren: () => import('./Instituciones/Campaigns/campaign-details/campaign-details.module').then( m => m.CampaignDetailsPageModule)
+    loadChildren: () => import('./Instituciones/Campaigns/campaign-details/campaign-details.module').then( m => m.CampaignDetailsPageModule),
+    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
 
   {

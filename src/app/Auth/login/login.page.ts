@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, IonModal } from '@ionic/angular';
+import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 import { SesionControlService } from 'src/app/Services/sesion-control.service';
+import { UserControlService } from 'src/app/Services/user-control.service';
 // import { SesionControlService } from 'src/app/Services/sesion-control.service';
 
 @Component({
@@ -16,18 +18,21 @@ export class LoginPage implements OnInit {
   showPassword = false;
   passInputType = 'password';
 
+  FormLogin:FormGroup;
+
   @ViewChild(IonModal) modal: IonModal | undefined;
 
   constructor(
     private sessionS: SesionControlService,
+    private users : UserControlService,
+    private alertS : AlertsToastServiceService,
     private router: Router,
-    private alertC : AlertController
+    private alertC : AlertController,
   ) {this.FormLogin = this.FormLoginGroup(); }
 
   ngOnInit() {
   }
 
-  FormLogin:FormGroup;
 
   FormLoginGroup(){
     return  new FormGroup({
@@ -45,17 +50,19 @@ export class LoginPage implements OnInit {
   }
 
   logIn(){
-    console.log(this.FormLogin.value);
-
-    this.sessionS.logIn(this.FormLogin.get('correo')?.value, this.FormLogin.get('contraseña')?.value).then(response => {
-      this.router.navigate(['./campaigns/animales']);
-      this.user = response;
-      // console.log(this.user);
-      // console.log(this.user._tokenResponse);
-
-
-    })
-    .catch(error => {
+    // console.log(this.FormLogin.value);
+    this.sessionS.logIn(this.FormLogin.get('email')?.value, this.FormLogin.get('password')?.value).then(
+      response => {
+        // console.log(response);
+        this.router.navigate(['./campaigns/animales']);
+        this.user = response;
+        // console.log(this.user.user.uid);
+        this.users.getUser(this.user?.user?.uid).subscribe(
+          _user => {
+            this.alertS.loginSuccess(_user?.strUsername);
+          }
+        )
+    }).catch(error => {
       this.LogueoFallido();
       // console.log(error);
     });
@@ -100,8 +107,8 @@ export class LoginPage implements OnInit {
     const alert = await this.alertC.create({
       backdropDismiss: false,
       mode: 'ios',
-      header: 'Error de Logueo',
-      subHeader: 'La cuenta ingresada no existe!',
+      header: 'Inicio de sesión Fallido',
+      subHeader: 'Las credenciales ingresadas son incorrectas!',
       translucent:true,
       buttons: [
         {

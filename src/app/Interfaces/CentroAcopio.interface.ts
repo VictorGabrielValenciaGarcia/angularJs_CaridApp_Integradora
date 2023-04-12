@@ -7,7 +7,7 @@ export interface Contacto {
 
 export default interface CentroAcopio {
 
-  id?:number,
+  id?:string,
 
   strNombre_CentroA:string,
   strSubtitulo_CentroA?:string,

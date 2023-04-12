@@ -6,7 +6,7 @@
   <ion-grid fixed>
     <ion-row class="ion-justify-content-center">
       <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let campaign of Campaigns">
-        <ion-card (click)="verCampaign(campaign.id, campaign)">
+        <ion-card (click)="verCampaign(campaign)">
 
           <ion-img [src]="campaign.strImage_Campania" alt="Banner de la Campaña"/>
 

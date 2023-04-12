@@ -10,6 +10,17 @@ export enum Programa_Sector {
   Siniestro = 'Apoyo por Desastres Naturales',
 }
 
+export enum EnserCalsificacion {
+  Economico = 'Economico',
+  Salud = 'Salud',
+  Alimento = 'Alimento',
+  Didactico = 'Didactico',
+  Educativo = 'Educativo',
+  Vestimenta = 'Vestimenta',
+  Bienestar = 'Bienestar',
+  Otro = 'Otro',
+}
+
 export enum Estado {
   Vigente = 'Vigente',
   Vencida = 'Vencida',
@@ -19,17 +30,25 @@ export enum Estado {
 export default interface Campania {
 
   // $key?: string,
-  id:number,
-  arrCentros_Acopio_Campania : number[],
-  arrLista_Enseres_Campania : Enser[],
-  strFecha_Inicio_Campania : string,
-  strFecha_Fin_Campania : string,
-  numCantidad_Amonestaciones_Campania : number,
-  numCantidad_Reportes : number,
-  numId_Institucion : number,
-  strDescripcion_Campania : string,
-  strEstado_Campania : Estado,
+  strImage_Campania : string,
+
   strNombre_Campania : string,
   strPrograma_Sector_Campania : string,
-  strImage_Campania : string,
+  strDescripcion_Campania : string,
+
+  strFecha_Inicio_Campania : string,
+  strFecha_Fin_Campania : string,
+
+  arrLista_Enseres_Campania : Enser[],
+  arrCentros_Acopio_Campania : number[],
+
+  // Invisibles en el Formulario
+  id?: string,
+  numId_Institucion : string,
+
+  strEstado_Campania : Estado,
+
+  numCantidad_Amonestaciones_Campania : number,
+  numCantidad_Reportes : number,
+
 }

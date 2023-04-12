@@ -16,7 +16,15 @@
 
 import { Injectable } from '@angular/core';
 import { signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
-import { Auth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { setPersistence, browserLocalPersistence } from '@firebase/auth'
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  signOut,
+  createUserWithEmailAndPassword,
+} from '@angular/fire/auth';
+
+import Usuario from '../Interfaces/Usuario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,23 +32,45 @@ import { Auth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPasswo
 export class SesionControlService {
 
   constructor(
-    private auth: Auth,
-  ) { }
+    private readonly authC : Auth,
+  ) {
+   }
 
-  logIn(_email: any, _password: any) {
-    return signInWithEmailAndPassword(this.auth, _email, _password);
+  async logIn(_email: any, _password: any) {
+
+
+    // return signInWithEmailAndPassword(this.authC , _email, _password);
+
+    return setPersistence(this.authC , browserLocalPersistence).then(() => {
+      return signInWithEmailAndPassword(this.authC , _email, _password);
+    }).catch((error) => {
+      return Promise.reject(error);
+    });
   }
+
   // Login con google
   logInWithGoogle() {
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
+    return signInWithPopup(this.authC , new GoogleAuthProvider());
   }
+
   logOut() {
-    return signOut(this.auth);
+    return signOut(this.authC );
   }
 
   // Añade al usuario a las cuentas para hacer login
-  register_EmailPassword(_email: any, _password: any) {
-    return createUserWithEmailAndPassword(this.auth, _email, _password)
+  register_EmailPassword_User(_UserData : Usuario) {
+    return createUserWithEmailAndPassword(this.authC , _UserData.strCorreo, _UserData.strPassword)
+  }
+
+  async userState(){
+    let user : any;
+    await this.authC.onAuthStateChanged(
+      _user => {
+        // console.log(user);
+        user = _user?.uid;
+      }
+    );
+    return user;
   }
 
 }

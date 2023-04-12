@@ -1,5 +1,7 @@
 <ion-menu menuId="first" contentId="main" side="end" type="overlay" >
-  <ion-content>
+
+  <!-- Menu Usuario -->
+  <ion-content scroll-y="true" scroll-x="false" *ngIf="isLogin" >
 
     <ion-item-divider lines="full" style="background-color: #cde2ee; height: 3.5rem;">
       <ion-grid fixed>
@@ -20,48 +22,87 @@
       <ion-grid fixed>
         <ion-row class="ion-justify-content-center">
           <ion-col size="12">
-            <h1 class="ion-text-center">Depinazul</h1>
-            <h5 class="ion-text-center" style="margin-top: -0.6rem;">vgabriel.valencia@gmail.com</h5>
+            <h1 class="ion-text-center">{{ username }}</h1>
+            <h5 class="ion-text-center" style="margin-top: -0.6rem;">{{ email }}</h5>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
 
-    <ion-item lines="none" >
-      <ion-grid>
-        <ion-row class="ion-align-items-center ion-padding-top">
+    <ion-grid>
+      <ion-row class="ion-align-items-center ion-justify-content-center ion-padding-top">
 
-          <ion-col size="3" offset="2">
-            <ion-avatar>
-              <ion-img style="width: 3.8rem; height: 3.8rem;" src="./assets/Images/Cuypoint_Only.png"/>
-            </ion-avatar>
-          </ion-col>
-
-          <ion-col size="5">
-            <h2 class="ion-text-start ion-padding-top" style="color: black;"><strong>1000</strong> pts.</h2>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+        <ion-col size="3">
+            <ion-img  src="./assets/Images/Cuypoint_Only.png"/>
+        </ion-col>
+        <h2 class="ion-text-start ion-padding-start" style="color: black;"><strong>{{ points }}</strong> pts.</h2>
+      </ion-row>
+    </ion-grid>
 
   </ion-content>
 
-  <footer>
+  <footer class="ion-padding" *ngIf="isLogin" >
     <ion-menu-toggle>
-      <ion-button (click)="goToClass()" size="default" expand="block" fill="clear" shape="round" style="height: 2.3rem;">
-        <ion-icon size="large" slot="start" name="cog"></ion-icon>
-        <h4>Editar Cuenta</h4>
+      <ion-button (click)="goToRoute('/dashboard/carid-Admin-Role')" size="large" expand="block" fill="clear" shape="round" style="height: 2rem;" *ngIf="role === 'Carid-Admin'" >
+        <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
+        <h5 style="color: #2dd36f;">Dashboard</h5>
       </ion-button>
-      <!-- <ion-button routerLink="/login" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;">
-        <ion-icon size="large" slot="start" name="information-circle" color="success"></ion-icon>
-        <p style="color: #2dd36f;">Servicio al Cliente </p>
-      </ion-button> -->
-      <ion-button routerLink="/login" (click)="logOut()" size="default" expand="block" fill="clear" shape="round" style="height: 2.3rem; margin-bottom: 0.6rem;">
+      <ion-button (click)="goToRoute('/dashboard/carid-Inst-Role')" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;" *ngIf="role === 'Carid-Inst'">
+        <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
+        <h5 style="color: #2dd36f;">Dashboard</h5>
+      </ion-button>
+      <ion-button (click)="goToRoute('/settings')" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;">
+        <ion-icon size="large" slot="start" name="cog"></ion-icon>
+        <h5>Editar Cuenta</h5>
+      </ion-button>
+      <ion-button routerLink="/login" (click)="logOut()" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem; margin-bottom: 0.6rem;">
         <ion-icon size="large" slot="start" name="log-out" color="danger"></ion-icon>
-        <h4 style="color: #eb445a;">Cerrar Sesion</h4>
+        <h5 style="color: #eb445a;">Cerrar Sesion</h5>
       </ion-button>
     </ion-menu-toggle>
   </footer>
+
+  <!-- Menu Visitante -->
+  <ion-content scroll-y="true" scroll-x="false" *ngIf="!isLogin" >
+
+    <ion-item-divider lines="full" style="background-color: #cde2ee; height: 3.5rem;">
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12">
+            <h1 class="ion-text-center"><strong>CaridApp</strong></h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-item-divider>
+
+    <ion-item lines="none"></ion-item>
+
+    <ion-grid fixed style="margin-top: 3.5rem;">
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+
+        <ion-col size="9">
+          <ion-img src="./assets/Images/Cuypoint_Casino.png"></ion-img>
+        </ion-col>
+
+        <ion-col size="12">
+          <h2 class="ion-text-center">Unete a nosotros!!</h2>
+          <h4 class="ion-text-center">Te estamos esperando!!</h4>
+          <ion-item lines="none"></ion-item>
+        </ion-col>
+
+        <ion-col size="10">
+          <ion-menu-toggle>
+            <ion-button (click)="goToRoute('/login')" size="large" expand="block" fill="solid" shape="round">
+              <ion-icon size="large" slot="start" name="log-in"></ion-icon>
+              <h5>Iniciar Sesión</h5>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </ion-content>
 
 </ion-menu>

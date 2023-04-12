@@ -14,9 +14,33 @@
   </ion-toolbar>
 </ion-header>
 
-
 <app-side-nav></app-side-nav>
 
-<ion-content id="main">
+<ion-content id="main" class="ion-padding">
+
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center ion-align-items-start">
+
+      <ion-col size="6">
+        <ion-item-divider>
+          <ion-title class="ion-text-center">Apoyo Animal</ion-title>
+        </ion-item-divider>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-segment [scrollable]="true" value="all" mode="ios">
+          <ion-segment-button [value]="type.value" *ngFor="let type of campaignsType" >
+            <ion-label>{{ type.name }}</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+
+      <ion-col size="9">
+        <br>
+        <ion-searchbar placeholder="Buscar Campaña..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

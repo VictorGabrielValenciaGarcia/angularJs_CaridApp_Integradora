@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ export class AlertsToastServiceService {
   constructor(
     private toastC: ToastController,
     private alertC : AlertController,
+    private loadCtrl : LoadingController
   ) { }
 
 
@@ -83,6 +84,58 @@ export class AlertsToastServiceService {
   );
 
   return choice;
+  }
+
+  async loginSuccess(_userName : string){//Creamos un  parametro de tipo string
+    const toast = await this.toastC.create({
+      message: 'Bienvenid@ ' + _userName + '!!!',
+      duration: 3000,
+      position: 'top',
+      color:'success',
+      icon: 'happy-outline'
+    });
+
+    toast.present();
+  }
+
+  async logOutSuccess(){//Creamos un  parametro de tipo string
+    const toast = await this.toastC.create({
+      message: 'La sesión ha sido cerrada con Éxito!',
+      duration: 3000,
+      position: 'top',
+      color:'tertiary',
+      icon: 'log-out'
+    });
+
+    toast.present();
+  }
+
+  async registerSuccess(){//Creamos un  parametro de tipo string
+    const toast = await this.toastC.create({
+      message: 'Te has registrado de manera exitosa!!!',
+      duration: 3000,
+      position: 'top',
+      color:'success',
+      icon: 'happy-outline'
+    });
+
+    toast.present();
+  }
+
+  async presentLoading(_msn:string){
+
+    const loading  = await this.loadCtrl.create({
+      message: _msn,
+      translucent:true,
+      spinner:'bubbles',
+      backdropDismiss : false,
+    })
+
+    await loading.present();
+  }
+
+  closeLoading(){
+    this.loadCtrl.dismiss();
   }
 
 }

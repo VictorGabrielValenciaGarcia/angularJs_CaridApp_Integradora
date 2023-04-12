@@ -10,6 +10,9 @@ import { IonModal } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SesionControlService } from 'src/app/Services/sesion-control.service';
 import Usuario from '../../Interfaces/Usuario.interface';
+import { RegexServiceService } from 'src/app/Services/regex-service.service';
+import { UserControlService } from 'src/app/Services/user-control.service';
+import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 
 
 @Component({
@@ -21,15 +24,47 @@ export class RegisterPage implements OnInit {
 
   @ViewChild(IonModal) modalInfo: IonModal | undefined;
 
+  dataUser : Usuario = {
+
+    uid : '',
+    rotullus : 'Carid-User',
+
+    mapNombre : {
+      strNombre : '',
+      strApellido_Paterno : '',
+      strApellido_Materno : '',
+    },
+
+    strFoto_Perfil : '',
+    strPassword : '',
+    strUsername : '',
+    strCorreo : '',
+    strTelefono : '',
+
+    numEdad_Usuario : 0,
+
+    mapDireccion_Usuario :{
+      strColonia : '',
+      strCalle : '',
+      numNumero_Casa : 0,
+      numCP : '',
+    },
+
+    numCuy_Puntos_Usuario : 0,
+  }
+
   showPassword = false;
   passInputType = 'password';
   type: string = "";
-  RegisterForm:FormGroup;
+  RegisterUserForm:FormGroup;
 
   constructor(
     private ar : ActivatedRoute,
     private router : Router,
-    private sessionS : SesionControlService
+    private sessionS : SesionControlService,
+    private userCS : UserControlService,
+    private regex : RegexServiceService,
+    private alertS : AlertsToastServiceService,
   ) {
     this.ar.params.subscribe(
       (_url:any)=>{
@@ -38,100 +73,139 @@ export class RegisterPage implements OnInit {
       }
     )
 
-    this.RegisterForm = this.registerFormGroup();
+    this.RegisterUserForm = this.registerUserFormGroup();
 
   }
 
   ngOnInit() {
   }
 
-  registerFormGroup(){
+  registerUserFormGroup(){
     return new FormGroup({
-      nombre: new FormControl(null, [
+      strNombre: new FormControl(null, [
         Validators.required,
-        Validators.maxLength(20),
+        Validators.maxLength(30),
         Validators.minLength(3),
+        Validators.pattern(this.regex.lt_sp),
       ]),
-      apellido_P: new FormControl(null, [
+      strApellido_Paterno: new FormControl(null, [
         Validators.required,
         Validators.maxLength(15),
-        Validators.minLength(5),
+        Validators.minLength(3),
+        Validators.pattern(this.regex.lt_sp),
       ]),
-      apellido_M: new FormControl(null, [
+      strApellido_Materno: new FormControl(null, [
         Validators.required,
         Validators.maxLength(15),
-        Validators.minLength(5),
+        Validators.minLength(3),
+        Validators.pattern(this.regex.lt_sp),
       ]),
-      edad: new FormControl(null, [
+      numEdad_Usuario: new FormControl(null, [
           Validators.required,
           Validators.max(80),
           Validators.min(18),
+          Validators.pattern(this.regex.ptIntNum),
         ]),
-      colonia: new FormControl(null, [
+      strColonia: new FormControl(null, [
           Validators.required,
           Validators.maxLength(50),
           Validators.minLength(5),
+          Validators.pattern(this.regex.lt_sp_dt),
         ]),
-      calle: new FormControl(null, [
+      strCalle: new FormControl(null, [
         Validators.required,
         Validators.maxLength(25),
         Validators.minLength(5),
+        Validators.pattern(this.regex.lt_sp),
       ]),
-      no_Casa: new FormControl(null, [
+      numNumero_Casa: new FormControl(null, [
         Validators.required,
         Validators.min(1),
         Validators.max(1000),
+        Validators.pattern(this.regex.ptIntNum),
       ]),
-      CP: new FormControl(null, [
+      numCP: new FormControl(null, [
         Validators.required,
-        Validators.maxLength(5),
+        Validators.maxLength(6),
         Validators.minLength(5),
+        Validators.pattern(this.regex.ptIntNum),
       ]),
-      telefono: new FormControl(null, [
+      strTelefono: new FormControl(null, [
         Validators.required,
-        Validators.maxLength(15),
+        Validators.maxLength(18),
         Validators.minLength(10),
+        Validators.pattern(this.regex.phone),
       ]),
-      correo: new FormControl(null, [
+      strCorreo: new FormControl(null, [
         Validators.required,
         Validators.maxLength(40),
         Validators.email,
       ]),
-      username: new FormControl(null, [
+      strUsername: new FormControl("", [
         Validators.required,
-        Validators.maxLength(15),
+        Validators.maxLength(20),
         Validators.minLength(5),
+        Validators.pattern(this.regex.lt_num_sp_us),
       ]),
-      password: new FormControl(null, [
+      strPassword: new FormControl("", [
         Validators.required,
         Validators.maxLength(16),
         Validators.minLength(8),
       ]),
-      // passwordValidation: new FormControl(null, [
-      //   Validators.required,
-      //   Validators.maxLength(16),
-      //   Validators.minLength(8),
-      //   MyValidations.correctPass(this.passConfim_Ing, this.pass_Ing),
-      // ]),
 
       // Valores por Default
-      foto_Perfil: new FormControl('https://picsum.photos/seed/picsum/200/200'),
-      cuy_Puntos: new FormControl(0),
+      strFoto_Perfil: new FormControl('https://picsum.photos/seed/picsum/200/200'),
+      numCuy_Puntos_Usuario: new FormControl(0),
 
     });
   }
 
-  register(){
-    console.log(this.RegisterForm.value);
+  async registerUser(){
 
-    this.sessionS.register_EmailPassword(this.RegisterForm.get('correo')?.value, this.RegisterForm.get('password')?.value)
-    .then(response => {
-      console.log(response);
+  // console.log(this.RegisterUserForm.value);
+  this.alertS.presentLoading('Procesando Registro..')
+
+  this.dataUser = {
+
+    rotullus : 'Carid-User',
+    mapNombre : {
+      strNombre : this.RegisterUserForm.get('strNombre')?.value,
+      strApellido_Paterno : this.RegisterUserForm.get('strApellido_Paterno')?.value,
+      strApellido_Materno : this.RegisterUserForm.get('strApellido_Materno')?.value,
+    },
+    strFoto_Perfil : this.RegisterUserForm.get('strFoto_Perfil')?.value,
+    strPassword : this.RegisterUserForm.get('strPassword')?.value,
+    strUsername : this.RegisterUserForm.get('strUsername')?.value,
+    strCorreo : this.RegisterUserForm.get('strCorreo')?.value,
+    strTelefono : this.RegisterUserForm.get('strTelefono')?.value,
+    numEdad_Usuario : this.RegisterUserForm.get('numEdad_Usuario')?.value,
+    mapDireccion_Usuario :{
+      strColonia : this.RegisterUserForm.get('strColonia')?.value,
+      strCalle : this.RegisterUserForm.get('strCalle')?.value,
+      numNumero_Casa : this.RegisterUserForm.get('numNumero_Casa')?.value,
+      numCP : this.RegisterUserForm.get('numCP')?.value,
+    },
+    numCuy_Puntos_Usuario : 0,
+  }
+
+  // console.log(this.dataUser);
+
+  const response = await this.sessionS.register_EmailPassword_User(this.dataUser)
+    .then(async response => {
+      // console.log(response);
+      const id = response.user.uid;
+      this.dataUser.uid = id;
+      this.dataUser.strPassword = "";
+
+      await this.userCS.addUser(this.dataUser, id)
+      this.alertS.registerSuccess();
+
+      this.alertS.closeLoading()
       this.router.navigate(['./login'])
-    })
-    .catch((error: any) => console.log(error)
-    );
 
+    })
+    .catch((error: any) => {console.log(error); this.alertS.closeLoading()}
+    );
   }
 
   // Elementos

@@ -17,9 +17,9 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
-import { Firestore, collectionData, doc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collectionData, doc, deleteDoc, docData } from '@angular/fire/firestore';
 import { collection } from '@firebase/firestore';
-import { addDoc } from '@firebase/firestore';
+import { addDoc, setDoc } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 
 import Usuario from '../Interfaces/Usuario.interface';
@@ -31,22 +31,22 @@ import Usuario from '../Interfaces/Usuario.interface';
 export class UserControlService {
 
   constructor(
-    private firestore: Firestore, 
+    private firestore: Firestore,
     private auth: Auth,
   ) { }
 
-  addUser(_user: any) {
-    const usersRef = collection(this.firestore, 'CaridApp_Usuarios');
-    return addDoc(usersRef, _user);
+  addUser(_user: Usuario, _id : string) {
+    // const usersRef = collection(this.firestore, 'CaridApp_Usuarios');
+    return setDoc(doc(this.firestore, "CaridApp_Usuarios", _id), _user);;
   }
 
-  getUser(): Observable <Usuario[]> {
-    const usersRef = collection(this.firestore, 'CaridApp_Usuarios');
-    return collectionData(usersRef, {idField: 'nombre'}) as Observable<Usuario[]>
+  getUser(_id : string): Observable <Usuario> {
+    const usersRef = doc(this.firestore, `CaridApp_Usuarios/${_id}`);
+    return docData(usersRef, { idField: 'id' }) as Observable<Usuario>;
   }
 
   deleteUser(_user: Usuario) {
-    const userDocRef = doc(this.firestore, `CaridApp_Usuarios/${_user.strUsername_Usuario}`);
+    const userDocRef = doc(this.firestore, `CaridApp_Usuarios/${_user.strUsername}`);
     return deleteDoc(userDocRef);
   }
 
