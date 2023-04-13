@@ -1,0 +1,14 @@
+  <ion-card (click)="verCampaign(campaign)">
+
+    <ion-img [src]="campaign.strImage_Campania" alt="Banner de la Campaña"/>
+
+      <ion-card-header>
+        <ion-card-title class="ion-margin ion-text-center">{{campaign.strNombre_Campania.length > 18 ? campaign.strNombre_Campania.slice(0, 18) + '...' :  campaign.strNombre_Campania | uppercase}} </ion-card-title>
+        <ion-card-subtitle class="ion-text-center">~ {{campaign.numId_Institucion}} ~</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content class="ion-text-justify">
+        {{campaign.strDescripcion_Campania.length > 250 ? campaign.strDescripcion_Campania.slice(0, 120) :  campaign.strDescripcion_Campania}} ...
+      </ion-card-content>
+
+  </ion-card>

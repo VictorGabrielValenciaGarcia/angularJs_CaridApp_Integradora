@@ -7,19 +7,19 @@ interface Enser {
 export enum Programa_Sector {
   Social = 'Apoyo Social',
   Animal = 'Apoyo Animal',
-  Siniestro = 'Apoyo por Desastres Naturales',
+  Siniestro = 'Desastres Naturales',
 }
 
-export enum EnserCalsificacion {
-  Economico = 'Economico',
-  Salud = 'Salud',
-  Alimento = 'Alimento',
-  Didactico = 'Didactico',
-  Educativo = 'Educativo',
-  Vestimenta = 'Vestimenta',
-  Bienestar = 'Bienestar',
-  Otro = 'Otro',
-}
+export const EnserCalsificacion = [
+  'Economico',
+  'Salud',
+  'Alimento',
+  'Didactico',
+  'Educativo',
+  'Vestimenta',
+  'Bienestar',
+  'Otro',
+]
 
 export enum Estado {
   Vigente = 'Vigente',
@@ -40,7 +40,7 @@ export default interface Campania {
   strFecha_Fin_Campania : string,
 
   arrLista_Enseres_Campania : Enser[],
-  arrCentros_Acopio_Campania : number[],
+  arrCentros_Acopio_Campania : string[],
 
   // Invisibles en el Formulario
   id?: string,

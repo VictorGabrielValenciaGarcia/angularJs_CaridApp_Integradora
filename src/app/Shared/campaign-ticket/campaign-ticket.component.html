@@ -1,0 +1,18 @@
+<ion-card style="max-height: 150px !important;" (click)="campaignInteraction()">
+  <!-- <ion-card> -->
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="4">
+          <img [src]="campaign.strImage_Campania" style="border-radius: 30% !important; object-fit: cover !important; max-height: 110px;">
+        </ion-col>
+        <ion-col size="8">
+          <h5 class="ion-text-center">{{ campaign.strNombre_Campania.lenght > 29 ? campaign.strNombre_Campania.slice(0,29)+' ...' : campaign.strNombre_Campania }}</h5>
+          <p class="ion-text-center">{{ campaign.strFecha_Inicio_Campania }} / {{ campaign.strFecha_Fin_Campania }}</p>
+          <p class="ion-text-center state" *ngIf="campaign.strEstado_Campania === 'Vigente'" >Estado: <span style="color:rgb(0, 176, 41)">{{ campaign.strEstado_Campania }}</span></p>
+          <p class="ion-text-center state" *ngIf="campaign.strEstado_Campania === 'Vencida'" >Estado: <span style="color:rgb(64, 64, 64)">{{ campaign.strEstado_Campania }}</span></p>
+          <p class="ion-text-center state" *ngIf="campaign.strEstado_Campania === 'Desactivada'" >Estado: <span style="color:rgb(181, 0, 0)">{{ campaign.strEstado_Campania }}</span></p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  <!-- </ion-card> -->
+</ion-card>

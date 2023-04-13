@@ -2,20 +2,20 @@
 
 <ion-content>
   <ion-grid fixed>
-    <ion-row class="ion-align-items-center">
+    <ion-row class="ion-align-items-center ion-justify-content-center">
 
-      <ion-col size-lg="6" size-md="12" size-xs="12" class="ion-padding">
-        <img class="imageForm" [src]="objCampaingExample.strImage_Campania" />
+      <ion-col size-lg="5" size-md="12" size-xs="12" class="ion-padding">
+        <img class="imageForm" [src]="campaign?.strImage_Campania" />
       </ion-col>
 
-      <ion-col size-lg="6" size-md="12" size-xs="12">
+      <ion-col size-lg="5" size-md="12" size-xs="12">
 
         <ion-card class="ion-padding">
 
           <ion-card-header class="ion-text-center">
-            <ion-card-title>{{objCampaingExample.strNombre_Campania | uppercase}}</ion-card-title>
-            <ion-card-subtitle><strong>{{objCampaingExample.numId_Institucion}}</strong> |
-              <strong>{{objCampaingExample.strPrograma_Sector_Campania}}</strong></ion-card-subtitle>
+            <ion-card-title>{{campaign?.strNombre_Campania | uppercase}}</ion-card-title>
+            <ion-card-subtitle><strong>{{campaign?.numId_Institucion}}</strong> |
+              <strong>{{campaign?.strPrograma_Sector_Campania}}</strong></ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
@@ -25,7 +25,7 @@
                   <ion-label>Ver Concepto</ion-label>
                 </ion-item>
                 <div class="ion-padding ion-text-justify" style="background-color: #fcfcfc;" slot="content">
-                  {{objCampaingExample.strDescripcion_Campania}}
+                  {{campaign?.strDescripcion_Campania}}
                 </div>
               </ion-accordion>
             </ion-accordion-group>
@@ -42,12 +42,12 @@
               <ion-row>
                 <ion-col size="6">
                   <h5 class="ion-text-center"><strong>Inicio:</strong>
-                    {{objCampaingExample.strFecha_Inicio_Campania}}
+                    {{campaign?.strFecha_Inicio_Campania}}
                   </h5>
                 </ion-col>
                 <ion-col size="6">
                   <h5 class="ion-text-center"><strong>Fin:</strong>
-                    {{objCampaingExample.strFecha_Fin_Campania}}
+                    {{campaign?.strFecha_Fin_Campania}}
                   </h5>
                 </ion-col>
               </ion-row>
@@ -55,15 +55,7 @@
           </ion-card-header>
 
 
-          <ion-grid style="margin-top: -2rem !important;">
-            <ion-row class="ion-justify-content-center ion-align-items-center">
-              <ion-col>
-                <h5 class="ion-text-center" style="text-decoration: underline;"><strong>Tiempo Restante:</strong> </h5>
-                <h5 class="ion-text-center"><strong>12</strong> meses - <strong>4</strong> días - <strong>6</strong>
-                  horas</h5>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+          <app-timer [fechaFin]="campaign?.strFecha_Fin_Campania"></app-timer>
 
         </ion-card>
 
@@ -83,18 +75,17 @@
                 </ion-item>
                 <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
 
-                  <ion-accordion-group *ngFor="let recurso of objCampaingExample.arrLista_Enseres_Campania">
+                  <ion-accordion-group *ngFor="let recurso of campaign?.arrLista_Enseres_Campania">
                     <ion-accordion value="first">
 
                       <!-- <ion-list > -->
                       <ion-item detail="true" slot="header">
-                        <ion-icon class="ion-padding-end" color="success" [name]="recurso.strClasificacion"
-                          size="small"></ion-icon>
+                        <ion-icon class="ion-padding-end" [color]="selectColor(recurso.strClasificacion)" [name]="selectIcon(recurso.strClasificacion)" size="small"></ion-icon>
                         <ion-label>{{ recurso.strNombre_Enser }}</ion-label>
                       </ion-item>
 
                       <div class="ion-text-justify ion-padding" style="background-color: #fcfcfc;" slot="content">
-                        <p>{{ recurso.strRequisitos }}</p>
+                        <p><strong>Requisitos:</strong> {{ recurso.strRequisitos }}</p>
                       </div>
                       <!-- </ion-list> -->
 
@@ -110,7 +101,7 @@
 
         <ion-grid class="ion-margin-top">
           <ion-row class="ion-justify-content-center">
-            <ion-col size-xs="9" size-md="6" size-lg="5">
+            <ion-col size-xs="9" size-md="6" size-lg="6">
               <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="success">
                 <ion-text color="dark">
                   <h5>Apoyar Campaña</h5>
@@ -434,7 +425,7 @@
                 <form>
 
                   <ion-grid>
-                    <ion-row *ngFor="let recurso of objCampaingExample.arrLista_Enseres_Campania; let i = index">
+                    <ion-row *ngFor="let recurso of campaign?.arrLista_Enseres_Campania; let i = index">
                       <ion-col size="9">
                         <ion-item  mode="md" fill="solid">
                           <ion-label>{{recurso.strNombre_Enser}}</ion-label>
@@ -488,7 +479,7 @@
       </ion-toolbar>
 
       <div class="ion-padding-end ion-padding-start ion-text-justify" style="background-color: #fcfcfc;">
-        <p>!Muchas gracias por apoyar a "{{objCampaingExample.strNombre_Campania}}". Con tu ayuda y apoyo haremos todos los esfuerzos
+        <p>!Muchas gracias por apoyar a "{{campaign?.strNombre_Campania}}". Con tu ayuda y apoyo haremos todos los esfuerzos
           necesarios para alcanzar nuestros objetivos! </p>
       </div>
 

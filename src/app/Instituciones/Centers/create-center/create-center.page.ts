@@ -32,7 +32,6 @@ export class CreateCenterPage implements OnInit {
   // Center Data
   id : string = '';
   update : boolean = false;
-  centerInfo : any;
 
   // SearchBar
 
@@ -145,48 +144,6 @@ export class CreateCenterPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.ar.params.subscribe(
-    //   (_id:any) => {
-    //     // console.log(_id.id);
-
-    //     if(_id.id){
-    //       this.update = true;
-    //       this.id = _id.id
-
-    //       this.centerS.getCenterById(this.id).subscribe(
-    //         (_center : any) => {
-    //           console.log(_center);
-
-    //           this.createCenterForm.get('strNombre_CentroA')?.reset(_center.strNombre_CentroA);
-    //           this.createCenterForm.get('strSubtitulo_CentroA')?.reset(_center.strSubtitulo_CentroA);
-    //           this.createCenterForm.get('strImage_CentroA')?.reset(_center.strImage_CentroA);
-    //           this.createCenterForm.get('numId_Institucion')?.reset(_center.numId_Institucion);
-
-    //           this.createCenterForm.get('arrCorreos_CentroA')?.reset(_center.mapContactos_CentroA.arrCorreos_CentroA);
-    //           this.createCenterForm.get('strFacebook')?.reset(_center.mapContactos_CentroA.strFacebook);
-    //           this.createCenterForm.get('strInstagram')?.reset(_center.mapContactos_CentroA.strInstagram);
-    //           this.createCenterForm.get('strTelefono')?.reset(_center.mapContactos_CentroA.strTelefono);
-    //           this.createCenterForm.get('strTikTok')?.reset(_center.mapContactos_CentroA.strTikTok);
-    //           this.createCenterForm.get('strTwitter')?.reset(_center.mapContactos_CentroA.strTwitter);
-    //           this.createCenterForm.get('strWhatsApp')?.reset(_center.mapContactos_CentroA.strWhatsApp);
-
-    //           this.createCenterForm.get('numCP')?.reset(_center.mapDireccion_Fisica_CentroA.numCP);
-    //           this.createCenterForm.get('numNumero_Exterior')?.reset(_center.mapDireccion_Fisica_CentroA.numNumero_Exterior);
-    //           this.createCenterForm.get('numNumero_Interior')?.reset(_center.mapDireccion_Fisica_CentroA.numNumero_Interior);
-    //           this.createCenterForm.get('strCalle')?.reset(_center.mapDireccion_Fisica_CentroA.strCalle);
-    //           this.createCenterForm.get('strCiudad')?.reset(_center.mapDireccion_Fisica_CentroA.strCiudad);
-    //           this.createCenterForm.get('strColonia')?.reset(_center.mapDireccion_Fisica_CentroA.strColonia);
-    //           this.createCenterForm.get('strEstado')?.reset(_center.mapDireccion_Fisica_CentroA.strEstado);
-    //           this.createCenterForm.get('strMunicipio')?.reset(_center.mapDireccion_Fisica_CentroA.strMunicipio);
-
-    //           this.createCenterForm.get('longitud')?.reset(_center.mapDireccion_GPS_CentroA.longitud);
-    //           this.createCenterForm.get('latitud')?.reset(_center.mapDireccion_GPS_CentroA.latitud);
-
-    //         }
-    //       );
-    //     }
-    //   }
-    // );
   }
 
   ionViewWillEnter(){

@@ -167,7 +167,7 @@
                         <p class="errors" *ngIf="(RegisterUserForm.get('strCalle')?.dirty || RegisterUserForm.get('strCalle')?.touched) && RegisterUserForm.get('strCalle')?.hasError('required')">Calle / Avenida necesaria para el registro</p>
                         <p class="errors" *ngIf="RegisterUserForm.get('strCalle')?.hasError('maxlength')">Solo 25 Carácteres</p>
                         <p class="errors" *ngIf="RegisterUserForm.get('strCalle')?.hasError('minlength')">No es un nombre válido</p>
-                        <p class="errors" *ngIf="RegisterUserForm.get('strCalle')?.hasError('pattern')">Solo letras y espacios</p>
+                        <p class="errors" *ngIf="RegisterUserForm.get('strCalle')?.hasError('pattern')">Solo letras, espacios y números</p>
                       </div>
 
                       <ion-item fill="solid" mode="md">

@@ -3,4 +3,14 @@
 
 <ion-content>
 
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let social of SocialCampaigns">
+
+        <app-campaign-card [campaign]="social"></app-campaign-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

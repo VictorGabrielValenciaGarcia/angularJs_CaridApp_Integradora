@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Campania, { Estado, Programa_Sector } from 'src/app/Interfaces/Campania.interface';
+import { CampaignControlServiceService } from 'src/app/Services/campaign-control-service.service';
 
 @Component({
   selector: 'app-desastres-naturales',
@@ -7,7 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DesastresNaturalesPage implements OnInit {
 
-  constructor() { }
+  DisasterCampaigns: Campania[] = []
+  AllCampaigns: Campania[] = []
+
+  constructor(
+    private campaignC : CampaignControlServiceService,
+  ) {
+    this.campaignC.getCampaigns().subscribe(
+      _campaigns => {
+        this.AllCampaigns = _campaigns;
+        this.DisasterCampaigns = this.AllCampaigns.filter(f => f.strPrograma_Sector_Campania === Programa_Sector.Siniestro);
+      }
+    )
+  }
 
   ngOnInit() {
   }

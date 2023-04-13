@@ -173,13 +173,13 @@
                       <div>
                         <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                           <ion-label position="floating">Calle</ion-label>
-                          <ion-input required clearInput="true" type="text" formControlName="strCalle" maxlength="70" minlength="3"
+                          <ion-input required clearInput="true" type="text" formControlName="strCalle" maxlength="30" minlength="3"
                           [class.inputWrong] = "createCenterForm.get('strCalle')?.invalid"></ion-input>
                         </ion-item>
 
                         <div class="adjustErrors">
                           <p class="errors" *ngIf="(createCenterForm.get('strCalle')?.dirty || createCenterForm.get('strCalle')?.touched) && createCenterForm.get('strCalle')?.hasError('required')">* Este campo es obligatorio</p>
-                          <p class="errors" *ngIf="createCenterForm.get('strCalle')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCenterForm.get('strCalle')?.hasError('maxlength')">Solo 30 Carácteres</p>
                           <p class="errors" *ngIf="createCenterForm.get('strCalle')?.hasError('minlength')">No es un nombre válido</p>
                           <p class="errors" *ngIf="createCenterForm.get('strCalle')?.hasError('pattern')">Solo Letras y Espacios</p>
                         </div>

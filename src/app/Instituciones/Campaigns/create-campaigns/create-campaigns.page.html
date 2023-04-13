@@ -1,9 +1,523 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>createCampaigns</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header-without-menu title="Control de Campañas" route="/mi-campaigns"></app-header-without-menu>
 
-<ion-content>
+<ion-content class="ion-padding-top ion-padding-bottom" *ngIf="!update">
+
+  <ion-grid >
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col sizeXs="12" sizeMd="11" sizeLg="11">
+        <ion-card>
+          <ion-card-content>
+
+            <ion-grid>
+              <form [formGroup]="createCampaignForm" (ngSubmit)="createCampaign()">
+
+                <ion-row class="ion-justify-content-evenly">
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+                    <h1 class="ion-text-center formTitle">Informacion Básica</h1>
+
+                    <ion-list>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="floating">Imagen / Banner</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strImage_Campania"
+                          [class.inputWrong] = "createCampaignForm.get('strImage_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strImage_Campania')?.dirty || createCampaignForm.get('strImage_Campania')?.touched) && createCampaignForm.get('strImage_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Nombre de la Campaña</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strNombre_Campania" minlength="5" maxlength="50"
+                          [class.inputWrong] = "createCampaignForm.get('strNombre_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strNombre_Campania')?.dirty || createCampaignForm.get('strNombre_Campania')?.touched) && createCampaignForm.get('strNombre_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('minlength')">No es un nombre válido</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('pattern')">Solo letras, espacios y puntos</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="floating">Programa / Sector</ion-label>
+                          <ion-select value="peperoni" multiple="false" placeholder="Seleccione una opción" formControlName="strPrograma_Sector_Campania">
+                            <ion-select-option value="Apoyo Social">Apoyo Social</ion-select-option>
+                            <ion-select-option value="Apoyo Animal">Apoyo Animal</ion-select-option>
+                            <ion-select-option value="Desastres Naturales"> Desastres Naturales</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strEstado')?.dirty || createCampaignForm.get('strEstado')?.touched) && createCampaignForm.get('strEstado')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Descripción</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strDescripcion_Campania" maxlength="60" minlength="15"
+                          [class.inputWrong] = "createCampaignForm.get('strDescripcion_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strDescripcion_Campania')?.dirty || createCampaignForm.get('strDescripcion_Campania')?.touched) && createCampaignForm.get('strDescripcion_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('minlength')">No es una descripción detallada</p>
+                        </div>
+                      </div>
+
+                    </ion-list>
+
+                  </ion-col>
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+                    <ion-list>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="stacked">Fecha de Inicio</ion-label>
+                          <ion-input required clearInput="true" type="date" formControlName="strFecha_Inicio_Campania"
+                          [class.inputWrong] = "createCampaignForm.get('strFecha_Inicio_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strFecha_Inicio_Campania')?.dirty || createCampaignForm.get('strFecha_Inicio_Campania')?.touched) && createCampaignForm.get('strFecha_Inicio_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="stacked">Fecha de Fin</ion-label>
+                          <ion-input required clearInput="true" type="date" formControlName="strFecha_Fin_Campania"
+                          [class.inputWrong] = "createCampaignForm.get('strFecha_Fin_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strFecha_Fin_Campania')?.dirty || createCampaignForm.get('strFecha_Inicio_Campania')?.touched) && createCampaignForm.get('strFecha_Inicio_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <h1 class="ion-text-center formTitle">Centros de Acopio</h1>
+
+                      <ion-grid>
+                        <ion-row class="ion-justify-content-center">
+                          <ion-col sizeLg="8" sizeMd="8" sizeXs="10">
+                            <ion-button fill="outline" color="tertiary" size="small" expand="block" (click)="addNewInputField()">
+                              <ion-icon slot="start" name="add" ></ion-icon>
+                              Añadir Centro
+                            </ion-button>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row class="ion-justify-content-center ion-align-items-center">
+                          <ion-col size="12" formArrayName="arrCentros_Acopio_Campania" *ngFor="let correos of arrCentros_Acopio_Campania.controls ; let i = index" >
+
+                            <div [formGroupName]="i">
+
+                              <ion-item color="light">
+                                <ion-button (click)="removeInputField(i)" color="medium" slot="end" fill="clear" *ngIf="i > 0" >
+                                  <ion-icon slot="icon-only" color="medium" name="remove-circle"></ion-icon>
+                                </ion-button>
+                                <ion-label>
+                                  Centro No.{{ i+1 }}
+                                </ion-label>
+                              </ion-item>
+
+                              <div>
+                                <ion-item class="formSpace" fill="solid" mode="md">
+                                  <ion-label position="floating">Centro de Acopio</ion-label>
+                                  <ion-select value="peperoni" multiple="false" placeholder="Seleccione un Centro" formControlName="strIdCenter">
+                                    <ion-select-option value="{{ center.id }}" *ngFor="let center of allCenters" >{{ center.strNombre_CentroA }}</ion-select-option>
+                                  </ion-select>
+                                </ion-item>
+
+                                <div class="adjustErrors">
+                                  <p class="errors" *ngIf="(correos.get('strIdCenter')?.dirty || correos.get('strIdCenter')?.touched) && correos.get('strIdCenter')?.hasError('required')">* Este campo es obligatorio</p>
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </ion-col>
+                        </ion-row>
+
+                      </ion-grid>
+
+                    </ion-list>
+
+                  </ion-col>
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+
+                    <h1 class="ion-text-center formTitle">Lista de Enseres</h1>
+
+                    <ion-grid>
+                      <ion-row class="ion-justify-content-center ion-align-items-center">
+                        <ion-col sizeLg="10" sizeMd="10" sizeXs="12">
+                          <ion-button fill="outline" color="tertiary" size="small" expand="block" (click)="addNewInputFieldEnser()">
+                            <ion-icon slot="start" name="add" ></ion-icon>
+                            Añadir Enser
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                        <ion-col size="12" formArrayName="arrLista_Enseres_Campania" *ngFor="let correos of arrLista_Enseres_Campania.controls ; let i = index" >
+
+                          <div [formGroupName]="i">
+
+                              <ion-accordion-group class="ion-margin-bottom">
+                                <ion-accordion value="first">
+
+                                  <ion-item slot="header" color="light">
+                                    <ion-button (click)="removeInputFieldEnser(i)" color="medium" slot="start" fill="clear" *ngIf="i > 0" >
+                                      <ion-icon slot="icon-only" color="medium" name="remove-circle"></ion-icon>
+                                    </ion-button>
+                                    <ion-label>
+                                      Enser No.{{ i+1 }}
+                                    </ion-label>
+                                  </ion-item>
+
+                                  <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+
+                                    <div>
+                                      <ion-item class="formSpace" fill="solid" mode="md">
+                                        <ion-label position="floating">Clasificación</ion-label>
+                                        <ion-select value="peperoni" multiple="false" placeholder="Seleccione una Clasificación" formControlName="strClasificacion">
+                                          <ion-select-option value="{{ type }}" *ngFor="let type of clasificacion" >{{ type }}</ion-select-option>
+                                        </ion-select>
+                                      </ion-item>
+
+                                      <div class="adjustErrors">
+                                        <p class="errors" *ngIf="(correos.get('strClasificacion')?.dirty || correos.get('strClasificacion')?.touched) && correos.get('strClasificacion')?.hasError('required')">* Este campo es obligatorio</p>
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                        <ion-label position="floating">Nombre</ion-label>
+                                        <ion-input required clearInput="true" type="text" formControlName="strNombre_Enser" maxlength="20" minlength="3"
+                                        [class.inputWrong] = "correos.get('strNombre_Enser')?.invalid"></ion-input>
+                                      </ion-item>
+
+                                      <div class="adjustErrors">
+                                        <p class="errors" *ngIf="(correos.get('strNombre_Enser')?.dirty || correos.get('strNombre_Enser')?.touched) && correos.get('strNombre_Enser')?.hasError('required')">* Este campo es obligatorio</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('minlength')">No es un nombre válido</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('pattern')">Solo letras, espacios, numeros y puntos</p>
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                        <ion-label position="floating">Requisitos</ion-label>
+                                        <ion-input required clearInput="true" type="text" formControlName="strRequisitos" maxlength="70"
+                                        [class.inputWrong] = "correos.get('strRequisitos')?.invalid"></ion-input>
+                                      </ion-item>
+
+                                      <div class="adjustErrors">
+                                        <p class="errors" *ngIf="(correos.get('strRequisitos')?.dirty || correos.get('strRequisitos')?.touched) && correos.get('strRequisitos')?.hasError('required')">* Este campo es obligatorio</p>
+                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('maxlength')">Solo 70 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('pattern')">Solo letras, espacios y puntos</p>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </ion-accordion>
+                              </ion-accordion-group>
+
+                          </div>
+
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+
+                  </ion-col>
+
+                </ion-row>
+
+                <ion-row class="ion-justify-content-center">
+                  <ion-button color="success" type="submit" expand="block" fill="solid" shape="round" [disabled]="createCampaignForm.invalid">
+                    Crear Campaña
+                  </ion-button>
+                </ion-row>
+
+              </form>
+            </ion-grid>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-content class="ion-padding-top ion-padding-bottom" *ngIf="update">
+
+  <ion-grid >
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col sizeXs="12" sizeMd="11" sizeLg="11">
+        <ion-card>
+          <ion-card-content>
+
+            <ion-grid>
+              <form [formGroup]="createCampaignForm" (ngSubmit)="updateCampaign()">
+
+                <ion-row class="ion-justify-content-evenly">
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+                    <h1 class="ion-text-center formTitle">Informacion Básica</h1>
+
+                    <ion-list>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="floating">Imagen / Banner</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strImage_Campania"
+                          [class.inputWrong] = "createCampaignForm.get('strImage_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strImage_Campania')?.dirty || createCampaignForm.get('strImage_Campania')?.touched) && createCampaignForm.get('strImage_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Nombre de la Campaña</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strNombre_Campania" minlength="5" maxlength="50"
+                          [class.inputWrong] = "createCampaignForm.get('strNombre_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strNombre_Campania')?.dirty || createCampaignForm.get('strNombre_Campania')?.touched) && createCampaignForm.get('strNombre_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('minlength')">No es un nombre válido</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('pattern')">Solo letras, espacios y puntos</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="floating">Programa / Sector</ion-label>
+                          <ion-select value="peperoni" multiple="false" placeholder="Seleccione una opción" formControlName="strPrograma_Sector_Campania">
+                            <ion-select-option value="Apoyo Social">Apoyo Social</ion-select-option>
+                            <ion-select-option value="Apoyo Animal">Apoyo Animal</ion-select-option>
+                            <ion-select-option value="Desastres Naturales"> Desastres Naturales</ion-select-option>
+                          </ion-select>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strEstado')?.dirty || createCampaignForm.get('strEstado')?.touched) && createCampaignForm.get('strEstado')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-label position="floating">Descripción</ion-label>
+                          <ion-input required clearInput="true" type="text" formControlName="strDescripcion_Campania" maxlength="60" minlength="15"
+                          [class.inputWrong] = "createCampaignForm.get('strDescripcion_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strDescripcion_Campania')?.dirty || createCampaignForm.get('strDescripcion_Campania')?.touched) && createCampaignForm.get('strDescripcion_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('minlength')">No es una descripción detallada</p>
+                        </div>
+                      </div>
+
+                    </ion-list>
+
+                  </ion-col>
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+                    <ion-list>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="stacked">Fecha de Inicio</ion-label>
+                          <ion-input required clearInput="true" type="date" formControlName="strFecha_Inicio_Campania"
+                          [class.inputWrong] = "createCampaignForm.get('strFecha_Inicio_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strFecha_Inicio_Campania')?.dirty || createCampaignForm.get('strFecha_Inicio_Campania')?.touched) && createCampaignForm.get('strFecha_Inicio_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <ion-item class="formSpace" fill="solid" mode="md">
+                          <ion-label position="stacked">Fecha de Fin</ion-label>
+                          <ion-input required clearInput="true" type="date" formControlName="strFecha_Fin_Campania"
+                          [class.inputWrong] = "createCampaignForm.get('strFecha_Fin_Campania')?.invalid"></ion-input>
+                        </ion-item>
+
+                        <div class="adjustErrors">
+                          <p class="errors" *ngIf="(createCampaignForm.get('strFecha_Fin_Campania')?.dirty || createCampaignForm.get('strFecha_Inicio_Campania')?.touched) && createCampaignForm.get('strFecha_Inicio_Campania')?.hasError('required')">* Este campo es obligatorio</p>
+                        </div>
+                      </div>
+
+                      <h1 class="ion-text-center formTitle">Centros de Acopio</h1>
+
+                      <ion-grid>
+                        <ion-row class="ion-justify-content-center">
+                          <ion-col sizeLg="8" sizeMd="8" sizeXs="10">
+                            <ion-button fill="outline" color="tertiary" size="small" expand="block" (click)="addNewInputField()">
+                              <ion-icon slot="start" name="add" ></ion-icon>
+                              Añadir Centro
+                            </ion-button>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row class="ion-justify-content-center ion-align-items-center">
+                          <ion-col size="12" formArrayName="arrCentros_Acopio_Campania" *ngFor="let correos of arrCentros_Acopio_Campania.controls ; let i = index" >
+
+                            <div [formGroupName]="i">
+
+                              <ion-item color="light">
+                                <ion-button (click)="removeInputField(i)" color="medium" slot="end" fill="clear" *ngIf="i > 0" >
+                                  <ion-icon slot="icon-only" color="medium" name="remove-circle"></ion-icon>
+                                </ion-button>
+                                <ion-label>
+                                  Centro No.{{ i+1 }}
+                                </ion-label>
+                              </ion-item>
+
+                              <div>
+                                <ion-item class="formSpace" fill="solid" mode="md">
+                                  <ion-label position="floating">Centro de Acopio</ion-label>
+                                  <ion-select value="peperoni" multiple="false" placeholder="Seleccione un Centro" formControlName="strIdCenter">
+                                    <ion-select-option value="{{ center.id }}" *ngFor="let center of allCenters" >{{ center.strNombre_CentroA }}</ion-select-option>
+                                  </ion-select>
+                                </ion-item>
+
+                                <div class="adjustErrors">
+                                  <p class="errors" *ngIf="(correos.get('strIdCenter')?.dirty || correos.get('strIdCenter')?.touched) && correos.get('strIdCenter')?.hasError('required')">* Este campo es obligatorio</p>
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </ion-col>
+                        </ion-row>
+
+                      </ion-grid>
+
+                    </ion-list>
+
+                  </ion-col>
+
+                  <ion-col sizeLg="4" sizeMd="4" sizeXs="12" class="ion-padding">
+
+                    <h1 class="ion-text-center formTitle">Lista de Enseres</h1>
+
+                    <ion-grid>
+                      <ion-row class="ion-justify-content-center ion-align-items-center">
+                        <ion-col sizeLg="10" sizeMd="10" sizeXs="12">
+                          <ion-button fill="outline" color="tertiary" size="small" expand="block" (click)="addNewInputFieldEnser()">
+                            <ion-icon slot="start" name="add" ></ion-icon>
+                            Añadir Enser
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                        <ion-col size="12" formArrayName="arrLista_Enseres_Campania" *ngFor="let correos of arrLista_Enseres_Campania.controls ; let i = index" >
+
+                          <div [formGroupName]="i">
+
+                              <ion-accordion-group class="ion-margin-bottom">
+                                <ion-accordion value="first">
+
+                                  <ion-item slot="header" color="light">
+                                    <ion-button (click)="removeInputFieldEnser(i)" color="medium" slot="start" fill="clear" *ngIf="i > 0" >
+                                      <ion-icon slot="icon-only" color="medium" name="remove-circle"></ion-icon>
+                                    </ion-button>
+                                    <ion-label>
+                                      Enser No.{{ i+1 }}
+                                    </ion-label>
+                                  </ion-item>
+
+                                  <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+
+                                    <div>
+                                      <ion-item class="formSpace" fill="solid" mode="md">
+                                        <ion-label position="floating">Clasificación</ion-label>
+                                        <ion-select value="peperoni" multiple="false" placeholder="Seleccione una Clasificación" formControlName="strClasificacion">
+                                          <ion-select-option value="{{ type }}" *ngFor="let type of clasificacion" >{{ type }}</ion-select-option>
+                                        </ion-select>
+                                      </ion-item>
+
+                                      <div class="adjustErrors">
+                                        <p class="errors" *ngIf="(correos.get('strClasificacion')?.dirty || correos.get('strClasificacion')?.touched) && correos.get('strClasificacion')?.hasError('required')">* Este campo es obligatorio</p>
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                        <ion-label position="floating">Nombre</ion-label>
+                                        <ion-input required clearInput="true" type="text" formControlName="strNombre_Enser" maxlength="20" minlength="3"
+                                        [class.inputWrong] = "correos.get('strNombre_Enser')?.invalid"></ion-input>
+                                      </ion-item>
+
+                                      <div class="adjustErrors">
+                                        <p class="errors" *ngIf="(correos.get('strNombre_Enser')?.dirty || correos.get('strNombre_Enser')?.touched) && correos.get('strNombre_Enser')?.hasError('required')">* Este campo es obligatorio</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('minlength')">No es un nombre válido</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('pattern')">Solo letras, espacios, numeros y puntos</p>
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                        <ion-label position="floating">Requisitos</ion-label>
+                                        <ion-input required clearInput="true" type="text" formControlName="strRequisitos" maxlength="70"
+                                        [class.inputWrong] = "correos.get('strRequisitos')?.invalid"></ion-input>
+                                      </ion-item>
+
+                                      <div class="adjustErrors">
+                                        <p class="errors" *ngIf="(correos.get('strRequisitos')?.dirty || correos.get('strRequisitos')?.touched) && correos.get('strRequisitos')?.hasError('required')">* Este campo es obligatorio</p>
+                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('maxlength')">Solo 70 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('pattern')">Solo letras, espacios y puntos</p>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </ion-accordion>
+                              </ion-accordion-group>
+
+                          </div>
+
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+
+                  </ion-col>
+
+                </ion-row>
+
+                <ion-row class="ion-justify-content-center">
+                  <ion-button color="success" type="submit" expand="block" fill="solid" shape="round" [disabled]="createCampaignForm.invalid">
+                    Actualizar Campaña
+                  </ion-button>
+                </ion-row>
+
+              </form>
+            </ion-grid>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

@@ -1,9 +1,173 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Campaign-Details</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header-without-menu [title]="campaignName" route="/mi-campaigns"></app-header-without-menu>
 
 <ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+
+      <ion-col size-lg="5" size-md="12" size-xs="12" class="ion-padding">
+        <img class="imageForm" [src]="campaign?.strImage_Campania" />
+      </ion-col>
+
+      <ion-col size-lg="5" size-md="12" size-xs="12">
+
+        <ion-card class="ion-padding">
+
+          <ion-card-header class="ion-text-center">
+            <ion-card-title>{{campaign?.strNombre_Campania | uppercase}}</ion-card-title>
+            <ion-card-subtitle><strong>{{campaign?.numId_Institucion}}</strong> |
+              <strong>{{campaign?.strPrograma_Sector_Campania}}</strong></ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-accordion-group>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Ver Concepto</ion-label>
+                </ion-item>
+                <div class="ion-padding ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                  {{campaign?.strDescripcion_Campania}}
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
+          </ion-card-content>
+
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Vigencia</ion-card-title>
+            <!-- <ion-card-title class="ion-text-center">Periodo de Vigencia</ion-card-title> -->
+
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="6">
+                  <h5 class="ion-text-center"><strong>Inicio:</strong>
+                    {{campaign?.strFecha_Inicio_Campania}}
+                  </h5>
+                </ion-col>
+                <ion-col size="6">
+                  <h5 class="ion-text-center"><strong>Fin:</strong>
+                    {{campaign?.strFecha_Fin_Campania}}
+                  </h5>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-header>
+
+
+          <app-timer [fechaFin]="campaign?.strFecha_Fin_Campania"></app-timer>
+
+        </ion-card>
+
+        <ion-card>
+
+          <ion-card-header class="ion-text-center">
+            <ion-card-title>Recursos Solicitados</ion-card-title>
+            <br>
+            <ion-card-subtitle>~ <strong>Recursos Economicos</strong> ~</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-accordion-group>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Ver Lista</ion-label>
+                </ion-item>
+                <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+
+                  <ion-accordion-group *ngFor="let recurso of campaign?.arrLista_Enseres_Campania">
+                    <ion-accordion value="first">
+
+                      <!-- <ion-list > -->
+                      <ion-item detail="true" slot="header">
+                        <ion-icon class="ion-padding-end" [color]="selectColor(recurso.strClasificacion)" [name]="selectIcon(recurso.strClasificacion)" size="small"></ion-icon>
+                        <ion-label>{{ recurso.strNombre_Enser }}</ion-label>
+                      </ion-item>
+
+                      <div class="ion-text-justify ion-padding" style="background-color: #fcfcfc;" slot="content">
+                        <p><strong>Requisitos:</strong> {{ recurso.strRequisitos }}</p>
+                      </div>
+                      <!-- </ion-list> -->
+
+                    </ion-accordion>
+                  </ion-accordion-group>
+
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" color="tertiary" size="large">
+      <!-- <ion-icon name="help-circle-outline" size="large"></ion-icon> -->
+      <!-- <ion-icon name="help-outline" size="large"></ion-icon> -->
+      <ion-icon name="information-circle-outline" size="large"></ion-icon>
+      <!-- <ion-icon name="information-outline" size="large"></ion-icon> -->
+    </ion-fab-button>
+
+    <ion-fab-list side="start">
+      <ion-fab-button (click)="viewMap(campaign?.id)" color="dark">
+        <ion-icon name="map-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button color="warning" id="open-modalReports">
+        <ion-icon name="alert-circle-outline" size="large"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button color="light">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+
+
+  </ion-fab>
 
 </ion-content>
+
+
+<!-- Modal Select Report -->
+
+<ion-modal #modalReports trigger="open-modalReports" id="modalReports">
+  <ng-template>
+    <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
+      <ion-toolbar class="ion-text-center">
+        Índice de Reportes
+      </ion-toolbar>
+
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+
+          <ion-col sizeXs="12" sizeLg="6" class="ion-margin-top">
+            <ion-card>
+              <h3 class="ion-text-center"><strong>Reportes: </strong>{{campaign?.numCantidad_Reportes}}</h3>
+            </ion-card>
+          </ion-col>
+
+          <ion-col sizeXs="12" sizeLg="6" class="ion-margin-top">
+            <ion-card>
+              <h3 class="ion-text-center"><strong>Amonestaciones: </strong>{{campaign?.numCantidad_Amonestaciones_Campania}}</h3>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size-xs="8" size-md="5" size-lg="5">
+            <ion-button mode="md" fill="outline" expand="block" color="danger"
+              (click)="modalReportDismiss()">
+              <ion-text color="dark">
+                <h5>Cerrar</h5>
+              </ion-text>
+            </ion-button>
+            <br>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

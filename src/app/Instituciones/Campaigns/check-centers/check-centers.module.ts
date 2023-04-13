@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CampaignDetailsPageRoutingModule } from './campaign-details-routing.module';
+import { CheckCentersPageRoutingModule } from './check-centers-routing.module';
 
-import { CampaignDetailsPage } from './campaign-details.page';
+import { CheckCentersPage } from './check-centers.page';
 import { SharedModule } from 'src/app/Shared/shared.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModule } from 'src/app/Shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    CampaignDetailsPageRoutingModule,
-    SharedModule,
+    CheckCentersPageRoutingModule,
+    SharedModule
   ],
-  declarations: [CampaignDetailsPage]
+  declarations: [CheckCentersPage]
 })
-export class CampaignDetailsPageModule {}
+export class CheckCentersPageModule {}

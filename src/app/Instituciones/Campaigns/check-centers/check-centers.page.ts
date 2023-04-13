@@ -3,20 +3,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Map } from 'mapbox-gl';
 import { Popup, Marker } from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl';
-import { environment } from '../../../environments/environment.prod';
-import { MapServiceService } from '../../Services/map-service.service';
+import { environment } from '../../../../environments/environment.prod';
+import { MapServiceService } from '../../../Services/map-service.service';
 import { IonSlides } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import CentroAcopio from '../../Interfaces/CentroAcopio.interface';
-import { Contacto } from '../../Interfaces/CentroAcopio.interface';
+import CentroAcopio from '../../../Interfaces/CentroAcopio.interface';
+import { Contacto } from '../../../Interfaces/CentroAcopio.interface';
 import { CenterControlServiceService } from 'src/app/Services/center-control-service.service';
 
 @Component({
   selector: 'app-centers-map',
-  templateUrl: './centers-map.page.html',
-  styleUrls: ['./centers-map.page.scss'],
+  templateUrl: './check-centers.page.html',
+  styleUrls: ['./check-centers.page.scss'],
 })
-export class CentersMapPage implements OnInit {
+export class CheckCentersPage implements OnInit {
 
   @ViewChild(IonSlides)
   slides!: IonSlides;
@@ -96,6 +96,8 @@ export class CentersMapPage implements OnInit {
     };
 
     this.centerMarkers.unshift(currentMark)
+    console.log(this.centerMarkers);
+
 
     this.map = new Map({
       container: 'mapbox',

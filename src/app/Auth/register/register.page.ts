@@ -116,7 +116,7 @@ export class RegisterPage implements OnInit {
         Validators.required,
         Validators.maxLength(25),
         Validators.minLength(5),
-        Validators.pattern(this.regex.lt_sp),
+        Validators.pattern(this.regex.lt_num_sp),
       ]),
       numNumero_Casa: new FormControl(null, [
         Validators.required,

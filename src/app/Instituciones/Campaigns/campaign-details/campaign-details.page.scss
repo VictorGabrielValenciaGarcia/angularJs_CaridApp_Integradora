@@ -1,0 +1,101 @@
+.imageForm {
+ border-top-left-radius: 15% !important;
+ border-top-right-radius: 1.5% !important;
+ border-bottom-right-radius: 15% !important;
+ border-bottom-left-radius: 1.5% !important;
+
+ object-fit: contain;
+}
+
+// Modal
+
+#modalReports {
+  --height: 40%;
+    width: 60%;
+    margin-left: 25%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(255, 255, 255, 0.246);
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}
+
+
+// CARD
+.card {
+    width: 100%;
+    height: 15%;
+    margin: 0 auto;
+    background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(0,140,177,1) 35%, rgba(0,29,125,1) 100%);
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 15px;
+}
+
+.intern {
+    padding: 3%;
+    padding-left: 8%;
+}
+
+.approximation {
+    width: 10%;
+    transform: rotate(90deg);
+}
+
+.chip {
+    height: 45px;
+    position: relative;
+    left: 80%;
+    bottom: 10%;
+}
+
+.card-number {
+    margin-top: 12px;
+    font-size: 1.34rem;
+    font-weight: 700;
+    color: white;
+    display: flex;
+}
+
+.card-holder {
+    color: whitesmoke;
+}
+
+.card label {
+    font-size: .7rem;
+    margin-top: 5px;
+}
+
+.card-infos {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    color: white;
+}
+
+#credit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1.1rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+.number-container, .name-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.expiration-container, .cvv-container {
+    width: 50%;
+}
+
+.cardInfo{
+  font-size: 0.95rem;
+}

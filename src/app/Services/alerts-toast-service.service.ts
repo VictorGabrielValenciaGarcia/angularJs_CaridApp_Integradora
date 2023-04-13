@@ -55,6 +55,7 @@ export class AlertsToastServiceService {
   const alert = await this.alertC.create({
     header : _title,
     subHeader : _msn,
+    mode : 'ios',
     buttons : [
       {
         text : 'Aceptar',

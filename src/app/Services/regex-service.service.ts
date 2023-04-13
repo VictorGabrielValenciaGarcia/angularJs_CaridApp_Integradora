@@ -13,6 +13,8 @@ export class RegexServiceService {
    * dt = dot,
    * arr = arroba,
    * ht = hashtag,
+   * cm = coma,
+   * ht = parentesis,
    *
    * pt = positive,
    * dc = decimal
@@ -21,12 +23,14 @@ export class RegexServiceService {
    */
 
   phone : RegExp = /(^\+[0-9()]{4})([0-9 \-\s]{13}$)/;
-  lt_num_sp_us_arr : RegExp = /^[a-zA-Z0-9 _@]*$/;
-  lt_num_sp_us_dt : RegExp = /^[a-zA-Z0-9 _.]*$/;
-  lt_num_sp_us : RegExp = /^[a-zA-Z0-9 _]*$/;
+  lt_num_sp_us_arr : RegExp = /^[a-zA-ZÀ-ÿ0-9 _@]*$/;
+  lt_num_sp_us_dt : RegExp = /^[a-zA-ZÀ-ÿ0-9 _.]*$/;
+  lt_sp_dt_cm_pr : RegExp = /^[a-zA-ZÀ-ÿ .,()]*$/;
+  lt_num_sp_us : RegExp = /^[a-zA-ZÀ-ÿ0-9 _]*$/;
+  lt_num_sp : RegExp = /^[a-zA-ZÀ-ÿ0-9 ]*$/;
   ptIntNum : RegExp = /^[1-9]+[0-9]*$/;
-  lt_sp_dt : RegExp = /^[a-zA-Z .]*$/;
-  lt_sp : RegExp = /^[a-zA-Z ]*$/;
+  lt_sp_dt : RegExp = /^[a-zA-ZÀ-ÿ .]*$/;
+  lt_sp : RegExp = /^[a-zA-ZÀ-ÿ ]*$/;
 
   constructor() { }
 }

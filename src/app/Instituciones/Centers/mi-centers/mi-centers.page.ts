@@ -89,9 +89,6 @@ export class MiCentersPage implements OnInit {
           role:'cancel',
           icon: 'close',
           cssClass: 'menu-border-top',
-          handler: () => {
-            console.log('Conectando con Depinazul')
-          }
         },
       ]
     })

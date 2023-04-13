@@ -71,21 +71,26 @@ const routes: Routes = [
     loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule),
     // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
-  // {
-  //   path: 'create-campaigns/:id',
-  //   loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule)
-  // },
   {
-    path: 'campaign-details',
+    path: 'create-campaigns/:id',
+    loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule)
+  },
+  {
+    path: 'campaign-details/:id',
     loadChildren: () => import('./Instituciones/Campaigns/campaign-details/campaign-details.module').then( m => m.CampaignDetailsPageModule),
     // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
-
+  {
+    path: 'check-centers/:id',
+    loadChildren: () => import('./Instituciones/Campaigns/check-centers/check-centers.module').then( m => m.CheckCentersPageModule)
+  },
   {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'
   },
+
+
 
 
 ];

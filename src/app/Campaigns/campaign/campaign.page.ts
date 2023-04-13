@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IonModal, ModalController } from '@ionic/angular';
 import { getElement } from 'ionicons/dist/types/stencil-public-runtime';
 import Campania, { Estado, Programa_Sector } from '../../Interfaces/Campania.interface';
+import { CampaignControlServiceService } from 'src/app/Services/campaign-control-service.service';
 
 @Component({
   selector: 'app-campaign',
@@ -17,58 +18,38 @@ export class CampaignPage implements OnInit {
   @ViewChild('modalPhysicSupport') modalPhysicSupport!: IonModal;
   @ViewChild('modalEconomicSupport') modalEconomicSupport!: IonModal;
 
-  objCampaingExample = {
-      id: 1,
-      arrCentros_Acopio_Campania : [1,2,3],
-      arrLista_Enseres_Campania : [
-        {
-          strClasificacion: 'Dinero en efectivo',
-          strRequisitos: 'Transferencia electronica, donacion al centro de acopio',
-          strNombre_Enser: 'Donacion economica',
-        },
-        {
-          strClasificacion: 'Dinero en efectivo',
-          strRequisitos: 'Transferencia electronica, donacion al centro de acopio',
-          strNombre_Enser: 'Donacion economica',
-        },
-        {
-          strClasificacion: 'Dinero en efectivo',
-          strRequisitos: 'Transferencia electronica, donacion al centro de acopio',
-          strNombre_Enser: 'Donacion economica',
-        },
-      ],
-      strFecha_Inicio_Campania : '23 feb 2023',
-      strFecha_Fin_Campania : '23 mar 2023',
-      numCantidad_Amonestaciones_Campania : 0,
-      numCantidad_Reportes : 0,
-      numId_Institucion : 1,
-      strDescripcion_Campania : 'Una colaboración entre Anima Denmark y Open Cages (“Jaulas Abiertas”), Anima International trabaja en nueve países europeos. Juntos, promueven leyes que luchan contra el tratamiento cruel de los animales en las granjas industriales. Fueron nombrados “Top Charity” por Animal Charity Evaluators en 2019. Su visión es la de un futuro libre de crueldad para las industrias de la comida y de la moda.',
-      strEstado_Campania : Estado.Vigente,
-      strNombre_Campania : 'ComiPett',
-      strPrograma_Sector_Campania : Programa_Sector.Animal,
-      strImage_Campania : './assets/Images/Examples/exampleCampaign.jpg',
-    };
+  campaign : any;
 
-  verDescription : boolean = false;
   checkedList : boolean[] = [];
-
-  idCampaing : string = '0';
+  idCampaing : string = '';
+  campaignName : string = '';
 
   constructor(
     private ar : ActivatedRoute,
     private router : Router,
-
+    private campaingS : CampaignControlServiceService,
   ) {
     this.ar.params.subscribe(
       (_id:any)=>{
         this.idCampaing = _id.id;
+
+        this.campaingS.getCampaignById(this.idCampaing).subscribe(
+          (_campania : Campania) => {
+            this.campaign = _campania;
+            this.campaignName = _campania.strNombre_Campania
+            this.campaign.arrLista_Enseres_Campania.forEach((element:any) => {
+              this.checkedList.push(false)
+            });
+
+          }
+        )
         // console.log(this.idCampaing);
       }
     )
   }
 
   ngOnInit() {
-    this.objCampaingExample.arrLista_Enseres_Campania.forEach(element => {
+    this.campaign?.arrLista_Enseres_Campania.forEach((element:any) => {
       this.checkedList.push(false)
     });
   }
@@ -132,6 +113,92 @@ export class CampaignPage implements OnInit {
     //  console.log(event.detail.checked);
       this.checkedList[_id] = event.detail.checked;
    }
+  }
+
+  selectIcon (_clasificacion : string) : string {
+
+    let icon : string = '';
+
+    switch (_clasificacion) {
+
+      case 'Economico':
+        icon = 'cash';
+        break;
+
+      case 'Salud':
+        icon = 'medkit';
+        break;
+
+      case 'Alimento':
+        icon = 'fish';
+        break;
+
+      case 'Didactico':
+        icon = 'dice';
+        break;
+
+      case 'Educativo':
+        icon = 'library';
+        break;
+
+      case 'Vestimenta':
+        icon = 'shirt';
+        break;
+
+      case 'Bienestar':
+        icon = 'body';
+        break;
+
+      case 'Otro':
+        icon = 'earth';
+        break;
+
+    }
+
+    return icon;
+  }
+
+  selectColor (_clasificacion : string) : string {
+
+    let color : string = '';
+
+    switch (_clasificacion) {
+
+      case 'Economico':
+        color = 'success';
+        break;
+
+      case 'Salud':
+        color = 'danger';
+        break;
+
+      case 'Alimento':
+        color = 'warning';
+        break;
+
+      case 'Didactico':
+        color = 'primary';
+        break;
+
+      case 'Educativo':
+        color = 'secondary';
+        break;
+
+      case 'Vestimenta':
+        color = 'tertiary';
+        break;
+
+      case 'Bienestar':
+        color = 'middle';
+        break;
+
+      case 'Otro':
+        color = 'dark';
+        break;
+
+    }
+
+    return color;
   }
 
 }
