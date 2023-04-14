@@ -49,7 +49,7 @@ export class CreateCampaignsPage implements OnInit {
       strNombre_Campania: ['', [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(50),
+        Validators.maxLength(150),
         Validators.pattern(this.regex.lt_sp_dt),
       ]],
       strImage_Campania: ['', [
@@ -61,7 +61,7 @@ export class CreateCampaignsPage implements OnInit {
       strDescripcion_Campania: ['', [
         Validators.required,
         Validators.minLength(15),
-        Validators.maxLength(60),
+        Validators.maxLength(300),
       ]],
       strFecha_Inicio_Campania: ['', [
         Validators.required,
@@ -77,13 +77,13 @@ export class CreateCampaignsPage implements OnInit {
           ]],
           strNombre_Enser: ['', [
             Validators.required,
-            Validators.maxLength(20),
+            Validators.maxLength(50),
             Validators.minLength(3),
             Validators.pattern(this.regex.lt_num_sp)
           ]],
           strRequisitos: ['Ninguno', [
             Validators.required,
-            Validators.maxLength(70),
+            Validators.maxLength(200),
             Validators.pattern(this.regex.lt_sp_dt)
           ]],
         })

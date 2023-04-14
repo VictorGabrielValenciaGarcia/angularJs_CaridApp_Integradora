@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  logIn(){
+  async logIn(){
     // console.log(this.FormLogin.value);
     this.sessionS.logIn(this.FormLogin.get('email')?.value, this.FormLogin.get('password')?.value).then(
       response => {

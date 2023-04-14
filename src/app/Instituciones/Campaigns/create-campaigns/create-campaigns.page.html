@@ -33,13 +33,13 @@
                       <div>
                         <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                           <ion-label position="floating">Nombre de la Campaña</ion-label>
-                          <ion-input required clearInput="true" type="text" formControlName="strNombre_Campania" minlength="5" maxlength="50"
+                          <ion-input required clearInput="true" type="text" formControlName="strNombre_Campania" minlength="5" maxlength="150"
                           [class.inputWrong] = "createCampaignForm.get('strNombre_Campania')?.invalid"></ion-input>
                         </ion-item>
 
                         <div class="adjustErrors">
                           <p class="errors" *ngIf="(createCampaignForm.get('strNombre_Campania')?.dirty || createCampaignForm.get('strNombre_Campania')?.touched) && createCampaignForm.get('strNombre_Campania')?.hasError('required')">* Este campo es obligatorio</p>
-                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('maxlength')">Solo 150 Carácteres</p>
                           <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('minlength')">No es un nombre válido</p>
                           <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('pattern')">Solo letras, espacios y puntos</p>
                         </div>
@@ -63,13 +63,13 @@
                       <div>
                         <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                           <ion-label position="floating">Descripción</ion-label>
-                          <ion-input required clearInput="true" type="text" formControlName="strDescripcion_Campania" maxlength="60" minlength="15"
+                          <ion-input required clearInput="true" type="text" formControlName="strDescripcion_Campania" maxlength="300" minlength="15"
                           [class.inputWrong] = "createCampaignForm.get('strDescripcion_Campania')?.invalid"></ion-input>
                         </ion-item>
 
                         <div class="adjustErrors">
                           <p class="errors" *ngIf="(createCampaignForm.get('strDescripcion_Campania')?.dirty || createCampaignForm.get('strDescripcion_Campania')?.touched) && createCampaignForm.get('strDescripcion_Campania')?.hasError('required')">* Este campo es obligatorio</p>
-                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('maxlength')">Solo 300 Carácteres</p>
                           <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('minlength')">No es una descripción detallada</p>
                         </div>
                       </div>
@@ -204,13 +204,13 @@
                                     <div>
                                       <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                                         <ion-label position="floating">Nombre</ion-label>
-                                        <ion-input required clearInput="true" type="text" formControlName="strNombre_Enser" maxlength="20" minlength="3"
+                                        <ion-input required clearInput="true" type="text" formControlName="strNombre_Enser" maxlength="50" minlength="3"
                                         [class.inputWrong] = "correos.get('strNombre_Enser')?.invalid"></ion-input>
                                       </ion-item>
 
                                       <div class="adjustErrors">
                                         <p class="errors" *ngIf="(correos.get('strNombre_Enser')?.dirty || correos.get('strNombre_Enser')?.touched) && correos.get('strNombre_Enser')?.hasError('required')">* Este campo es obligatorio</p>
-                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('maxlength')">Solo 50 Carácteres</p>
                                         <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('minlength')">No es un nombre válido</p>
                                         <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('pattern')">Solo letras, espacios, numeros y puntos</p>
                                       </div>
@@ -219,13 +219,13 @@
                                     <div>
                                       <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                                         <ion-label position="floating">Requisitos</ion-label>
-                                        <ion-input required clearInput="true" type="text" formControlName="strRequisitos" maxlength="70"
+                                        <ion-input required clearInput="true" type="text" formControlName="strRequisitos" maxlength="200"
                                         [class.inputWrong] = "correos.get('strRequisitos')?.invalid"></ion-input>
                                       </ion-item>
 
                                       <div class="adjustErrors">
                                         <p class="errors" *ngIf="(correos.get('strRequisitos')?.dirty || correos.get('strRequisitos')?.touched) && correos.get('strRequisitos')?.hasError('required')">* Este campo es obligatorio</p>
-                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('maxlength')">Solo 70 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('maxlength')">Solo 200 Carácteres</p>
                                         <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('pattern')">Solo letras, espacios y puntos</p>
                                       </div>
                                     </div>
@@ -294,13 +294,13 @@
                       <div>
                         <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                           <ion-label position="floating">Nombre de la Campaña</ion-label>
-                          <ion-input required clearInput="true" type="text" formControlName="strNombre_Campania" minlength="5" maxlength="50"
+                          <ion-input required clearInput="true" type="text" formControlName="strNombre_Campania" minlength="5" maxlength="150"
                           [class.inputWrong] = "createCampaignForm.get('strNombre_Campania')?.invalid"></ion-input>
                         </ion-item>
 
                         <div class="adjustErrors">
                           <p class="errors" *ngIf="(createCampaignForm.get('strNombre_Campania')?.dirty || createCampaignForm.get('strNombre_Campania')?.touched) && createCampaignForm.get('strNombre_Campania')?.hasError('required')">* Este campo es obligatorio</p>
-                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('maxlength')">Solo 150 Carácteres</p>
                           <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('minlength')">No es un nombre válido</p>
                           <p class="errors" *ngIf="createCampaignForm.get('strNombre_Campania')?.hasError('pattern')">Solo letras, espacios y puntos</p>
                         </div>
@@ -324,13 +324,13 @@
                       <div>
                         <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                           <ion-label position="floating">Descripción</ion-label>
-                          <ion-input required clearInput="true" type="text" formControlName="strDescripcion_Campania" maxlength="60" minlength="15"
+                          <ion-input required clearInput="true" type="text" formControlName="strDescripcion_Campania" maxlength="300" minlength="15"
                           [class.inputWrong] = "createCampaignForm.get('strDescripcion_Campania')?.invalid"></ion-input>
                         </ion-item>
 
                         <div class="adjustErrors">
                           <p class="errors" *ngIf="(createCampaignForm.get('strDescripcion_Campania')?.dirty || createCampaignForm.get('strDescripcion_Campania')?.touched) && createCampaignForm.get('strDescripcion_Campania')?.hasError('required')">* Este campo es obligatorio</p>
-                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                          <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('maxlength')">Solo 300 Carácteres</p>
                           <p class="errors" *ngIf="createCampaignForm.get('strDescripcion_Campania')?.hasError('minlength')">No es una descripción detallada</p>
                         </div>
                       </div>
@@ -465,13 +465,13 @@
                                     <div>
                                       <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                                         <ion-label position="floating">Nombre</ion-label>
-                                        <ion-input required clearInput="true" type="text" formControlName="strNombre_Enser" maxlength="20" minlength="3"
+                                        <ion-input required clearInput="true" type="text" formControlName="strNombre_Enser" maxlength="50" minlength="3"
                                         [class.inputWrong] = "correos.get('strNombre_Enser')?.invalid"></ion-input>
                                       </ion-item>
 
                                       <div class="adjustErrors">
                                         <p class="errors" *ngIf="(correos.get('strNombre_Enser')?.dirty || correos.get('strNombre_Enser')?.touched) && correos.get('strNombre_Enser')?.hasError('required')">* Este campo es obligatorio</p>
-                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('maxlength')">Solo 50 Carácteres</p>
                                         <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('minlength')">No es un nombre válido</p>
                                         <p class="errors" *ngIf="correos.get('strNombre_Enser')?.hasError('pattern')">Solo letras, espacios, numeros y puntos</p>
                                       </div>
@@ -480,13 +480,13 @@
                                     <div>
                                       <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                                         <ion-label position="floating">Requisitos</ion-label>
-                                        <ion-input required clearInput="true" type="text" formControlName="strRequisitos" maxlength="70"
+                                        <ion-input required clearInput="true" type="text" formControlName="strRequisitos" maxlength="200"
                                         [class.inputWrong] = "correos.get('strRequisitos')?.invalid"></ion-input>
                                       </ion-item>
 
                                       <div class="adjustErrors">
                                         <p class="errors" *ngIf="(correos.get('strRequisitos')?.dirty || correos.get('strRequisitos')?.touched) && correos.get('strRequisitos')?.hasError('required')">* Este campo es obligatorio</p>
-                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('maxlength')">Solo 70 Carácteres</p>
+                                        <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('maxlength')">Solo 200 Carácteres</p>
                                         <p class="errors" *ngIf="correos.get('strRequisitos')?.hasError('pattern')">Solo letras, espacios y puntos</p>
                                       </div>
                                     </div>

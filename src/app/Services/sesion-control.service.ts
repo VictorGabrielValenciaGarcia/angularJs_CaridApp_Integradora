@@ -25,6 +25,7 @@ import {
 } from '@angular/fire/auth';
 
 import Usuario from '../Interfaces/Usuario.interface';
+import { AlertsToastServiceService } from './alerts-toast-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,7 @@ export class SesionControlService {
 
   constructor(
     private readonly authC : Auth,
+    private alertS : AlertsToastServiceService,
   ) {
    }
 
@@ -54,7 +56,8 @@ export class SesionControlService {
   }
 
   logOut() {
-    return signOut(this.authC );
+    this.alertS.logOutSuccess();
+    return signOut(this.authC);
   }
 
   // Añade al usuario a las cuentas para hacer login

@@ -14,39 +14,42 @@ export class AlertsToastServiceService {
 
 
   async successToast(_msn:string){//Creamos un  parametro de tipo string
-    const toast = await this.toastC.create({
+    const toastSuccess = await this.toastC.create({
       message: 'El registro se ha agregado a ' + _msn + ' correctamente',
+      mode : 'ios',
       duration: 3000,
       position: 'top',
       color:'success',
       icon: 'checkmark-done-outline'
     });
 
-    toast.present();
+    toastSuccess.present();
   }
 
   async deleteToast(_msn:string){//Creamos un  parametro de tipo string
-    const toast = await this.toastC.create({
+    const toastDelete = await this.toastC.create({
       message: 'El registro se ha eliminado de ' + _msn + ' correctamente',
+      mode : 'ios',
       duration: 3000,
       position: 'top',
       color:'danger',
       icon: 'close-circle-outline'
     });
 
-    toast.present();
+    toastDelete.present();
   }
 
   async updateToast(_msn:string){//Creamos un  parametro de tipo string
-    const toast = await this.toastC.create({
+    const toastUpdate = await this.toastC.create({
       message: 'Se ha actualizado a ' + _msn + ' correctamente',
+      mode : 'ios',
       duration: 3000,
       position: 'top',
       color:'primary',
       icon: 'cloud-done-outline'
     });
 
-    toast.present();
+    toastUpdate.present();
   }
 
   async confirm(_msn : string, _title: string){
@@ -88,39 +91,42 @@ export class AlertsToastServiceService {
   }
 
   async loginSuccess(_userName : string){//Creamos un  parametro de tipo string
-    const toast = await this.toastC.create({
+    const toastLogIn = await this.toastC.create({
       message: 'Bienvenid@ ' + _userName + '!!!',
+      mode : 'ios',
       duration: 3000,
       position: 'top',
       color:'success',
       icon: 'happy-outline'
     });
 
-    toast.present();
+    toastLogIn.present();
   }
 
   async logOutSuccess(){//Creamos un  parametro de tipo string
-    const toast = await this.toastC.create({
+    const toastLogOut = await this.toastC.create({
       message: 'La sesión ha sido cerrada con Éxito!',
+      mode : 'ios',
       duration: 3000,
       position: 'top',
       color:'tertiary',
       icon: 'log-out'
     });
 
-    toast.present();
+    toastLogOut.present();
   }
 
   async registerSuccess(){//Creamos un  parametro de tipo string
-    const toast = await this.toastC.create({
+    const toastRegister = await this.toastC.create({
       message: 'Te has registrado de manera exitosa!!!',
+      mode : 'ios',
       duration: 3000,
       position: 'top',
       color:'success',
       icon: 'happy-outline'
     });
 
-    toast.present();
+    toastRegister.present();
   }
 
   async presentLoading(_msn:string){
@@ -128,6 +134,7 @@ export class AlertsToastServiceService {
     const loading  = await this.loadCtrl.create({
       message: _msn,
       translucent:true,
+      mode : 'ios',
       spinner:'bubbles',
       backdropDismiss : false,
     })
@@ -137,6 +144,10 @@ export class AlertsToastServiceService {
 
   closeLoading(){
     this.loadCtrl.dismiss();
+  }
+
+  closeLoginToast(){
+    this.toastC.dismiss();
   }
 
 }

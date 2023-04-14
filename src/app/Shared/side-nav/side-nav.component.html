@@ -42,16 +42,16 @@
   </ion-content>
 
   <footer class="ion-padding" *ngIf="isLogin" >
-    <ion-menu-toggle>
-      <ion-button (click)="goToRoute('/dashboard/carid-Admin-Role')" size="large" expand="block" fill="clear" shape="round" style="height: 2rem;" *ngIf="role === 'Carid-Admin'" >
+    <!-- <ion-menu-toggle> -->
+      <ion-button (click)="goToDashAdmin()" size="large" expand="block" fill="clear" shape="round" style="height: 2rem;" *ngIf="role === 'Carid-Admin'" >
         <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
         <h5 style="color: #2dd36f;">Dashboard</h5>
       </ion-button>
-      <ion-button (click)="goToRoute('/dashboard/carid-Inst-Role')" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;" *ngIf="role === 'Carid-Inst'">
+      <ion-button (click)="goToDashInst()" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;" *ngIf="role === 'Carid-Inst'">
         <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
         <h5 style="color: #2dd36f;">Dashboard</h5>
       </ion-button>
-      <ion-button (click)="goToRoute('/settings')" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;">
+      <ion-button (click)="goToSetting()" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;">
         <ion-icon size="large" slot="start" name="cog"></ion-icon>
         <h5>Editar Cuenta</h5>
       </ion-button>
@@ -59,7 +59,7 @@
         <ion-icon size="large" slot="start" name="log-out" color="danger"></ion-icon>
         <h5 style="color: #eb445a;">Cerrar Sesion</h5>
       </ion-button>
-    </ion-menu-toggle>
+    <!-- </ion-menu-toggle> -->
   </footer>
 
   <!-- Menu Visitante -->
@@ -92,12 +92,12 @@
         </ion-col>
 
         <ion-col size="10">
-          <ion-menu-toggle>
-            <ion-button (click)="goToRoute('/login')" size="large" expand="block" fill="solid" shape="round">
+          <!-- <ion-menu-toggle> -->
+            <ion-button (click)="goToLogin()" size="large" expand="block" fill="solid" shape="round">
               <ion-icon size="large" slot="start" name="log-in"></ion-icon>
               <h5>Iniciar Sesión</h5>
             </ion-button>
-          </ion-menu-toggle>
+          <!-- </ion-menu-toggle> -->
         </ion-col>
 
       </ion-row>

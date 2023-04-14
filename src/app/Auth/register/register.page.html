@@ -281,6 +281,7 @@
 
   <div *ngIf="type === 'carid-Inst'" >
     <ion-grid fixed>
+
       <ion-row class="ion-justify-content-center ion-align-items-center">
 
         <ion-col size-lg="6" size-md="6" size-xs="12" class="ion-margin-top">
@@ -294,7 +295,282 @@
           </ion-row>
         </ion-col>
 
+
+        <ion-col size-lg="5" size-md="5" size-xs="12" class="ion-margin-top">
+          <ion-card>
+
+              <form [formGroup]="RegisterInstForm" (ngSubmit)="registerInst()">
+
+                <ion-slides mode="ios" pager="ios" scrollbar="ios" pager="true">
+
+                  <ion-slide>
+                    <ion-list>
+                      <ion-card-header>
+                        <ion-card-title class="ion-text-center">REGISTRARSE</ion-card-title>
+                        <ion-card-subtitle class="ion-text-center">- Datos Institucionales -</ion-card-subtitle>
+                      </ion-card-header>
+
+                          <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                            <ion-label position="floating">Nombre de la Institución</ion-label>
+                            <ion-input required clearInput="true" type="text" formControlName="strNombre_Institucion" maxlength="60"
+                            [class.inputWrong] = "RegisterUserForm.get('strNombre_Institucion')?.invalid"></ion-input>
+                          </ion-item>
+
+                          <div class="adjustErrors">
+                            <p class="errors" *ngIf="(RegisterInstForm.get('strNombre_Institucion')?.dirty || RegisterInstForm.get('strNombre_Institucion')?.touched) && RegisterInstForm.get('strNombre_Institucion')?.hasError('required')">* Este campo es Obligatorio</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strNombre_Institucion')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strNombre_Institucion')?.hasError('pattern')">Solo letras, numeros, espacios y puntos</p>
+                          </div>
+
+                          <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                            <ion-label position="floating">RFC de la Institución</ion-label>
+                            <ion-input required clearInput="true" type="text" formControlName="strRFC_Institucion" maxlength="13" minlength="10"
+                            [class.inputWrong] = "RegisterInstForm.get('strRFC_Institucion')?.invalid"></ion-input>
+                          </ion-item>
+
+                          <div class="adjustErrors">
+                            <p class="errors" *ngIf="(RegisterInstForm.get('strRFC_Institucion')?.dirty || RegisterInstForm.get('strRFC_Institucion')?.touched) && RegisterInstForm.get('strRFC_Institucion')?.hasError('required')">* Este campo es Obligatorio</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strRFC_Institucion')?.hasError('maxlength')">Solo 13 Carácteres</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strRFC_Institucion')?.hasError('minlength')">No es un RFC válido</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strRFC_Institucion')?.hasError('pattern')">Solo letras, numeros y -</p>
+                          </div>
+
+                          <ion-item class="formSpace" fill="solid" mode="md">
+                            <ion-label position="stacked">Instagram</ion-label>
+                            <ion-input clearInput="true" type="text" formControlName="strInstagram" maxlength="30" minlength="3"
+                            [class.inputWrong] = "RegisterInstForm.get('strInstagram')?.invalid"></ion-input>
+                          </ion-item>
+
+                          <div class="adjustErrors">
+                            <p class="errors" *ngIf="(RegisterInstForm.get('strInstagram')?.dirty || RegisterInstForm.get('strInstagram')?.touched) && RegisterInstForm.get('strInstagram')?.hasError('required')">* Este campo es obligatorio</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strInstagram')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strInstagram')?.hasError('minlength')">No es una cuenta válida</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strInstagram')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                          </div>
+
+                          <ion-item class="formSpace" fill="solid" mode="md">
+                            <ion-label position="stacked">Twitter</ion-label>
+                            <ion-input clearInput="true" type="text" formControlName="strTwitter" maxlength="30" minlength="3"
+                            [class.inputWrong] = "RegisterInstForm.get('strTwitter')?.invalid"></ion-input>
+                          </ion-item>
+
+                          <div class="adjustErrors">
+                            <p class="errors" *ngIf="(RegisterInstForm.get('strTwitter')?.dirty || RegisterInstForm.get('strTwitter')?.touched) && RegisterInstForm.get('strTwitter')?.hasError('required')">* Este campo es obligatorio</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strTwitter')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strTwitter')?.hasError('minlength')">No es una cuenta válida</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strTwitter')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                          </div>
+
+                          <ion-item class="formSpace" fill="solid" mode="md">
+                            <ion-label position="stacked">Facebook</ion-label>
+                            <ion-input clearInput="true" type="text" formControlName="strFacebook" maxlength="30" minlength="3"
+                            [class.inputWrong] = "RegisterInstForm.get('strFacebook')?.invalid"></ion-input>
+                          </ion-item>
+
+                          <div class="adjustErrors">
+                            <p class="errors" *ngIf="(RegisterInstForm.get('strFacebook')?.dirty || RegisterInstForm.get('strFacebook')?.touched) && RegisterInstForm.get('strFacebook')?.hasError('required')">* Este campo es obligatorio</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strFacebook')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strFacebook')?.hasError('minlength')">No es una cuenta válida</p>
+                            <p class="errors" *ngIf="RegisterInstForm.get('strFacebook')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                          </div>
+
+                          <ion-item lines="none">
+                            <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
+                            <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                          </ion-item>
+
+                    </ion-list>
+
+                  </ion-slide>
+
+                  <ion-slide>
+                    <ion-list>
+                      <ion-card-header>
+                        <ion-card-title class="ion-text-center">REGISTRARSE</ion-card-title>
+                        <ion-card-subtitle class="ion-text-center">- Correos Oficiales -</ion-card-subtitle>
+                      </ion-card-header>
+
+                        <ion-grid>
+                          <ion-row class="ion-justify-content-center ion-align-items-center">
+                            <ion-col sizeLg="10" sizeMd="10" sizeXs="12">
+                              <ion-button fill="outline" color="tertiary" size="small" expand="block" (click)="addNewInputFieldCorreo()">
+                                <ion-icon slot="start" name="add" ></ion-icon>
+                                Añadir Correo
+                              </ion-button>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row>
+                            <ion-col size="12" formArrayName="arrCorreos_Institucion" *ngFor="let correos of arrCorreos_Institucion.controls ; let i = index">
+
+                              <div [formGroupName]="i">
+
+                                  <ion-accordion-group style="margin-bottom: -1rem !important;">
+                                    <ion-accordion value="first">
+
+                                      <ion-item slot="header" color="light">
+                                        <ion-button (click)="removeInputFieldCorreo(i)" color="medium" slot="start" fill="clear" *ngIf="i > 0" >
+                                          <ion-icon slot="icon-only" color="medium" name="remove-circle"></ion-icon>
+                                        </ion-button>
+                                        <ion-label>
+                                          Correo No.{{ i+1 }}
+                                        </ion-label>
+                                      </ion-item>
+
+                                      <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+
+                                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                          <ion-label position="floating">Departamento</ion-label>
+                                          <ion-input required clearInput="true" type="text" formControlName="strDepartamento" maxlength="50"
+                                          [class.inputWrong] = "RegisterInstForm.get('strDepartamento')?.invalid"></ion-input>
+                                        </ion-item>
+
+                                        <div class="adjustErrors">
+                                          <p class="errors" *ngIf="(correos.get('strDepartamento')?.dirty || correos.get('strDepartamento')?.touched) && correos.get('strDepartamento')?.hasError('required')">* Este campo es obligatorio</p>
+                                          <p class="errors" *ngIf="correos.get('strDepartamento')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                                          <p class="errors" *ngIf="correos.get('strDepartamento')?.hasError('pattern')">Solo letras, espacios y puntos</p>
+                                        </div>
+
+                                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                          <ion-label position="floating">Correo</ion-label>
+                                          <ion-input required email="true" clearInput="true" type="text" formControlName="strCorreo_Departamento"
+                                          [class.inputWrong] = "RegisterInstForm.get('strCorreo_Departamento')?.invalid"></ion-input>
+                                        </ion-item>
+
+                                        <div class="adjustErrors">
+                                          <p class="errors" *ngIf="(correos.get('strCorreo_Departamento')?.dirty || correos.get('strCorreo_Departamento')?.touched) && correos.get('strCorreo_Departamento')?.hasError('required')">* Este campo es obligatorio</p>
+                                          <p class="errors" *ngIf="correos.get('strCorreo_Departamento')?.hasError('email')">No es un Correo válido</p>
+                                        </div>
+
+                                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                          <ion-label position="floating">Encargado</ion-label>
+                                          <ion-input required clearInput="true" type="text" formControlName="strEncargado_Departamento" maxlength="40"
+                                          [class.inputWrong] = "RegisterInstForm.get('strEncargado_Departamento')?.invalid"></ion-input>
+                                        </ion-item>
+
+                                        <div class="adjustErrors">
+                                          <p class="errors" *ngIf="(correos.get('strEncargado_Departamento')?.dirty || correos.get('strEncargado_Departamento')?.touched) && correos.get('strEncargado_Departamento')?.hasError('required')">* Este campo es obligatorio</p>
+                                          <p class="errors" *ngIf="correos.get('strEncargado_Departamento')?.hasError('maxlength')">Solo 40 Carácteres</p>
+                                          <p class="errors" *ngIf="correos.get('strEncargado_Departamento')?.hasError('pattern')">Solo letras, espacios y puntos</p>
+                                        </div>
+
+                                        <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                                          <ion-label position="floating">Teléfono</ion-label>
+                                          <ion-input required clearInput="true" type="phone" formControlName="strTelefono_Departamento" maxlength="18" minlength="10"
+                                          [class.inputWrong] = "correos.get('strTelefono_Departamento')?.invalid"></ion-input>
+                                        </ion-item>
+
+                                        <div class="adjustErrors">
+                                          <p class="errors" *ngIf="(correos.get('strTelefono_Departamento')?.dirty || correos.get('strTelefono_Departamento')?.touched) && correos.get('strTelefono_Departamento')?.hasError('required')">* Este campo es obligatorio</p>
+                                          <p class="errors" *ngIf="correos.get('strTelefono_Departamento')?.hasError('maxlength')">Solo 18 Carácteres</p>
+                                          <p class="errors" *ngIf="correos.get('strTelefono_Departamento')?.hasError('minlength')">No es un teléfono válido</p>
+                                          <p class="errors" *ngIf="correos.get('strTelefono_Departamento')?.hasError('pattern')">La estructura tiene que ser igual a +(00)000-000-0000</p>
+                                        </div>
+
+                                      </div>
+                                    </ion-accordion>
+                                  </ion-accordion-group>
+
+                              </div>
+
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+
+                      <ion-item lines="none">
+                        <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
+                        <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </ion-slide>
+
+                  <ion-slide>
+                    <ion-list>
+                      <ion-card-header>
+                        <ion-card-title class="ion-text-center">REGISTRARSE</ion-card-title>
+                        <ion-card-subtitle class="ion-text-center">- Detalles de la Cuenta -</ion-card-subtitle>
+                      </ion-card-header>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Correo Electronico</ion-label>
+                        <ion-input required email="true" clearInput="true" type="text" formControlName="strCorreo" maxlength="40" autocomplete="email"
+                        [class.inputWrong] = "RegisterInstForm.get('strCorreo')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterInstForm.get('strCorreo')?.dirty || RegisterInstForm.get('strCorreo')?.touched) && RegisterInstForm.get('strCorreo')?.hasError('required')">* Este campo es obligatorio</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strCorreo')?.hasError('maxlength')">Solo 40 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strCorreo')?.hasError('email')">No es un correo válido</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Nombre de Usuario</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strUsername" maxlength="20" value=""
+                        [class.inputWrong] = "RegisterInstForm.get('strUsername')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterInstForm.get('strUsername')?.dirty || RegisterInstForm.get('strUsername')?.touched) && RegisterInstForm.get('strUsername')?.hasError('required')">* Este campo es obligatorio</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strUsername')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strUsername')?.hasError('minlength')">Username mínimo de 5 carácteres</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strUsername')?.hasError('pattern')">Solo letras, numeros, espacios y _</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Numero de Telefono</ion-label>
+                        <ion-input required clearInput="true" type="tel" formControlName="strTelefono" mode="md" maxlength="18" minlength="10"
+                        [class.inputWrong] = "RegisterInstForm.get('strTelefono')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterInstForm.get('strTelefono')?.dirty || RegisterInstForm.get('strTelefono')?.touched) && RegisterInstForm.get('strTelefono')?.hasError('required')">* Este campo es obligatorio</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strTelefono')?.hasError('maxlength')">Solo 18 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strTelefono')?.hasError('minlength')">No es un número telefónico</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strTelefono')?.hasError('pattern')">La estructura tiene que ser igual a +(00)000-000-0000 </p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Contraseña</ion-label>
+                        <ion-input required [type]="passInputType" formControlName="strPassword" maxlength="16" id="pass" value=""
+                        [class.inputWrong] = "RegisterInstForm.get('strPassword')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(RegisterInstForm.get('strPassword')?.dirty || RegisterInstForm.get('strPassword')?.touched) && RegisterInstForm.get('strPassword')?.hasError('required')">* Este campo es obligatorio</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strPassword')?.hasError('maxlength')">Solo 16 Carácteres</p>
+                        <p class="errors" *ngIf="RegisterInstForm.get('strPassword')?.hasError('minlength')">Contraseña minima de 8 carácteres</p>
+                      </div>
+
+                      <!-- <ion-item>
+                        <ion-label position="floating">Confirme su Contraseña</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="passwordValidation"></ion-input>
+                      </ion-item> -->
+                      <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+                        <ion-icon slot="start" name="eye-outline"></ion-icon>
+                        Mostrar Contraseña
+                      </ion-button>
+                      <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+                        <ion-icon slot="start" name="eye-off-outline"></ion-icon>
+                        Ocultar Contraseña
+                      </ion-button>
+
+                        <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
+                                    fill="outline" shape="round" class="ion-margin-top" [disabled]="RegisterInstForm.invalid">
+                          Registrarse
+                        </ion-button>
+
+                    </ion-list>
+                  </ion-slide>
+
+                </ion-slides>
+
+              </form>
+
+          </ion-card>
+        </ion-col>
+
       </ion-row>
+
     </ion-grid>
   </div>
 

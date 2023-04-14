@@ -26,7 +26,6 @@ export class SideNavComponent implements OnInit {
     private sesion: SesionControlService,
     private userS: UserControlService,
     private router : Router,
-    private alertS : AlertsToastServiceService,
   ) {
     this.sesion.userState().then(
       resp => {
@@ -46,12 +45,24 @@ export class SideNavComponent implements OnInit {
   logOut() {
     this.sesion.logOut();
     this.router.navigate(['/login']);
-    this.alertS.logOutSuccess();
   }
 
-  goToRoute(_route : string){
-    this.router.navigate(['_route'])
+  goToSetting(){
+    this.router.navigate(['/settings']);
   }
+
+  goToDashAdmin(){
+    this.router.navigate(['/dashboard/carid-Admin-Role']);
+  }
+
+  goToDashInst(){
+    this.router.navigate(['/dashboard/carid-Inst-Role']);
+  }
+
+  goToLogin(){
+    this.router.navigate(['/login']);
+  }
+
 
   getUserData(_uid : string){
     this.userS.getUser(_uid).subscribe(
