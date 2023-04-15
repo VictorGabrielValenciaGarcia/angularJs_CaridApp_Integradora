@@ -32,6 +32,7 @@ export default interface Usuario{
   numCuy_Puntos_Usuario?:number,
 
   // Instituciones
+  boolVerificado_Institucion?: boolean,
 
   arrCentros_Acopio_Institucion ?: [],
   arrCorreos_Institucion ?: [
@@ -42,7 +43,7 @@ export default interface Usuario{
       strTelefono_Departamento ?: string,
     }
   ],
-  boolVerificado_Institucion?: boolean,
+
   mapRedes_Sociales_Institucion ?: {
     strFacebook ?: "",
     strInstagram ?: "",

@@ -11,6 +11,7 @@ import { CenterControlServiceService } from 'src/app/Services/center-control-ser
 import CentroAcopio from 'src/app/Interfaces/CentroAcopio.interface';
 import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SesionControlService } from 'src/app/Services/sesion-control.service';
 
 @Component({
   selector: 'app-create-center',
@@ -33,18 +34,22 @@ export class CreateCenterPage implements OnInit {
   id : string = '';
   update : boolean = false;
 
+  // Actual Inst
+  institucion : any;
+
   // SearchBar
 
   public createCenterForm : FormGroup;
 
   constructor(
-    private mapS : MapServiceService,
     private router : Router,
-    private regex : RegexServiceService,
+    private ar : ActivatedRoute,
     private formB : FormBuilder,
+    private mapS : MapServiceService,
+    private regex : RegexServiceService,
+    private sesionC : SesionControlService,
     private alertS : AlertsToastServiceService,
     private centerS : CenterControlServiceService,
-    private ar : ActivatedRoute
   ) {
     (mapboxgl as any).accessToken = environment.MAPBOX_KEY;
     this.estados = this.mapS.EstadosMexico;
@@ -211,7 +216,7 @@ export class CreateCenterPage implements OnInit {
 
       strNombre_CentroA: this.createCenterForm.get('strNombre_CentroA')?.value,
       strImage_CentroA:this.createCenterForm.get('strImage_CentroA')?.value,
-      numId_Institucion : this.createCenterForm.get('numId_Institucion')?.value,
+      numId_Institucion : this.sesionC.getCurrenUser(),
 
       mapContactos_CentroA : {
         arrCorreos_CentroA : this.createCenterForm.get('arrCorreos_CentroA')?.value,
@@ -258,7 +263,7 @@ export class CreateCenterPage implements OnInit {
 
       strNombre_CentroA: this.createCenterForm.get('strNombre_CentroA')?.value,
       strImage_CentroA:this.createCenterForm.get('strImage_CentroA')?.value,
-      numId_Institucion : this.createCenterForm.get('numId_Institucion')?.value,
+      numId_Institucion : this.sesionC.getCurrenUser(),
 
       mapContactos_CentroA : {
         arrCorreos_CentroA : this.createCenterForm.get('arrCorreos_CentroA')?.value,

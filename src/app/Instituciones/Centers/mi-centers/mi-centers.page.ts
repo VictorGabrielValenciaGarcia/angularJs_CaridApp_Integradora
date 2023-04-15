@@ -11,6 +11,7 @@ import { CenterControlServiceService } from 'src/app/Services/center-control-ser
 import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 import { MapServiceService } from 'src/app/Services/map-service.service';
 import { delay } from 'rxjs';
+import { SesionControlService } from 'src/app/Services/sesion-control.service';
 
 @Component({
   selector: 'app-mi-centers',
@@ -24,6 +25,7 @@ export class MiCentersPage implements OnInit {
   public styleMap = 'mapbox://styles/mapbox/outdoors-v12';
 
   centerList: CentroAcopio[] = [];
+  myCenterList: CentroAcopio[] = [];
 
   // SearchBar
   filterTerm: string = '';
@@ -31,17 +33,23 @@ export class MiCentersPage implements OnInit {
   @ViewChild('scrollElement') content!: IonContent;
 
   constructor(
-    private acsC : ActionSheetController,
     private router : Router,
-    private centerS : CenterControlServiceService,
+    private mapS : MapServiceService,
+    private acsC : ActionSheetController,
+    private sesionC : SesionControlService,
     private alertS : AlertsToastServiceService,
-    private mapS : MapServiceService
+    private centerS : CenterControlServiceService,
   ) {
     (mapboxgl as any).accessToken = environment.MAPBOX_KEY;
+
+
     this.centerS.getCenters().subscribe(
       (_centers: any)=>{
         // console.log(_centers);
         this.centerList = _centers;
+
+        this.myCenterList = this.centerList.filter(f => f.numId_Institucion = this.sesionC.getCurrenUser());
+
       }
     )
   }
@@ -100,13 +108,17 @@ export class MiCentersPage implements OnInit {
   // Map
 
   ngOnInit(){
+
     this.centerS.getCenters().subscribe(
       (_centers: any)=>{
-        console.log(_centers);
+        // console.log(_centers);
         this.centerList = _centers;
-        this.buildMap(this.centerList);
+
+        this.myCenterList = this.centerList.filter(f => f.numId_Institucion = this.sesionC.getCurrenUser());
+        this.buildMap(this.myCenterList);
       }
     )
+
   }
 
   buildMap(_centers:CentroAcopio[]){
@@ -133,7 +145,7 @@ export class MiCentersPage implements OnInit {
         trackUserLocation: true
       }));
 
-      this.centerList.forEach((_marks:CentroAcopio) => {
+      this.myCenterList.forEach((_marks:CentroAcopio) => {
 
         const popup = new Popup().setHTML(`
         <ion-grid>
@@ -171,7 +183,7 @@ export class MiCentersPage implements OnInit {
   }
 
   findCenter(_id:number) {
-    const marker = this.centerList[_id];
+    const marker = this.myCenterList[_id];
     this.centersMap.panTo({lat: marker.mapDireccion_GPS_CentroA.latitud, lng: marker.mapDireccion_GPS_CentroA.longitud});
   }
 

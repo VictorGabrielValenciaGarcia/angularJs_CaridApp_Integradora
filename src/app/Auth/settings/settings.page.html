@@ -1,7 +1,7 @@
 <ion-header translucent="true" mode="ios">
   <ion-toolbar>
       <ion-buttons mode="md" slot="start">
-        <ion-back-button defaultHref="/login"></ion-back-button>
+        <ion-back-button mode="ios"></ion-back-button>
       </ion-buttons>
       <span class="fontType" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
         Configuración
@@ -33,7 +33,7 @@
     <ion-row class="ion-justify-content-center ion-align-items-center">
 
       <ion-col sizeLg="5" sizeXs="12" >
-        <img src="../../../assets/Images/pilotProfile.jpeg"
+        <img [src]="user.strFoto_Perfil"
           style="
             width: 80%;
             height: auto;
@@ -45,7 +45,227 @@
 
       </ion-col>
 
-      <ion-col sizeLg="6" sizeXs="12">
+      <ion-col sizeLg="6" sizeXs="12" *ngIf="user.rotullus === 'Carid-Inst'" >
+
+        <ion-card-header>
+          <h1 class="ion-text-center" style="margin-top: 1rem; margin-bottom: 1rem;">Configura tu Información</h1>
+
+          <ion-grid>
+            <ion-row style="background-color: #f1f1f1;">
+
+              <ion-col size="4">
+                <ion-button (click)="showContent('settings-institucional')" expand="block" [class.selectContect]="content === 'settings-personal'" fill="clear"
+                style="font-weight: 500;"
+                >
+                  Institucional
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="4">
+                <ion-button (click)="showContent('settings-contact')" expand="block" [class.selectContect]="content === 'settings-contact'" fill="clear"
+                style="font-weight: 500;"
+                >
+                  Contactos
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="4">
+                <ion-button (click)="showContent('settings-profile')" expand="block" [class.selectContect]="content === 'settings-profile'" fill="clear"
+                style="font-weight: 500;"
+                >
+                  Perfil
+                </ion-button>
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+
+        </ion-card-header>
+
+        <ion-card-content *ngIf="content === 'settings-institucional'" >
+          <ion-card-title class="ion-text-center titleForm">Información Institucional</ion-card-title>
+          <br>
+
+          <ion-grid fixed>
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col sizeXs="12" sizeLg="8">
+
+                <form >
+
+                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                    <ion-label position="floating">Nombre de la Institución</ion-label>
+                    <ion-input required clearInput="true" type="text" maxlength="60" [value]="user.strNombre_Institucion"></ion-input>
+                  </ion-item>
+
+                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                    <ion-label position="floating">RFC</ion-label>
+                    <ion-input required clearInput="true" type="text" maxlength="13" [value]="user.strRFC_Institucion"></ion-input>
+                  </ion-item>
+
+                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                    <ion-label position="floating">Facebook</ion-label>
+                    <ion-input required clearInput="true" type="text" maxlength="30" [value]="user.mapRedes_Sociales_Institucion?.strFacebook"></ion-input>
+                  </ion-item>
+
+                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                    <ion-label position="floating">Instagram</ion-label>
+                    <ion-input required clearInput="true" type="text" mode="md" maxlength="30" [value]="user.mapRedes_Sociales_Institucion?.strInstagram"></ion-input>
+                  </ion-item>
+
+                  <ion-item fill="solid" mode="md">
+                    <ion-label position="floating">Twitter</ion-label>
+                    <ion-input required clearInput="true" type="text" maxlength="30" [value]="user.mapRedes_Sociales_Institucion?.strTwitter"></ion-input>
+                  </ion-item>
+
+                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
+                              fill="outline" shape="round" class="ion-margin-top">
+                    Guardar Cambios
+                  </ion-button>
+
+                </form>
+
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-card-content>
+
+        <ion-card-content *ngIf="content === 'settings-contact'" >
+          <ion-card-title class="ion-text-center titleForm">Contactos Oficiales</ion-card-title>
+          <br>
+
+          <ion-grid fixed>
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col sizeXs="12" sizeLg="8">
+
+                <ion-accordion-group>
+                  <ion-accordion value="first">
+
+                    <ion-item slot="header" color="light">
+                      <ion-label>
+                        Mis Centros de Acopio
+                      </ion-label>
+                    </ion-item>
+
+                    <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+
+                      <ion-list>
+                        <ion-item *ngFor="let centro of centrosInst" >
+                          <ion-label>{{ centro.strNombre_CentroA }}</ion-label>
+                        </ion-item>
+                      </ion-list>
+
+                    </div>
+                  </ion-accordion>
+                </ion-accordion-group>
+
+                <form >
+                  <ion-accordion-group>
+                    <ion-accordion value="first">
+
+                      <ion-item slot="header" color="light">
+                        <ion-label>
+                          Correos Oficiales
+                        </ion-label>
+                      </ion-item>
+
+                      <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+
+                        <ion-accordion-group *ngFor="let correo of user?.arrCorreos_Institucion">
+                          <ion-accordion value="first">
+
+                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                              <ion-label position="floating">Departamento</ion-label>
+                              <ion-input required clearInput="true" type="text" maxlength="50" [value]="correo.strDepartamento"></ion-input>
+                            </ion-item>
+
+                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                              <ion-label position="floating">Correo</ion-label>
+                              <ion-input required clearInput="true" type="email" [value]="correo.strCorreo_Departamento"></ion-input>
+                            </ion-item>
+
+                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                              <ion-label position="floating">Encargado</ion-label>
+                              <ion-input required clearInput="true" type="text" maxlength="40" [value]="correo.strEncargado_Departamento"></ion-input>
+                            </ion-item>
+
+                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                              <ion-label position="floating">Telefono</ion-label>
+                              <ion-input required clearInput="true" type="text" mode="md" maxlength="18" [value]="correo.strTelefono_Departamento"></ion-input>
+                            </ion-item>
+
+                          </ion-accordion>
+                        </ion-accordion-group>
+
+                      </div>
+                    </ion-accordion>
+                  </ion-accordion-group>
+
+                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
+                              fill="outline" shape="round" class="ion-margin-top">
+                    Guardar Cambios
+                  </ion-button>
+
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-card-content>
+
+        <ion-card-content *ngIf="content === 'settings-profile'" >
+
+          <ion-grid>
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+
+              <ion-col sizeXs="12" sizeLg="5">
+                <ion-card-title class="ion-text-center titleForm">Perfil</ion-card-title>
+
+                <form >
+
+                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                    <ion-label position="floating">Nombre de Usuario</ion-label>
+                    <ion-input required clearInput="true" type="text" maxlength="15" [value]="user.strUsername"></ion-input>
+                  </ion-item>
+
+                  <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
+                    <ion-label position="floating">Correo Electronico</ion-label>
+                    <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
+                    [value]="user.strCorreo"></ion-input>
+                  </ion-item>
+
+                  <ion-button mode="md" fill="clear" expand="block" (click)="showChangePass()" color="primary" >
+                    Cambiar Contraseña
+                  </ion-button>
+
+                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
+                              fill="outline" shape="round" class="ion-margin-top">
+                    Guardar Cambios
+                  </ion-button>
+
+                </form>
+
+              </ion-col>
+
+              <ion-col sizeXs="12" sizeLg="5" offsetLg="1">
+
+                <ion-img src="../../../assets/Images/Cuypoint_Casino.png"></ion-img>
+
+                <ion-card style="margin-top: 0.8rem;" class="ion-padding">
+                  <h2 class="ion-text-center"><strong>Estado: </strong>
+                    <span *ngIf="user.boolVerificado_Institucion" style="color:rgb(0, 176, 41)">Verificado</span>
+                    <span *ngIf="!user.boolVerificado_Institucion" style="color:rgb(181, 0, 0)">No Verificado</span>
+                  </h2>
+                </ion-card>
+
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-col>
+
+      <ion-col sizeLg="6" sizeXs="12" *ngIf="user.rotullus === 'Carid-User'" >
 
         <ion-card-header>
           <h1 class="ion-text-center" style="margin-top: 1rem; margin-bottom: 1rem;">Configura tu Información</h1>
@@ -94,27 +314,27 @@
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Nombre(s)</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="20" value="Victor Gabriel"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="30" [value]="user.mapNombre?.strNombre"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Apellido Paterno</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="15" value="Valencia"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="15" [value]="user.mapNombre?.strApellido_Paterno"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Apellido Materno</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="15" value="García"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="15" [value]="user.mapNombre?.strApellido_Materno"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Numero de Telefono</ion-label>
-                    <ion-input required clearInput="true" type="tel" mode="md" maxlength="15" value="951-544-2361"></ion-input>
+                    <ion-input required clearInput="true" type="tel" mode="md" maxlength="18" [value]="user.strTelefono"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md">
                     <ion-label position="floating">Ingrese su Edad</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="3" value="19"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="3" [value]="user.numEdad_Usuario"></ion-input>
                   </ion-item>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
@@ -142,22 +362,22 @@
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Colonia / Localidad</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="50" value="Fraccionamiento de Reyes Mantecón"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="50" [value]="user.mapDireccion_Usuario?.strColonia"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Codigo postal</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="5" autocomplete="postal-code" value="71295"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="5" autocomplete="postal-code" [value]="user.mapDireccion_Usuario?.numCP"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Calle / Avenida</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="25" autocomplete="street-addres" value="Comaltepec"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="25" autocomplete="street-addres" [value]="user.mapDireccion_Usuario?.strCalle"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md">
                     <ion-label position="floating">No. Casa</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="4" value="7"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="4" [value]="user.mapDireccion_Usuario?.numNumero_Casa"></ion-input>
                   </ion-item>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
@@ -186,13 +406,13 @@
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Nombre de Usuario</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="15" value="Depinazul"></ion-input>
+                    <ion-input required clearInput="true" type="text" maxlength="20" [value]="user.strUsername"></ion-input>
                   </ion-item>
 
                   <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
                     <ion-label position="floating">Correo Electronico</ion-label>
                     <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
-                    value="vgabriel.valencia@gmail.com"></ion-input>
+                    [value]="user.strCorreo"></ion-input>
                   </ion-item>
 
                   <ion-button mode="md" fill="clear" expand="block" (click)="showChangePass()" color="primary" >
@@ -219,7 +439,7 @@
                         <ion-img src="../../../assets/Images/Cuypoint_Casino.png" class="cuyPoints_Image"></ion-img>
                       </ion-col>
                       <ion-col size="6">
-                        <h1 class="ion-text-center cuyPoints_Text">{{ 9999 | currency }}</h1>
+                        <h1 class="ion-text-center cuyPoints_Text">{{ user.numCuy_Puntos_Usuario | currency }}</h1>
                       </ion-col>
                     </ion-row>
                   </ion-grid>

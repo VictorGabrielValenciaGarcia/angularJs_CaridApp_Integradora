@@ -5,13 +5,11 @@ import { canActivate, redirectUnauthorizedTo, loggedIn, redirectLoggedInTo } fro
 
 const routes: Routes = [
 
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'login'},
+
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
+    path: 'campaigns',
     loadChildren: () => import('./campaigns-menu/campaigns-menu.module').then( m => m.CampaignsMenuPageModule),
     // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
@@ -39,12 +37,12 @@ const routes: Routes = [
   {
     path: 'dashboard/:type',
     loadChildren: () => import('./Instituciones/dashboard/dashboard.module').then( m => m.DashboardPageModule),
-    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'mi-campaigns',
     loadChildren: () => import('./Instituciones/Campaigns/mi-campaigns/mi-campaigns.module').then( m => m.MiCampaignsPageModule),
-    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'mi-centers',
@@ -69,29 +67,23 @@ const routes: Routes = [
   {
     path: 'create-campaigns',
     loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule),
-    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'create-campaigns/:id',
-    loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule)
+    loadChildren: () => import('./Instituciones/Campaigns/create-campaigns/create-campaigns.module').then( m => m.CreateCampaignsPageModule),
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'campaign-details/:id',
     loadChildren: () => import('./Instituciones/Campaigns/campaign-details/campaign-details.module').then( m => m.CampaignDetailsPageModule),
-    // ...canActivate(()=>redirectUnauthorizedTo(['./login']))
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
   {
     path: 'check-centers/:id',
-    loadChildren: () => import('./Instituciones/Campaigns/check-centers/check-centers.module').then( m => m.CheckCentersPageModule)
+    loadChildren: () => import('./Instituciones/Campaigns/check-centers/check-centers.module').then( m => m.CheckCentersPageModule),
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
-  {
-    path: '**',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-
-
-
 
 ];
 

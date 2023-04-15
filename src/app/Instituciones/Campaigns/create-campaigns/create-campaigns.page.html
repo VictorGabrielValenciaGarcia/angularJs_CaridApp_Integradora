@@ -135,7 +135,7 @@
                                 <ion-item class="formSpace" fill="solid" mode="md">
                                   <ion-label position="floating">Centro de Acopio</ion-label>
                                   <ion-select value="peperoni" multiple="false" placeholder="Seleccione un Centro" formControlName="strIdCenter">
-                                    <ion-select-option value="{{ center.id }}" *ngFor="let center of allCenters" >{{ center.strNombre_CentroA }}</ion-select-option>
+                                    <ion-select-option value="{{ center.id }}" *ngFor="let center of myCenters" >{{ center.strNombre_CentroA }}</ion-select-option>
                                   </ion-select>
                                 </ion-item>
 
@@ -396,7 +396,7 @@
                                 <ion-item class="formSpace" fill="solid" mode="md">
                                   <ion-label position="floating">Centro de Acopio</ion-label>
                                   <ion-select value="peperoni" multiple="false" placeholder="Seleccione un Centro" formControlName="strIdCenter">
-                                    <ion-select-option value="{{ center.id }}" *ngFor="let center of allCenters" >{{ center.strNombre_CentroA }}</ion-select-option>
+                                    <ion-select-option value="{{ center.id }}" *ngFor="let center of myCenters" >{{ center.strNombre_CentroA }}</ion-select-option>
                                   </ion-select>
                                 </ion-item>
 

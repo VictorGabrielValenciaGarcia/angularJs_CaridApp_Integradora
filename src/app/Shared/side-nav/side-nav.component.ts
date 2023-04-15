@@ -27,16 +27,11 @@ export class SideNavComponent implements OnInit {
     private userS: UserControlService,
     private router : Router,
   ) {
-    this.sesion.userState().then(
-      resp => {
-        // console.log(resp);
-        if(resp !== undefined){
-          this.isLogin = true;
-          console.log(this.isLogin);
-          this.getUserData(resp);
-        }
+    if(this.sesion.getCurrenUser() !== null){
+        this.isLogin = true;
+        // console.log(this.isLogin);
+        this.getUserData(this.sesion.getCurrenUser());
       }
-    )
   }
 
   ngOnInit() {

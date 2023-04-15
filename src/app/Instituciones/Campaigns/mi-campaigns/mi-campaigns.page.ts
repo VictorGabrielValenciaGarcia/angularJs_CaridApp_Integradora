@@ -4,6 +4,7 @@ import Campania from 'src/app/Interfaces/Campania.interface';
 import { Router } from '@angular/router';
 import { CampaignControlServiceService } from 'src/app/Services/campaign-control-service.service';
 import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
+import { SesionControlService } from 'src/app/Services/sesion-control.service';
 
 @Component({
   selector: 'app-mi-campaigns',
@@ -51,18 +52,24 @@ export class MiCampaignsPage implements OnInit {
   titleType : string = 'Todas las Campañas';
 
   constructor(
-    private acsC : ActionSheetController,
     private router : Router,
-    private campaignsS : CampaignControlServiceService,
+    private acsC : ActionSheetController,
+    private sesionC : SesionControlService,
     private alertS : AlertsToastServiceService,
+    private campaignsS : CampaignControlServiceService,
   ) {
+  }
+
+  ngOnInit() {
     this.campaignsS.getCampaigns().subscribe(
       _campaigns => {
         this.allCampaigns = _campaigns;
 
-        this.animalCampaigns = this.allCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Apoyo Animal');
-        this.socialCampaigns = this.allCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Apoyo Social');
-        this.disasterCampaigns = this.allCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Desastres Naturales');
+        this.myCampaigns = this.allCampaigns.filter(f => f.numId_Institucion === this.sesionC.getCurrenUser());
+
+        this.animalCampaigns = this.myCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Apoyo Animal');
+        this.socialCampaigns = this.myCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Apoyo Social');
+        this.disasterCampaigns = this.myCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Desastres Naturales');
 
         console.log(this.animalCampaigns);
         console.log(this.socialCampaigns);
@@ -70,9 +77,6 @@ export class MiCampaignsPage implements OnInit {
 
       }
     )
-  }
-
-  ngOnInit() {
   }
 
   segmentChanged(ev: any) {

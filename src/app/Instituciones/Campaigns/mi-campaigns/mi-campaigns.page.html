@@ -38,7 +38,7 @@
   </ion-grid>
 
   <div *ngIf="selectorType === 'all'" >
-    <ion-grid  *ngIf="allCampaigns.length === 0">
+    <ion-grid  *ngIf="myCampaigns.length === 0">
       <ion-row class="ion-justify-content-center ion-align-items-center">
 
         <ion-col sizeLg="5" sizeMd="5" sizeXs="12">
@@ -53,14 +53,14 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid  *ngIf="allCampaigns.length > 0">
+    <ion-grid  *ngIf="myCampaigns.length > 0">
       <ion-row class="ion-justify-content-center ion-align-items-center">
 
         <ion-col sizeLg="9" sizeMd="9" sizeXs="12">
           <ion-searchbar placeholder="Buscar Campaña" [(ngModel)]="filterTermAll" cancelButtonIcon="true"></ion-searchbar>
         </ion-col>
 
-        <ion-col sizeLg="4" sizeMd="4" sizeXs="12" *ngFor="let all of allCampaigns | filter : filterTermAll" >
+        <ion-col sizeLg="4" sizeMd="4" sizeXs="12" *ngFor="let all of myCampaigns | filter : filterTermAll" >
           <app-campaign-ticket [campaign]="all"></app-campaign-ticket>
         </ion-col>
 

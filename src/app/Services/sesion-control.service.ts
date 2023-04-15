@@ -22,6 +22,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   createUserWithEmailAndPassword,
+  getAuth
 } from '@angular/fire/auth';
 
 import Usuario from '../Interfaces/Usuario.interface';
@@ -36,18 +37,18 @@ export class SesionControlService {
     private readonly authC : Auth,
     private alertS : AlertsToastServiceService,
   ) {
-   }
+  }
 
   async logIn(_email: any, _password: any) {
 
 
     // return signInWithEmailAndPassword(this.authC , _email, _password);
 
-    return setPersistence(this.authC , browserLocalPersistence).then(() => {
+    // return setPersistence(this.authC , browserLocalPersistence).then(() => {
       return signInWithEmailAndPassword(this.authC , _email, _password);
-    }).catch((error) => {
-      return Promise.reject(error);
-    });
+    // }).catch((error) => {
+    //   return Promise.reject(error);
+    // });
   }
 
   // Login con google
@@ -65,14 +66,9 @@ export class SesionControlService {
     return createUserWithEmailAndPassword(this.authC , _UserData.strCorreo, _UserData.strPassword)
   }
 
-  async userState(){
-    let user : any;
-    await this.authC.onAuthStateChanged(
-      _user => {
-        // console.log(user);
-        user = _user?.uid;
-      }
-    );
+  getCurrenUser() : string{
+    let user : any = getAuth().currentUser?.uid;
+    // console.log(user);
     return user;
   }
 

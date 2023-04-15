@@ -94,7 +94,7 @@ export class AlertsToastServiceService {
     const toastLogIn = await this.toastC.create({
       message: 'Bienvenid@ ' + _userName + '!!!',
       mode : 'ios',
-      duration: 3000,
+      duration: 2500,
       position: 'top',
       color:'success',
       icon: 'happy-outline'

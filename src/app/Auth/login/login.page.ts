@@ -60,6 +60,7 @@ export class LoginPage implements OnInit {
         this.users.getUser(this.user?.user?.uid).subscribe(
           _user => {
             this.alertS.loginSuccess(_user?.strUsername);
+            this.FormLogin.reset();
           }
         )
     }).catch(error => {

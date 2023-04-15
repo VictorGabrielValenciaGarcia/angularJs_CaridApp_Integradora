@@ -5,7 +5,7 @@ import { CampaignsMenuPage } from './campaigns-menu.page';
 
 const routes: Routes = [
   {
-    path: 'campaigns',
+    path: '',
     component: CampaignsMenuPage,
     children : [
 
@@ -22,8 +22,8 @@ const routes: Routes = [
         loadChildren: () => import('../Campaigns/animales/animales.module').then( m => m.AnimalesPageModule)
       },
       {
-        path: '**',
-        redirectTo: '/campaigns/desastres-naturales',
+        path: '',
+        redirectTo: 'desastres-naturales',
         pathMatch: 'full'
       },
     ]

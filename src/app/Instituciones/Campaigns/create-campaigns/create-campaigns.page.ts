@@ -8,6 +8,7 @@ import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service
 import { CampaignControlServiceService } from 'src/app/Services/campaign-control-service.service';
 import { CenterControlServiceService } from 'src/app/Services/center-control-service.service';
 import { RegexServiceService } from 'src/app/Services/regex-service.service';
+import { SesionControlService } from 'src/app/Services/sesion-control.service';
 
 @Component({
   selector: 'app-create-campaigns',
@@ -28,19 +29,21 @@ export class CreateCampaignsPage implements OnInit {
   public createCampaignForm : FormGroup;
 
   constructor(
-    private router : Router,
-    private regex : RegexServiceService,
-    private formB : FormBuilder,
     private campaignC : CampaignControlServiceService,
     private centerC : CenterControlServiceService,
     private alertS : AlertsToastServiceService,
+    private sesionC : SesionControlService,
+    private regex : RegexServiceService,
     private ar : ActivatedRoute,
+    private formB : FormBuilder,
+    private router : Router,
   ) {
 
     this.centerC.getCenters().subscribe(
       _data =>{
         console.log(_data);
         this.allCenters = _data;
+        this.myCenters = this.allCenters.filter(f => f.numId_Institucion === this.sesionC.getCurrenUser())
       }
     )
 
@@ -162,7 +165,7 @@ export class CreateCampaignsPage implements OnInit {
       arrCentros_Acopio_Campania : this.createCampaignForm.get('arrCentros_Acopio_Campania')?.value,
 
       // Invisibles en el Formulario
-      numId_Institucion : '',
+      numId_Institucion : this.sesionC.getCurrenUser(),
 
       strEstado_Campania : Estado.Vigente,
 
@@ -199,7 +202,7 @@ export class CreateCampaignsPage implements OnInit {
       arrCentros_Acopio_Campania : this.createCampaignForm.get('arrCentros_Acopio_Campania')?.value,
 
       // Invisibles en el Formulario
-      numId_Institucion : this.campaign.numId_Institucion,
+      numId_Institucion : this.sesionC.getCurrenUser(),
 
       strEstado_Campania : Estado.Vigente,
 
