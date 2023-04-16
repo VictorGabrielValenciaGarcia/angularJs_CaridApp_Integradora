@@ -1,7 +1,7 @@
 <ion-header translucent="true" mode="ios">
   <ion-toolbar>
       <ion-buttons mode="md" slot="start">
-        <ion-back-button mode="ios"></ion-back-button>
+        <ion-back-button></ion-back-button>
       </ion-buttons>
       <span class="fontType" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
         Configuración
@@ -9,43 +9,20 @@
   </ion-toolbar>
 </ion-header>
 
-<style>
-  .selectContect{
-    background-color: #fdfdfd !important;
-    color: rgb(67, 137, 216) !important;
-    font-weight: bolder !important;
-  }
-
-  .titleForm{
-    color: #000 !important;
-    margin: 0px !important;
-    padding: 0px !important;
-    font-size: 28px !important;
-    font-weight: 700 !important;
-    line-height: 1.2 !important;
-  }
-
-</style>
-
 <ion-content>
 
-  <ion-grid style="margin-top: 2rem !important;">
+  <ion-grid style="margin-top: 1rem !important;">
     <ion-row class="ion-justify-content-center ion-align-items-center">
 
-      <ion-col sizeLg="5" sizeXs="12" >
-        <img [src]="user.strFoto_Perfil"
-          style="
-            width: 80%;
-            height: auto;
-            object-fit: fill;
-            border-radius: 25%;
-            margin-left: 10%;
-          "
-        >
-
+      <ion-col sizeLg="5" sizeXs="12">
+        <ion-button (click)="upload()" class="profilebutton" expand="block" color="light">
+          <ion-icon slot="start" name="sync-outline"></ion-icon>
+          Cambiar Foto
+        </ion-button>
+        <img [src]="user.strFoto_Perfil" class="profilePhoto">
       </ion-col>
 
-      <ion-col sizeLg="6" sizeXs="12" *ngIf="user.rotullus === 'Carid-Inst'" >
+      <ion-col sizeLg="7" sizeXs="12" *ngIf="user.rotullus === 'Carid-Inst'" >
 
         <ion-card-header>
           <h1 class="ion-text-center" style="margin-top: 1rem; margin-bottom: 1rem;">Configura tu Información</h1>
@@ -54,10 +31,10 @@
             <ion-row style="background-color: #f1f1f1;">
 
               <ion-col size="4">
-                <ion-button (click)="showContent('settings-institucional')" expand="block" [class.selectContect]="content === 'settings-personal'" fill="clear"
+                <ion-button (click)="showContent('settings-institucional')" expand="block" [class.selectContect]="content === 'settings-institucional'" fill="clear"
                 style="font-weight: 500;"
                 >
-                  Institucional
+                  General
                 </ion-button>
               </ion-col>
 
@@ -90,32 +67,71 @@
             <ion-row class="ion-justify-content-center ion-align-items-center">
               <ion-col sizeXs="12" sizeLg="8">
 
-                <form >
+                <form [formGroup]="settingsInstDataForm" (ngSubmit)="settingsInstData()">
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Nombre de la Institución</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="60" [value]="user.strNombre_Institucion"></ion-input>
-                  </ion-item>
+                    <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                      <ion-label position="floating">Nombre de la Institución</ion-label>
+                      <ion-input required clearInput="true" type="text" formControlName="strNombre_Institucion" maxlength="60"
+                      [class.inputWrong] = "settingsInstDataForm.get('strNombre_Institucion')?.invalid"></ion-input>
+                    </ion-item>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">RFC</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="13" [value]="user.strRFC_Institucion"></ion-input>
-                  </ion-item>
+                    <div class="adjustErrors">
+                      <p class="errors" *ngIf="(settingsInstDataForm.get('strNombre_Institucion')?.dirty || settingsInstDataForm.get('strNombre_Institucion')?.touched) && settingsInstDataForm.get('strNombre_Institucion')?.hasError('required')">* Este campo es Obligatorio</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strNombre_Institucion')?.hasError('maxlength')">Solo 60 Carácteres</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strNombre_Institucion')?.hasError('pattern')">Solo letras, numeros, espacios y puntos</p>
+                    </div>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Facebook</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="30" [value]="user.mapRedes_Sociales_Institucion?.strFacebook"></ion-input>
-                  </ion-item>
+                    <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                      <ion-label position="floating">RFC de la Institución</ion-label>
+                      <ion-input required clearInput="true" type="text" formControlName="strRFC_Institucion" maxlength="13" minlength="10"
+                      [class.inputWrong] = "settingsInstDataForm.get('strRFC_Institucion')?.invalid"></ion-input>
+                    </ion-item>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Instagram</ion-label>
-                    <ion-input required clearInput="true" type="text" mode="md" maxlength="30" [value]="user.mapRedes_Sociales_Institucion?.strInstagram"></ion-input>
-                  </ion-item>
+                    <div class="adjustErrors">
+                      <p class="errors" *ngIf="(settingsInstDataForm.get('strRFC_Institucion')?.dirty || settingsInstDataForm.get('strRFC_Institucion')?.touched) && settingsInstDataForm.get('strRFC_Institucion')?.hasError('required')">* Este campo es Obligatorio</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strRFC_Institucion')?.hasError('maxlength')">Solo 13 Carácteres</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strRFC_Institucion')?.hasError('minlength')">No es un RFC válido</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strRFC_Institucion')?.hasError('pattern')">Solo letras, numeros y -</p>
+                    </div>
 
-                  <ion-item fill="solid" mode="md">
-                    <ion-label position="floating">Twitter</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="30" [value]="user.mapRedes_Sociales_Institucion?.strTwitter"></ion-input>
-                  </ion-item>
+                    <ion-item class="formSpace" fill="solid" mode="md">
+                      <ion-label position="stacked">Instagram</ion-label>
+                      <ion-input clearInput="true" type="text" formControlName="strInstagram" maxlength="30" minlength="3"
+                      [class.inputWrong] = "settingsInstDataForm.get('strInstagram')?.invalid"></ion-input>
+                    </ion-item>
+
+                    <div class="adjustErrors">
+                      <p class="errors" *ngIf="(settingsInstDataForm.get('strInstagram')?.dirty || settingsInstDataForm.get('strInstagram')?.touched) && settingsInstDataForm.get('strInstagram')?.hasError('required')">* Este campo es obligatorio</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strInstagram')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strInstagram')?.hasError('minlength')">No es una cuenta válida</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strInstagram')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                    </div>
+
+                    <ion-item class="formSpace" fill="solid" mode="md">
+                      <ion-label position="stacked">Twitter</ion-label>
+                      <ion-input clearInput="true" type="text" formControlName="strTwitter" maxlength="30" minlength="3"
+                      [class.inputWrong] = "settingsInstDataForm.get('strTwitter')?.invalid"></ion-input>
+                    </ion-item>
+
+                    <div class="adjustErrors">
+                      <p class="errors" *ngIf="(settingsInstDataForm.get('strTwitter')?.dirty || settingsInstDataForm.get('strTwitter')?.touched) && settingsInstDataForm.get('strTwitter')?.hasError('required')">* Este campo es obligatorio</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strTwitter')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strTwitter')?.hasError('minlength')">No es una cuenta válida</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strTwitter')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                    </div>
+
+                    <ion-item class="formSpace" fill="solid" mode="md">
+                      <ion-label position="stacked">Facebook</ion-label>
+                      <ion-input clearInput="true" type="text" formControlName="strFacebook" maxlength="30" minlength="3"
+                      [class.inputWrong] = "settingsInstDataForm.get('strFacebook')?.invalid"></ion-input>
+                    </ion-item>
+
+                    <div class="adjustErrors">
+                      <p class="errors" *ngIf="(settingsInstDataForm.get('strFacebook')?.dirty || settingsInstDataForm.get('strFacebook')?.touched) && settingsInstDataForm.get('strFacebook')?.hasError('required')">* Este campo es obligatorio</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strFacebook')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strFacebook')?.hasError('minlength')">No es una cuenta válida</p>
+                      <p class="errors" *ngIf="settingsInstDataForm.get('strFacebook')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
+                    </div>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
                               fill="outline" shape="round" class="ion-margin-top">
@@ -138,10 +154,10 @@
             <ion-row class="ion-justify-content-center ion-align-items-center">
               <ion-col sizeXs="12" sizeLg="8">
 
-                <ion-accordion-group>
+                <ion-accordion-group style="margin-bottom: 1.5rem;">
                   <ion-accordion value="first">
 
-                    <ion-item slot="header" color="light">
+                    <ion-item slot="header" color="light" style="margin-bottom: 0rem;">
                       <ion-label>
                         Mis Centros de Acopio
                       </ion-label>
@@ -150,8 +166,9 @@
                     <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
 
                       <ion-list>
-                        <ion-item *ngFor="let centro of centrosInst" >
+                        <ion-item *ngFor="let centro of centrosInst" style="margin-bottom: 0rem;">
                           <ion-label>{{ centro.strNombre_CentroA }}</ion-label>
+                          <ion-icon name="navigate-circle-outline" slot="start"></ion-icon>
                         </ion-item>
                       </ion-list>
 
@@ -159,54 +176,60 @@
                   </ion-accordion>
                 </ion-accordion-group>
 
-                <form >
-                  <ion-accordion-group>
-                    <ion-accordion value="first">
+                <ion-accordion-group style="margin-bottom: 1.5rem;">
+                  <ion-accordion value="first">
 
-                      <ion-item slot="header" color="light">
-                        <ion-label>
-                          Correos Oficiales
-                        </ion-label>
-                      </ion-item>
+                    <ion-item slot="header" color="light" style="margin-bottom: 0rem;">
+                      <ion-label>
+                        Correos Oficiales
+                      </ion-label>
+                    </ion-item>
 
-                      <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+                    <div class="ion-text-justify  ion-padding" style="background-color: #fafafa;" slot="content">
 
-                        <ion-accordion-group *ngFor="let correo of user?.arrCorreos_Institucion">
-                          <ion-accordion value="first">
 
-                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                              <ion-label position="floating">Departamento</ion-label>
-                              <ion-input required clearInput="true" type="text" maxlength="50" [value]="correo.strDepartamento"></ion-input>
-                            </ion-item>
+                      <ion-accordion-group *ngFor="let contacto of contactosInst" >
+                        <ion-accordion value="first">
 
-                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                          <ion-item slot="header" color="light" style="margin-bottom: 0rem;">
+                            <ion-label>
+                              {{ contacto?.strDepartamento }}
+                            </ion-label>
+                            <ion-icon name="business-outline" slot="start"></ion-icon>
+                          </ion-item>
+
+                          <div class="ion-text-justify ion-padding" slot="content">
+
+                            <ion-item fill="solid" mode="md" style="margin-bottom: 0.5rem;">
+                              <ion-icon name="mail-outline" slot="start"></ion-icon>
                               <ion-label position="floating">Correo</ion-label>
-                              <ion-input required clearInput="true" type="email" [value]="correo.strCorreo_Departamento"></ion-input>
+                              <ion-input readonly="true" type="text" [value]="contacto?.strCorreo_Departamento"></ion-input>
                             </ion-item>
 
-                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                              <ion-label position="floating">Encargado</ion-label>
-                              <ion-input required clearInput="true" type="text" maxlength="40" [value]="correo.strEncargado_Departamento"></ion-input>
-                            </ion-item>
-
-                            <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                            <ion-item fill="solid" mode="md" style="margin-bottom: 0.5rem;">
+                              <ion-icon name="call-outline" slot="start"></ion-icon>
                               <ion-label position="floating">Telefono</ion-label>
-                              <ion-input required clearInput="true" type="text" mode="md" maxlength="18" [value]="correo.strTelefono_Departamento"></ion-input>
+                              <ion-input readonly="true" type="text" [value]="contacto?.strEncargado_Departamento"></ion-input>
                             </ion-item>
 
-                          </ion-accordion>
-                        </ion-accordion-group>
+                            <ion-item fill="solid" mode="md" style="margin-bottom: 0.5rem;">
+                              <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+                              <ion-label position="floating">Encargado</ion-label>
+                              <ion-input readonly="true" type="text" [value]="contacto?.strTelefono_Departamento"></ion-input>
+                            </ion-item>
 
-                      </div>
-                    </ion-accordion>
-                  </ion-accordion-group>
+                          </div>
 
-                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top">
-                    Guardar Cambios
-                  </ion-button>
+                        </ion-accordion>
+                      </ion-accordion-group>
 
-                </form>
+
+
+
+                    </div>
+                  </ion-accordion>
+                </ion-accordion-group>
+
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -221,35 +244,47 @@
               <ion-col sizeXs="12" sizeLg="5">
                 <ion-card-title class="ion-text-center titleForm">Perfil</ion-card-title>
 
-                <form >
+                <form [formGroup]="settingsProfileForm" (ngSubmit)="settingsProfile()">
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Nombre de Usuario</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="15" [value]="user.strUsername"></ion-input>
+                    <ion-input required clearInput="true" type="text" formControlName="strUsername" maxlength="20" value=""
+                    [class.inputWrong] = "settingsProfileForm.get('strUsername')?.invalid"></ion-input>
                   </ion-item>
 
-                  <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
-                    <ion-label position="floating">Correo Electronico</ion-label>
-                    <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
-                    [value]="user.strCorreo"></ion-input>
-                  </ion-item>
-
-                  <ion-button mode="md" fill="clear" expand="block" (click)="showChangePass()" color="primary" >
-                    Cambiar Contraseña
-                  </ion-button>
+                  <div class="adjustErrors">
+                    <p class="errors" *ngIf="(settingsProfileForm.get('strUsername')?.dirty || settingsProfileForm.get('strUsername')?.touched) && settingsProfileForm.get('strUsername')?.hasError('required')">Username necesario para el registro</p>
+                    <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                    <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('minlength')">Username mínimo de 5 carácteres</p>
+                    <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('pattern')">Solo letras, numeros, espacios y _</p>
+                  </div>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top">
+                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsProfileForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
                 </form>
 
+                <br>
+
+                <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
+                  <ion-label position="floating">Correo Electronico</ion-label>
+                  <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
+                  [value]="user.strCorreo"></ion-input>
+                </ion-item>
+
+                <ion-button mode="ios" fill="clear" expand="block" (click)="showChangePass()" color="primary" >
+                  Cambiar Contraseña
+                </ion-button>
+
               </ion-col>
 
               <ion-col sizeXs="12" sizeLg="5" offsetLg="1">
 
-                <ion-img src="../../../assets/Images/Cuypoint_Casino.png"></ion-img>
+                <div class="ion-padding">
+                  <ion-img src="../../../assets/Images/Cuypoint_Casino.png" class="ion-padding"></ion-img>
+                </div>
 
                 <ion-card style="margin-top: 0.8rem;" class="ion-padding">
                   <h2 class="ion-text-center"><strong>Estado: </strong>
@@ -265,7 +300,7 @@
         </ion-card-content>
       </ion-col>
 
-      <ion-col sizeLg="6" sizeXs="12" *ngIf="user.rotullus === 'Carid-User'" >
+      <ion-col sizeLg="7" sizeXs="12" *ngIf="user.rotullus === 'Carid-User'" >
 
         <ion-card-header>
           <h1 class="ion-text-center" style="margin-top: 1rem; margin-bottom: 1rem;">Configura tu Información</h1>
@@ -310,35 +345,65 @@
             <ion-row class="ion-justify-content-center ion-align-items-center">
               <ion-col sizeXs="12" sizeLg="8">
 
-                <form >
+                <form [formGroup]="settingsPersonalForm" (ngSubmit)="settingsPersonal()">
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Nombre(s)</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="30" [value]="user.mapNombre?.strNombre"></ion-input>
-                  </ion-item>
+                  <ion-list>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Apellido Paterno</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="15" [value]="user.mapNombre?.strApellido_Paterno"></ion-input>
-                  </ion-item>
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Nombre(s)</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strNombre" maxlength="30"
+                        [class.inputWrong] = "settingsPersonalForm.get('strNombre')?.invalid"></ion-input>
+                      </ion-item>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Apellido Materno</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="15" [value]="user.mapNombre?.strApellido_Materno"></ion-input>
-                  </ion-item>
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsPersonalForm.get('strNombre')?.dirty || settingsPersonalForm.get('strNombre')?.touched) && settingsPersonalForm.get('strNombre')?.hasError('required')">Nombre necesario para el registro</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strNombre')?.hasError('maxlength')">Solo 30 Carácteres</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strNombre')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strNombre')?.hasError('pattern')">Solo letras y espacios</p>
+                      </div>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Numero de Telefono</ion-label>
-                    <ion-input required clearInput="true" type="tel" mode="md" maxlength="18" [value]="user.strTelefono"></ion-input>
-                  </ion-item>
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Apellido Paterno</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strApellido_Paterno" maxlength="15"
+                        [class.inputWrong] = "settingsPersonalForm.get('strApellido_Paterno')?.invalid"></ion-input>
+                      </ion-item>
 
-                  <ion-item fill="solid" mode="md">
-                    <ion-label position="floating">Ingrese su Edad</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="3" [value]="user.numEdad_Usuario"></ion-input>
-                  </ion-item>
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsPersonalForm.get('strApellido_Paterno')?.dirty || settingsPersonalForm.get('strApellido_Paterno')?.touched) && settingsPersonalForm.get('strApellido_Paterno')?.hasError('required')">Apellido Paterno necesario para el registro</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strApellido_Paterno')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strApellido_Paterno')?.hasError('minlength')">No es un apellido válido</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strApellido_Paterno')?.hasError('pattern')">Solo letras y espacios</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Apellido Materno</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strApellido_Materno" maxlength="15"
+                        [class.inputWrong] = "settingsPersonalForm.get('strApellido_Materno')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsPersonalForm.get('strApellido_Materno')?.dirty || settingsPersonalForm.get('strApellido_Materno')?.touched) && settingsPersonalForm.get('strApellido_Materno')?.hasError('required')">Apellido Materno necesario para el registro</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strApellido_Materno')?.hasError('maxlength')">Solo 15 Carácteres</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strApellido_Materno')?.hasError('minlength')">No es un apellido válido</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strApellido_Materno')?.hasError('pattern')">Solo letras y espacios</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Numero de Telefono</ion-label>
+                        <ion-input required clearInput="true" type="tel" formControlName="strTelefono" mode="md" maxlength="18" minlength="10"
+                        [class.inputWrong] = "settingsPersonalForm.get('strTelefono')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsPersonalForm.get('strTelefono')?.dirty || settingsPersonalForm.get('strTelefono')?.touched) && settingsPersonalForm.get('strTelefono')?.hasError('required')">Telefono necesario para el registro</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strTelefono')?.hasError('maxlength')">Solo 18 Carácteres</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strTelefono')?.hasError('minlength')">No es un número telefónico</p>
+                        <p class="errors" *ngIf="settingsPersonalForm.get('strTelefono')?.hasError('pattern')">La estructura tiene que ser igual a +(00)000-000-0000 </p>
+                      </div>
+                  </ion-list>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top">
+                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsPersonalForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
@@ -358,30 +423,65 @@
             <ion-row class="ion-justify-content-center ion-align-items-center">
               <ion-col sizeXs="12" sizeLg="8">
 
-                <form >
+                <form [formGroup]="settingsContactForm" (ngSubmit)="settingsContact()">
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Colonia / Localidad</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="50" [value]="user.mapDireccion_Usuario?.strColonia"></ion-input>
-                  </ion-item>
+                  <ion-list>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Codigo postal</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="5" autocomplete="postal-code" [value]="user.mapDireccion_Usuario?.numCP"></ion-input>
-                  </ion-item>
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Colonia / Localidad</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strColonia" maxlength="50"
+                        [class.inputWrong] = "settingsContactForm.get('strColonia')?.invalid"></ion-input>
+                      </ion-item>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Calle / Avenida</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="25" autocomplete="street-addres" [value]="user.mapDireccion_Usuario?.strCalle"></ion-input>
-                  </ion-item>
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsContactForm.get('strColonia')?.dirty || settingsContactForm.get('strColonia')?.touched) && settingsContactForm.get('strColonia')?.hasError('required')">Colonia / localidad necesaria para el registro</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('strColonia')?.hasError('maxlength')">Solo 50 Carácteres</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('strColonia')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('strColonia')?.hasError('pattern')">Solo letras, espacios y puntos</p>
+                      </div>
 
-                  <ion-item fill="solid" mode="md">
-                    <ion-label position="floating">No. Casa</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="4" [value]="user.mapDireccion_Usuario?.numNumero_Casa"></ion-input>
-                  </ion-item>
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Codigo postal</ion-label>
+                        <ion-input required clearInput="true" type="text" maxlength="5" formControlName="numCP" autocomplete="postal-code"
+                        [class.inputWrong] = "settingsContactForm.get('numCP')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsContactForm.get('numCP')?.dirty || settingsContactForm.get('numCP')?.touched) && settingsContactForm.get('numCP')?.hasError('required')">Codigo Postal necesario para el registro</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('numCP')?.hasError('maxlength')">Solo 5 Carácteres</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('numCP')?.hasError('minlength')">No es un CP válido</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('numCP')?.hasError('pattern')">Solo números Enteros Positivos</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
+                        <ion-label position="floating">Calle / Avenida</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="strCalle" maxlength="25" autocomplete="street-addres"
+                        [class.inputWrong] = "settingsContactForm.get('strCalle')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsContactForm.get('strCalle')?.dirty || settingsContactForm.get('strCalle')?.touched) && settingsContactForm.get('strCalle')?.hasError('required')">Calle / Avenida necesaria para el registro</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('strCalle')?.hasError('maxlength')">Solo 25 Carácteres</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('strCalle')?.hasError('minlength')">No es un nombre válido</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('strCalle')?.hasError('pattern')">Solo letras, espacios y números</p>
+                      </div>
+
+                      <ion-item fill="solid" mode="md">
+                        <ion-label position="floating">No. Casa</ion-label>
+                        <ion-input required clearInput="true" type="text" formControlName="numNumero_Casa" maxlength="4"
+                        [class.inputWrong] = "settingsContactForm.get('numNumero_Casa')?.invalid"></ion-input>
+                      </ion-item>
+
+                      <div class="adjustErrors">
+                        <p class="errors" *ngIf="(settingsContactForm.get('numNumero_Casa')?.dirty || settingsContactForm.get('numNumero_Casa')?.touched) && settingsContactForm.get('numNumero_Casa')?.hasError('required')">Numero de domicilio requerido</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('numNumero_Casa')?.hasError('max')">No es un número válido</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('numNumero_Casa')?.hasError('min')">No es un número válido</p>
+                        <p class="errors" *ngIf="settingsContactForm.get('numNumero_Casa')?.hasError('pattern')">Solo números Enteros Positivos</p>
+                      </div>
+                  </ion-list>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top">
+                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsContactForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
@@ -402,30 +502,39 @@
                 <ion-card-title class="ion-text-center titleForm">Perfil</ion-card-title>
                 <br>
 
-                <form >
+                <form [formGroup]="settingsProfileForm" (ngSubmit)="settingsProfile()">
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Nombre de Usuario</ion-label>
-                    <ion-input required clearInput="true" type="text" maxlength="20" [value]="user.strUsername"></ion-input>
+                    <ion-input required clearInput="true" type="text" formControlName="strUsername" maxlength="20" value=""
+                    [class.inputWrong] = "settingsProfileForm.get('strUsername')?.invalid"></ion-input>
                   </ion-item>
 
-                  <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
-                    <ion-label position="floating">Correo Electronico</ion-label>
-                    <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
-                    [value]="user.strCorreo"></ion-input>
-                  </ion-item>
-
-                  <ion-button mode="md" fill="clear" expand="block" (click)="showChangePass()" color="primary" >
-                    Cambiar Contraseña
-                  </ion-button>
+                  <div class="adjustErrors">
+                    <p class="errors" *ngIf="(settingsProfileForm.get('strUsername')?.dirty || settingsProfileForm.get('strUsername')?.touched) && settingsProfileForm.get('strUsername')?.hasError('required')">Username necesario para el registro</p>
+                    <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('maxlength')">Solo 20 Carácteres</p>
+                    <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('minlength')">Username mínimo de 5 carácteres</p>
+                    <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('pattern')">Solo letras, numeros, espacios y _</p>
+                  </div>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top">
+                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsProfileForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
                 </form>
 
+                <br>
+
+                <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
+                  <ion-label position="floating">Correo Electronico</ion-label>
+                  <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
+                  [value]="user.strCorreo"></ion-input>
+                </ion-item>
+
+                <ion-button mode="ios" fill="outline" expand="block" (click)="showChangePass()" color="primary" >
+                  Cambiar Contraseña
+                </ion-button>
 
               </ion-col>
 

@@ -142,6 +142,19 @@ export class AlertsToastServiceService {
     await loading.present();
   }
 
+  async updateUserSucces(){//Creamos un  parametro de tipo string
+    const toastUpdate = await this.toastC.create({
+      message: 'Tu Informacion ha sido Actualizada',
+      mode : 'ios',
+      duration: 3000,
+      position: 'top',
+      color:'primary',
+      icon: 'cloud-done-outline'
+    });
+
+    toastUpdate.present();
+  }
+
   closeLoading(){
     this.loadCtrl.dismiss();
   }

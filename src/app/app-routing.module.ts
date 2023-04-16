@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'register/:type',
-    loadChildren: () => import('./Auth/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./Auth/register/register.module').then( m => m.RegisterPageModule),
   },
   {
     path: 'settings',
@@ -84,6 +84,12 @@ const routes: Routes = [
     loadChildren: () => import('./Instituciones/Campaigns/check-centers/check-centers.module').then( m => m.CheckCentersPageModule),
     ...canActivate(()=>redirectUnauthorizedTo(['./login']))
   },
+  {
+    path: 'cuy-shop',
+    loadChildren: () => import('./Auth/cuy-shop/cuy-shop.module').then( m => m.CuyShopPageModule),
+    ...canActivate(()=>redirectUnauthorizedTo(['./login']))
+  },
+
 
 ];
 

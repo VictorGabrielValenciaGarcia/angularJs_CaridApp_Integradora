@@ -72,10 +72,75 @@ ion-tab-bar  {
 
 .cuyPoints_Box{
   border-radius: 5% !important;
-  // padding-top: 5% !important;
-  padding-top: 10% !important;
+  padding-top: 8% !important;
+  // padding-top: 10% !important;
   height: 170px !important;
   background-color: #fffef8;
   border: 2px solid #c2830f5e;
 }
 
+.selectContect{
+  background-color: #fdfdfd !important;
+  color: rgb(67, 137, 216) !important;
+  font-weight: bolder !important;
+}
+
+.titleForm{
+  color: #000 !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+  .inputWrong{
+    border-color: #c92432;
+    color: #c92432;
+    /* background: #fffbfb; */
+  }
+  .errors{
+    color: #c92432;
+    font-size: 75%;
+    text-align: start;
+  }
+
+  .adjustErrors{
+    margin-top: -1rem;
+  }
+
+  ion-item{
+    margin-bottom: 2rem;
+  }
+
+  .profilePhoto{
+    width: 80%;
+    height: auto;
+    object-fit: fill;
+    border-radius: 2rem;
+    margin-left: 10%;
+  }
+
+  .profilebutton {
+    z-index: 2;
+    position: absolute;
+    left: 10.5%;
+    width: 78.5%;
+    height: 18%;
+    top: 78.6%;
+    opacity: 0.6;
+    --border-radius: 0px 0px 2rem 2rem;
+  }
+
+@media screen and (max-width: 390px) {
+  .profilebutton {
+    z-index: 2;
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    top: 78%;
+    opacity: 0.6;
+    height: 18%;
+    --border-radius: 0px 0px 2rem 2rem;
+  }
+}

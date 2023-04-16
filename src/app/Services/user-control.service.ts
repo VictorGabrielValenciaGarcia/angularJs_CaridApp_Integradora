@@ -45,8 +45,15 @@ export class UserControlService {
     return docData(usersRef, { idField: 'id' }) as Observable<Usuario>;
   }
 
+  updateUSer(_user: Usuario, _id : string) {
+    // console.log(_user);
+    // console.log(_id);
+    const document = doc(this.firestore, `CaridApp_Usuarios/${_id}`);
+    return setDoc(document, _user);
+  }
+
   deleteUser(_user: Usuario) {
-    const userDocRef = doc(this.firestore, `CaridApp_Usuarios/${_user.strUsername}`);
+    const userDocRef = doc(this.firestore, `CaridApp_Usuarios/${_user.uid}`);
     return deleteDoc(userDocRef);
   }
 
