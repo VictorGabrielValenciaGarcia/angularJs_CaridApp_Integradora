@@ -67,7 +67,7 @@ export class CuyCardComponent implements OnInit {
       backdropDismiss: true,
       buttons: [
         {
-          text: 'Comprar',
+          text: 'Comprar y Equipar',
           icon: 'bag-add',
           handler: () => {
             this.buyAvatar();
@@ -110,8 +110,7 @@ export class CuyCardComponent implements OnInit {
             newDataUSer.arrAvatares != newDataUSer.arrAvatares?.push(this.cuy.id!);
             this.userS.updateUSer(newDataUSer, newDataUSer.uid!)
             this.alertS.updateUserSucces();
-            // this.router.navigate(['/cuy-shop']);
-
+            this.setProfilePicture();
           }
         }
       );

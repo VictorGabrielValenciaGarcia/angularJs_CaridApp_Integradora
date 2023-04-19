@@ -15,15 +15,7 @@
 */
 
 import { Injectable } from '@angular/core';
-import { signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
-import { setPersistence, browserLocalPersistence } from '@firebase/auth'
-import {
-  Auth,
-  signInWithEmailAndPassword,
-  signOut,
-  createUserWithEmailAndPassword,
-  getAuth
-} from '@angular/fire/auth';
+import {Auth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, getAuth, onAuthStateChanged} from '@angular/fire/auth';
 
 import Usuario from '../Interfaces/Usuario.interface';
 import { AlertsToastServiceService } from './alerts-toast-service.service';
@@ -39,6 +31,8 @@ export class SesionControlService {
   ) {
   }
 
+  // Session Cycle
+
   async logIn(_email: any, _password: any) {
     return signInWithEmailAndPassword(this.authC , _email, _password);
   }
@@ -48,11 +42,12 @@ export class SesionControlService {
     return signOut(this.authC);
   }
 
-  // Añade al usuario a las cuentas para hacer login
+  // Register
   register_EmailPassword_User(_UserData : Usuario) {
     return createUserWithEmailAndPassword(this.authC , _UserData.strCorreo, _UserData.strPassword)
   }
 
+  // Session Live
   getCurrenUser() : string{
     let user : any = getAuth().currentUser?.uid;
     // console.log(user);

@@ -12,17 +12,18 @@ import { UserControlService } from 'src/app/Services/user-control.service';
 })
 export class CuyShopPage implements OnInit {
 
-  user !: Usuario;
 
-  allCuys : Avatar[] = [];
-  userCuys : any = [];
   existe : boolean = false ;
 
+  allCuys : Avatar[] = [];
   myCuys : Avatar[] = [];
+  cuysRestantes : Avatar[] = [];
+
+  user !: Usuario;
+  userCuys : any = [];
   userProfile : string = '';
   userPoints : number = 0;
 
-  cuysRestantes : Avatar[] = [];
 
   constructor(
     private userS : UserControlService,
@@ -42,17 +43,22 @@ export class CuyShopPage implements OnInit {
           (_avatars : Avatar[]) => {
             this.allCuys = _avatars;
 
-            this.userCuys.forEach((avatar:any) => {
-              this.existe = this.myCuys.some(f => f.id === avatar);
+            if(this.user.rotullus === 'Carid-User'){
+              this.userCuys.forEach((avatar:any) => {
+                this.existe = this.myCuys.some(cuy => cuy.id === avatar);
 
-              if(!this.existe){
-                let cuyFound = this.allCuys.find(f => f.id === avatar);
-                this.myCuys.push(cuyFound!);
-                this.allCuys = this.allCuys.filter(f => f.id !== avatar);
-                this.cuysRestantes = this.allCuys;
-              }
-            });
-            this.allCuys = this.cuysRestantes;
+                if(!this.existe){
+                  let cuyFound = this.allCuys.find(cuy => cuy.id === avatar);
+                  this.myCuys.push(cuyFound!);
+                  this.allCuys = this.allCuys.filter(cuy => cuy.id !== avatar);
+                  this.cuysRestantes = this.allCuys;
+                }
+                this.allCuys = this.cuysRestantes;
+              });
+            }else{
+              this.myCuys = this.allCuys;
+              this.allCuys = [];
+            }
           }
         )
       }
