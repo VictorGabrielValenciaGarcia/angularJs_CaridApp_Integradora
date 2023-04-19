@@ -3,7 +3,7 @@
   <!-- Menu Usuario -->
   <ion-content scroll-y="true" scroll-x="false" *ngIf="isLogin" >
 
-    <ion-item-divider lines="full" style="background-color: #cde2ee; height: 3.5rem;">
+    <ion-item-divider lines="full">
       <ion-grid fixed>
         <ion-row class="ion-justify-content-center">
           <ion-col size="12">
@@ -15,7 +15,7 @@
     </ion-item-divider>
 
     <ion-item lines="none">
-        <ion-img class="ion-margin-top ion-margin-end ion-margin-start" src="./assets/Images/pilotProfile.jpeg"></ion-img>
+        <ion-img class="ion-margin-top ion-margin-end ion-margin-start" [src]="image"></ion-img>
     </ion-item>
 
     <ion-item lines="full">
@@ -23,7 +23,7 @@
         <ion-row class="ion-justify-content-center">
           <ion-col size="12">
             <h1 class="ion-text-center">{{ username }}</h1>
-            <p class="ion-text-center" style="margin-top: -0.6rem;">{{ email }}</p>
+            <p class="ion-text-center emailMargin">{{ email }}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -35,7 +35,7 @@
         <ion-col size="3">
             <ion-img  src="./assets/Images/Cuypoint_Only.png"/>
         </ion-col>
-        <h2 class="ion-text-start ion-padding-start" style="color: black;"><strong>{{ points }}</strong> pts.</h2>
+        <h2 class="ion-text-start ion-padding-start black" color="dark"><strong>{{ points }}</strong> pts.</h2>
       </ion-row>
     </ion-grid>
 
@@ -43,21 +43,21 @@
 
   <footer class="ion-padding" *ngIf="isLogin" >
     <ion-menu-toggle>
-      <ion-button (click)="goToDashAdmin()" size="large" expand="block" fill="clear" shape="round" style="height: 2rem;" *ngIf="role === 'Carid-Admin'" >
+      <ion-button (click)="goToDashAdmin()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round" *ngIf="role === 'Carid-Admin'" >
         <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
-        <h5 style="color: #2dd36f;">Dashboard</h5>
+        <h5 class="dashButton">Dashboard</h5>
       </ion-button>
-      <ion-button (click)="goToDashInst()" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;" *ngIf="role === 'Carid-Inst'">
+      <ion-button (click)="goToDashInst()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round" *ngIf="role === 'Carid-Inst'">
         <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
-        <h5 style="color: #2dd36f;">Dashboard</h5>
+        <h5 class="dashButton">Dashboard</h5>
       </ion-button>
-      <ion-button (click)="goToSetting()" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem;">
+      <ion-button (click)="goToSetting()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round">
         <ion-icon size="large" slot="start" name="cog"></ion-icon>
         <h5>Editar Cuenta</h5>
       </ion-button>
-      <ion-button routerLink="/login" (click)="logOut()" size="large" expand="block" fill="clear" shape="round" style="height: 2.3rem; margin-bottom: 0.6rem;">
+      <ion-button routerLink="/login" (click)="logOut()" size="large" expand="block" fill="clear" class="buttonNavigate logOutMargin" shape="round">
         <ion-icon size="large" slot="start" name="log-out" color="danger"></ion-icon>
-        <h5 style="color: #eb445a;">Cerrar Sesion</h5>
+        <h5 class="logOutButton">Cerrar Sesion</h5>
       </ion-button>
     </ion-menu-toggle>
   </footer>
@@ -65,7 +65,7 @@
   <!-- Menu Visitante -->
   <ion-content scroll-y="true" scroll-x="false" *ngIf="!isLogin" >
 
-    <ion-item-divider lines="full" style="background-color: #cde2ee; height: 3.5rem;">
+    <ion-item-divider lines="full">
       <ion-grid fixed>
         <ion-row class="ion-justify-content-center">
           <ion-col size="12">
@@ -78,7 +78,7 @@
 
     <ion-item lines="none"></ion-item>
 
-    <ion-grid fixed style="margin-top: 3.5rem;">
+    <ion-grid fixed class="gridMenuVisit">
       <ion-row class="ion-justify-content-center ion-align-items-center">
 
         <ion-col size="9">

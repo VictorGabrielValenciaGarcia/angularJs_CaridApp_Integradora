@@ -4,6 +4,7 @@ import { SesionControlService } from 'src/app/Services/sesion-control.service';
 import { Router } from '@angular/router';
 import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 import { UserControlService } from 'src/app/Services/user-control.service';
+import Usuario from 'src/app/Interfaces/Usuario.interface';
 
 @Component({
   selector: 'app-side-nav',
@@ -17,6 +18,7 @@ export class SideNavComponent implements OnInit {
 
   // User Data
   username : string = '';
+  image : string = '';
   points : number = 0;
   email : string = '';
   role : string = '';
@@ -27,11 +29,13 @@ export class SideNavComponent implements OnInit {
     private userS: UserControlService,
     private router : Router,
   ) {
+    console.log(this.sesion.getCurrenUser());
+
     if(this.sesion.getCurrenUser() !== null){
-        this.isLogin = true;
-        // console.log(this.isLogin);
-        this.getUserData(this.sesion.getCurrenUser());
-      }
+      this.getUserData(this.sesion.getCurrenUser());
+      this.isLogin = true;
+      // console.log(this.isLogin);
+    }
   }
 
   ngOnInit() {
@@ -61,11 +65,12 @@ export class SideNavComponent implements OnInit {
 
   getUserData(_uid : string){
     this.userS.getUser(_uid).subscribe(
-      _user => {
+      (_user:Usuario) => {
         this.username = _user.strUsername;
         this.points != _user.numCuy_Puntos_Usuario;
         this.email = _user.strCorreo;
         this.role = _user.rotullus;
+        this.image = _user.strFoto_Perfil;
       }
     )
   }

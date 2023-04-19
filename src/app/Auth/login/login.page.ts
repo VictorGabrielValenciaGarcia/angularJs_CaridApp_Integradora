@@ -69,20 +69,6 @@ export class LoginPage implements OnInit {
     });
   }
 
-  logInWithGoogle() {
-    this.sessionS.logInWithGoogle()
-    .then(response => {
-      this.router.navigate(['./campaigns/animales']);
-      this.user = response
-      // console.log(this.user);
-    })
-    .catch(error => {
-      // this.LogueoFallido();
-      console.log(error);
-    })
-  }
-
-
   // Elementos
 
   register(tipo:string){

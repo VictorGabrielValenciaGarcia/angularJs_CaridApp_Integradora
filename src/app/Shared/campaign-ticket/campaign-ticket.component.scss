@@ -1,3 +1,23 @@
 .state{
   font-weight: bold;
 }
+
+ion-card{
+  max-height: 150px !important;
+}
+
+.imgCampaign{
+  border-radius: 30% !important;
+  object-fit: cover !important;
+  max-height: 110px;
+}
+
+.vigente{
+  color:rgb(0, 176, 41);
+}
+.vencida{
+  color:rgb(64, 64, 64)
+}
+.desactivada{
+  color:rgb(181, 0, 0)
+}

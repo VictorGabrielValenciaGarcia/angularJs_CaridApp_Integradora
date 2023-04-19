@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,500&display=swap');
+
+h2{
+  color: black;
+  font-weight: bold;
+}
+
+.scrollStore{
+  max-height:520px !important;
+  border-radius: 3% !important;
+}
+
+.fontType {
+  display: block;
+  text-align: center;
+  margin-top: 0.2%;
+  margin-bottom: 0.2%;
+  font-family: 'Courgette', cursive;
+  // font-family: 'Shantell Sans', cursive;
+  font-size: 2.3rem;
+}
+
+.cuyProfile {
+  --size: 100%;
+  --border-radius: 14px;
+  // border: 2px solid #420f005e;
+}
+
+.cuyPointsUser {
+  width: 2rem;
+  margin-left: 5%;
+}
+
+.store{
+  background-color: #78c0f00a;
+  border: 1px solid #65aedfa1;
+  box-shadow: none;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.rareza {
+  &.comun{
+    border: 3px solid #000f426b !important;
+    border-radius: 14px;
+  }
+
+  &.especial{
+    border: 3px solid #07d400ad !important;
+    border-radius: 14px;
+  }
+
+  &.epica{
+    border: 3px solid #ffa600a6 !important;
+    border-radius: 14px;
+  }
+
+  &.legendaria{
+    border: 3px solid #bb00ffb2 !important;
+    border-radius: 14px;
+    // border: 3px solid #d4007c93 !important;
+  }
+}
+
+.paddingForTitle {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.backgroudTool{
+  background-color: #7ac4f5;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.cuyShopMargin{
+  margin-bottom: -2rem;
+}

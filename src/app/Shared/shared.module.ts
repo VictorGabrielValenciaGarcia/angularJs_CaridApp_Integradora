@@ -7,6 +7,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { CampaignTicketComponent } from './campaign-ticket/campaign-ticket.component';
 import { TimerComponent } from './timer/timer.component';
 import { CampaignCardComponent } from './campaign-card/campaign-card.component';
+import { CuyCardComponent } from './cuy-card/cuy-card.component';
 
 
 
@@ -18,6 +19,7 @@ import { CampaignCardComponent } from './campaign-card/campaign-card.component';
     CampaignTicketComponent,
     TimerComponent,
     CampaignCardComponent,
+    CuyCardComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { CampaignCardComponent } from './campaign-card/campaign-card.component';
     CampaignTicketComponent,
     TimerComponent,
     CampaignCardComponent,
+    CuyCardComponent
   ]
 })
 export class SharedModule { }

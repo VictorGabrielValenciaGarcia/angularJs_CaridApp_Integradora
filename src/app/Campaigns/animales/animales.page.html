@@ -5,9 +5,9 @@
 
   <ion-grid fixed>
     <ion-row class="ion-justify-content-center">
-      <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let animal of AnimalCampaigns">
+      <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let animal of AnimalCampaigns; let i = index">
 
-        <app-campaign-card [campaign]="animal"></app-campaign-card>
+        <app-campaign-card [campaign]="animal" [nomInst]="nomInst[i]"></app-campaign-card>
 
       </ion-col>
     </ion-row>

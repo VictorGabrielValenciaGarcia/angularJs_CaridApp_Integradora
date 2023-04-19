@@ -40,20 +40,7 @@ export class SesionControlService {
   }
 
   async logIn(_email: any, _password: any) {
-
-
-    // return signInWithEmailAndPassword(this.authC , _email, _password);
-
-    // return setPersistence(this.authC , browserLocalPersistence).then(() => {
-      return signInWithEmailAndPassword(this.authC , _email, _password);
-    // }).catch((error) => {
-    //   return Promise.reject(error);
-    // });
-  }
-
-  // Login con google
-  logInWithGoogle() {
-    return signInWithPopup(this.authC , new GoogleAuthProvider());
+    return signInWithEmailAndPassword(this.authC , _email, _password);
   }
 
   logOut() {

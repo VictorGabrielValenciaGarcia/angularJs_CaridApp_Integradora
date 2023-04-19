@@ -4,6 +4,8 @@ import { IonModal, ModalController } from '@ionic/angular';
 import { getElement } from 'ionicons/dist/types/stencil-public-runtime';
 import Campania, { Estado, Programa_Sector } from '../../Interfaces/Campania.interface';
 import { CampaignControlServiceService } from 'src/app/Services/campaign-control-service.service';
+import { UserControlService } from 'src/app/Services/user-control.service';
+import Usuario from 'src/app/Interfaces/Usuario.interface';
 
 @Component({
   selector: 'app-campaign',
@@ -23,10 +25,12 @@ export class CampaignPage implements OnInit {
   checkedList : boolean[] = [];
   idCampaing : string = '';
   campaignName : string = '';
+  nomInst : string = '';
 
   constructor(
-    private ar : ActivatedRoute,
     private router : Router,
+    private ar : ActivatedRoute,
+    private userC : UserControlService,
     private campaingS : CampaignControlServiceService,
   ) {
     this.ar.params.subscribe(
@@ -38,12 +42,17 @@ export class CampaignPage implements OnInit {
             this.campaign = _campania;
             this.campaignName = _campania.strNombre_Campania
             this.campaign.arrLista_Enseres_Campania.forEach((element:any) => {
-              this.checkedList.push(false)
-            });
+            this.checkedList.push(false)
+            this.userC.getUser(this.campaign?.numId_Institucion).subscribe(
+              (_user : Usuario) => {
+                // console.log(_user);
+                this.nomInst = _user.strNombre_Institucion!;
+              }
+            );
+          });
+        }
+        );
 
-          }
-        )
-        // console.log(this.idCampaing);
       }
     )
   }

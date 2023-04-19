@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collectionData, docData, setDoc } from '@angular/fire/firestore';
-import { addDoc, collection, doc, deleteDoc, updateDoc } from '@firebase/firestore';
-import CentroAcopio from '../Interfaces/CentroAcopio.interface';
+import { addDoc, collection, doc, deleteDoc } from '@firebase/firestore';
 import { Observable } from 'rxjs';
-import { log } from 'console';
+import CentroAcopio from '../Interfaces/CentroAcopio.interface';
 
 @Injectable({
   providedIn: 'root'

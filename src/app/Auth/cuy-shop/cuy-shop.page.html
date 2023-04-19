@@ -1,11 +1,13 @@
 <ion-header translucent="true" mode="ios">
-  <ion-toolbar style="background-color: #7ac4f5">
+  <ion-toolbar class="backgroudTool">
 
     <ion-buttons mode="md" slot="start">
-      <ion-back-button defaultHref="/dashboard/carid-Inst-Role"></ion-back-button>
+      <ion-back-button defaultHref="/settings"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Centos de Acopio</ion-title>
+    <span class="fontType paddingForTitle">
+      CaridApp
+    </span>
 
     <ion-buttons slot="end">
       <ion-menu-button autoHide="true" color="dark" menu="first" > </ion-menu-button>
@@ -14,9 +16,69 @@
   </ion-toolbar>
 </ion-header>
 
-
 <app-side-nav></app-side-nav>
 
 <ion-content id="main">
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+
+      <ion-col sizeLg="5" sizeXs="12" sizeMd="5" class="cuyShopMargin">
+        <h1 class="ion-text-center bold">CUY SHOP</h1>
+
+        <ion-grid fixed>
+          <ion-row class="ion-justify-content-center">
+
+            <ion-col sizeXs="7" sizeMd="8" sixeLg="9">
+              <ion-thumbnail class="cuyProfile rareza"
+                            [ngClass]="[userProfile === 'Común' ? 'comun' : '',
+                                        userProfile === 'Épica' ? 'epica' : '',
+                                        userProfile === 'Especial' ? 'especial' : '',
+                                        userProfile === 'Legendaria' ? 'legendaria' : '',]">
+                <img [src]="userProfile" class="rareza"/>
+              </ion-thumbnail>
+            </ion-col>
+
+          </ion-row>
+          <ion-row class="ion-justify-content-center" iala>
+
+            <ion-col sizeXs="10" sizeMd="6" sixeLg="6">
+              <ion-card>
+                <ion-item lines="none">
+                  <img class="cuyPointsUser" src="./assets/Images/Cuypoint_Only.png"/>
+                  <ion-label class="ion-text-center"><strong>Cuy Points:</strong> {{ userPoints }}</ion-label>
+                </ion-item>
+              </ion-card>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+
+      </ion-col>
+
+      <ion-col sizeLg="7" sizeXs="12" sizeMd="7">
+        <ion-card class="store scrollStore" scroll-y="true" scroll-x="false">
+
+            <h2 class="ion-text-center" >Cuy Skins</h2>
+
+            <ion-grid fixed>
+              <ion-row class="ion-justify-content-evenly">
+
+                <ion-col sizeXs="6" sizeMd="4" sizeLg="4" *ngFor="let cuyo of myCuys" >
+                  <app-cuy-card [cuy]="cuyo" [isMine]="true"></app-cuy-card>
+                </ion-col>
+
+                <ion-col sizeXs="6" sizeMd="4" sizeLg="4" *ngFor="let cuyo of cuysRestantes" >
+                  <app-cuy-card [cuy]="cuyo" [isMine]="false"></app-cuy-card>
+                </ion-col>
+
+              </ion-row>
+            </ion-grid>
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

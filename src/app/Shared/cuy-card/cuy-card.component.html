@@ -1,0 +1,35 @@
+<div (click)="avatarInteraction()" *ngIf="!isMine">
+
+  <img  [src]="cuy.strImagen_Avatar" class="cuyProfile  rareza"
+    [ngClass]="[cuy.str_Rareza_Avatar === 'Común' ? 'comun' : '',
+                cuy.str_Rareza_Avatar === 'Épica' ? 'epica' : '',
+                cuy.str_Rareza_Avatar === 'Especial' ? 'especial' : '',
+                cuy.str_Rareza_Avatar === 'Legendaria' ? 'legendaria' : '',]"
+  />
+
+  <h5 class="cuyName">{{ cuy.strNombre_Avatar }}</h5>
+
+  <p class="costo" >
+    <strong>Costo: </strong>
+    {{ cuy.numPrecio_Avatar }}
+    <img class="cuyPointsUser" src="./assets/Images/Cuypoint_Only.png"/>
+  </p>
+
+</div>
+
+<div (click)="myAvatarInteraction()" *ngIf="isMine">
+
+  <img  [src]="cuy.strImagen_Avatar" class="cuyProfile  rareza"
+    [ngClass]="[cuy.str_Rareza_Avatar === 'Común' ? 'comun' : '',
+                cuy.str_Rareza_Avatar === 'Épica' ? 'epica' : '',
+                cuy.str_Rareza_Avatar === 'Especial' ? 'especial' : '',
+                cuy.str_Rareza_Avatar === 'Legendaria' ? 'legendaria' : '',]"
+  />
+
+  <h5 class="cuyName">{{ cuy.strNombre_Avatar }}</h5>
+
+  <p class="costo" >
+    <strong>Comprado</strong>
+  </p>
+
+</div>

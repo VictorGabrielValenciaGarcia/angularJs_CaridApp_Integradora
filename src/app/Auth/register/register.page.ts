@@ -35,6 +35,8 @@ export class RegisterPage implements OnInit {
       strApellido_Materno : '',
     },
 
+    arrAvatares : [],
+
     strFoto_Perfil : '',
     strPassword : '',
     strUsername : '',
@@ -284,6 +286,7 @@ export class RegisterPage implements OnInit {
         numCP : this.RegisterUserForm.get('numCP')?.value,
       },
       numCuy_Puntos_Usuario : 0,
+      arrAvatares : []
     }
 
     // console.log(this.dataUser);

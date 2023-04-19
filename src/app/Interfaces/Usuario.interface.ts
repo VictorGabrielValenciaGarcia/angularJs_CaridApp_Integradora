@@ -30,6 +30,7 @@ export default interface Usuario{
   }
 
   numCuy_Puntos_Usuario?:number,
+  arrAvatares ?: string[],
 
   // Instituciones
   boolVerificado_Institucion?: boolean,

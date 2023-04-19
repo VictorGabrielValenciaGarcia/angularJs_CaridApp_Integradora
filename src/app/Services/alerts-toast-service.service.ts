@@ -12,6 +12,18 @@ export class AlertsToastServiceService {
     private loadCtrl : LoadingController
   ) { }
 
+  async loginSuccess(_userName : string){//Creamos un  parametro de tipo string
+    const toastLogIn = await this.toastC.create({
+      message: 'Bienvenid@ ' + _userName + '!!!',
+      mode : 'ios',
+      duration: 2500,
+      position: 'top',
+      color:'success',
+      icon: 'happy-outline'
+    });
+
+    toastLogIn.present();
+  }
 
   async successToast(_msn:string){//Creamos un  parametro de tipo string
     const toastSuccess = await this.toastC.create({
@@ -53,55 +65,43 @@ export class AlertsToastServiceService {
   }
 
   async confirm(_msn : string, _title: string){
-  let choice;
+    let choice;
 
-  const alert = await this.alertC.create({
-    header : _title,
-    subHeader : _msn,
-    mode : 'ios',
-    buttons : [
-      {
-        text : 'Aceptar',
-        role : 'confirm',
-        handler : ()=> {
-          alert.dismiss(true);
-          return false;
-        }
-      },
-      {
-        text : 'Cancelar',
-        role : 'cancel',
-        handler : ()=> {
-          alert.dismiss(false);
-          return false;
-        }
-      },
-    ]
-  });
+    const alert = await this.alertC.create({
+      header : _title,
+      subHeader : _msn,
+      mode : 'ios',
+      buttons : [
+        {
+          text : 'Aceptar',
+          role : 'confirm',
+          handler : ()=> {
+            alert.dismiss(true);
+            return false;
+          }
+        },
+        {
+          text : 'Cancelar',
+          role : 'cancel',
+          handler : ()=> {
+            alert.dismiss(false);
+            return false;
+          }
+        },
+      ]
+    });
 
-  await alert.present();
+    await alert.present();
 
-  await alert.onDidDismiss().then(
-    (data:any) =>{
-      choice = data;
-    }
+    await alert.onDidDismiss().then(
+      (data:any) =>{
+        choice = data;
+      }
   );
 
   return choice;
   }
 
-  async loginSuccess(_userName : string){//Creamos un  parametro de tipo string
-    const toastLogIn = await this.toastC.create({
-      message: 'Bienvenid@ ' + _userName + '!!!',
-      mode : 'ios',
-      duration: 2500,
-      position: 'top',
-      color:'success',
-      icon: 'happy-outline'
-    });
-
-    toastLogIn.present();
-  }
 
   async logOutSuccess(){//Creamos un  parametro de tipo string
     const toastLogOut = await this.toastC.create({
