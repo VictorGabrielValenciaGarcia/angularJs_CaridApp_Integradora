@@ -19,6 +19,7 @@ import {Auth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPasswor
 
 import Usuario from '../Interfaces/Usuario.interface';
 import { AlertsToastServiceService } from './alerts-toast-service.service';
+import { updatePassword } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,12 @@ export class SesionControlService {
     let user : any = getAuth().currentUser?.uid;
     // console.log(user);
     return user;
+  }
+
+  updatePassword(_newPassword : string){
+    const auth = getAuth();
+    const user = auth.currentUser!;
+    updatePassword(user, _newPassword);
   }
 
 }

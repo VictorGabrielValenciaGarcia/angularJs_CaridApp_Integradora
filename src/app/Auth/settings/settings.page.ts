@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import CentroAcopio from 'src/app/Interfaces/CentroAcopio.interface';
@@ -9,6 +9,7 @@ import { CenterControlServiceService } from 'src/app/Services/center-control-ser
 import { RegexServiceService } from 'src/app/Services/regex-service.service';
 import { SesionControlService } from 'src/app/Services/sesion-control.service';
 import { UserControlService } from 'src/app/Services/user-control.service';
+import { updatePassword } from 'firebase/auth';
 
 @Component({
   selector: 'app-settings',
@@ -46,9 +47,11 @@ export class SettingsPage implements OnInit {
   settingsContactForm !: FormGroup;
   settingsProfileForm !: FormGroup;
   settingsInstDataForm !: FormGroup;
+  settingsPasswordForm !: FormGroup;
 
   constructor(
     private router : Router,
+    private formB : FormBuilder,
     private userS : UserControlService,
     private regex : RegexServiceService,
     private sesionS : SesionControlService,
@@ -67,6 +70,15 @@ export class SettingsPage implements OnInit {
 
     // General Forms
     this.settingsProfileForm = this.settingsProfileFormFormGroup();
+    this.settingsPasswordForm = this.formB.group({
+
+      newPass: ["", [
+        Validators.required,
+        Validators.maxLength(16),
+        Validators.minLength(8),
+      ]],
+
+    });
 
 
     this.userS.getUser(this.sesionS.getCurrenUser()).subscribe(
@@ -279,6 +291,18 @@ export class SettingsPage implements OnInit {
       // console.log(newDataUSer);
 
       this.userS.updateUSer(newDataUSer, newDataUSer.uid!)
+      this.alertS.updateUserSucces();
+
+    }
+
+    settingsPassword(){
+      console.log(this.settingsPasswordForm.value);
+
+      let password = this.settingsPasswordForm.get('newPass')?.value;
+
+      console.log(password);
+
+      this.sesionS.updatePassword(password);
       this.alertS.updateUserSucces();
 
     }

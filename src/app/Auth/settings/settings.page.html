@@ -576,29 +576,32 @@
         <ion-grid class="ion-margin-top">
           <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col sizeXs="12" sizeLg="9">
-                <form >
+                <form [formGroup]="settingsPasswordForm" (ngSubmit)="settingsPassword()">
 
                   <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                     <ion-label position="floating">Nueva Contraseña</ion-label>
-                    <ion-input required [type]="passInputType" maxlength="16" id="pass"></ion-input>
+                    <ion-input required clearInput="true" [type]="passInputType"  formControlName="newPass" maxlength="16" id="pass"
+                    [class.inputWrong] = "settingsPasswordForm.get('newPass')?.invalid"></ion-input>
                   </ion-item>
 
-                  <ion-item fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
-                    <ion-label position="floating">Confirmar tu Contraseña</ion-label>
-                    <ion-input required [type]="passInputType" maxlength="16" id="pass"></ion-input>
-                  </ion-item>
+                  <div class="adjustErrors">
+                    <p class="errors" *ngIf="(settingsPasswordForm.get('newPass')?.dirty || settingsPasswordForm.get('newPass')?.touched) && settingsPasswordForm.get('newPass')?.hasError('required')">*Este campo es Obligatorio</p>
+                    <p class="errors" *ngIf="settingsPasswordForm.get('newPass')?.hasError('maxlength')">Solo 16 Carácteres</p>
+                    <p class="errors" *ngIf="settingsPasswordForm.get('newPass')?.hasError('minlength')">No hay contraseñas menores a 8 carácteres</p>
+                  </div>
 
                   <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" style="margin-top: 1rem;">
                     <ion-icon slot="start" name="eye-outline"></ion-icon>
                     Mostrar Contraseña
                   </ion-button>
+
                   <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" style="margin-top: 1rem;">
                     <ion-icon slot="start" name="eye-off-outline"></ion-icon>
                     Ocultar Contraseña
                   </ion-button>
 
                   <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top">
+                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsPasswordForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
