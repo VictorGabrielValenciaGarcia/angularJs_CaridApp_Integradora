@@ -65,7 +65,7 @@ export class CentersMapPage implements OnInit {
     let currentMark : CentroAcopio =     {
       strNombre_CentroA : 'Depinazul',
       strSubtitulo_CentroA : 'Usted Abrio el Mapa Aqui',
-      strImage_CentroA : './assets/Images/lineDivider3.png',
+      strImage_CentroA : './assets/Images/lineDivider3.webp',
       numId_Institucion : '0',
 
       mapContactos_CentroA : {
@@ -135,7 +135,7 @@ export class CentersMapPage implements OnInit {
                 <h3 class="ion-text-center" style="margin-top: -0.1rem; margin-bottom: -0.2rem;">${_marks.strNombre_CentroA}</h3>
               </ion-col>
               <ion-col size=12>
-                <img src="./assets/Images/lineDivider4.png"
+                <img src="./assets/Images/lineDivider4.webp"
                   style="display: block;
                   width: 100%;
                   height: 100%;

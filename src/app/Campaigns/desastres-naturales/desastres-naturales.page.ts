@@ -25,6 +25,7 @@ export class DesastresNaturalesPage implements OnInit {
       _campaigns => {
         this.AllCampaigns = _campaigns;
         this.DisasterCampaigns = this.AllCampaigns.filter(f => f.strPrograma_Sector_Campania === Programa_Sector.Siniestro);
+        this.DisasterCampaigns = this.DisasterCampaigns.filter(f => f.strEstado_Campania === 'Vigente');
 
         this.DisasterCampaigns.forEach(d => {
           let nameInst ;

@@ -6,6 +6,8 @@ import Campania, { Estado, Programa_Sector } from '../../Interfaces/Campania.int
 import { CampaignControlServiceService } from 'src/app/Services/campaign-control-service.service';
 import { UserControlService } from 'src/app/Services/user-control.service';
 import Usuario from 'src/app/Interfaces/Usuario.interface';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 
 @Component({
   selector: 'app-campaign',
@@ -27,14 +29,20 @@ export class CampaignPage implements OnInit {
   campaignName : string = '';
   nomInst : string = '';
 
+  reportCampaignForm !: FormGroup;
+
   constructor(
     private router : Router,
     private ar : ActivatedRoute,
     private userC : UserControlService,
+    private alertS : AlertsToastServiceService,
     private campaingS : CampaignControlServiceService,
   ) {}
 
   ngOnInit() {
+
+    this.reportCampaignForm = this.reportCampaignFormGroup();
+
     this.ar.params.subscribe(
       (_id:any)=>{
         this.idCampaing = _id.id;
@@ -60,6 +68,14 @@ export class CampaignPage implements OnInit {
 
     this.campaign?.arrLista_Enseres_Campania.forEach((element:any) => {
       this.checkedList.push(false)
+    });
+  }
+
+  reportCampaignFormGroup(){
+    return  new FormGroup({
+      reason: new FormControl('', [
+        Validators.required,
+      ]),
     });
   }
 
@@ -208,6 +224,21 @@ export class CampaignPage implements OnInit {
     }
 
     return color;
+  }
+
+  // Make Report
+
+  makeReport(){
+    this.modalReportDismiss();
+    console.log(this.reportCampaignForm.value);
+
+    let newData:Campania = this.campaign;
+    newData.numCantidad_Reportes += 1;
+    // console.log(newData);
+
+    this.campaingS.updateCampaign(newData,this.idCampaing);
+    this.alertS.reportCampaign();
+
   }
 
 }

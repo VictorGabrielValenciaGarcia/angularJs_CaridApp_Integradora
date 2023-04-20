@@ -12,17 +12,17 @@ export class DashboardPage implements OnInit {
 
   interactionsInst : any = [
     {
-      image: './assets/Images/allCampaings.png',
+      image: './assets/Images/allCampaings.webp',
       title : 'Todas las Campañas',
       route : './campaigns/desastres-naturales',
     },
     {
-      image: './assets/Images/myCampaings.png',
+      image: './assets/Images/myCampaings.webp',
       title : 'Mis Campañas',
       route : './mi-campaigns',
     },
     {
-      image: './assets/Images/myCenters.png',
+      image: './assets/Images/myCenters.webp',
       title : 'Mis Centros de Acopio',
       route : './mi-centers',
     },

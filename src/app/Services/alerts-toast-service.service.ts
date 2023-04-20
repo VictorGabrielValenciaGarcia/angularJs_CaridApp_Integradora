@@ -155,6 +155,19 @@ export class AlertsToastServiceService {
     toastUpdate.present();
   }
 
+  async reportCampaign(){//Creamos un  parametro de tipo string
+    const toastUpdate = await this.toastC.create({
+      message: 'Reporte Realizado. Muchas Gracias por tu Participación',
+      mode : 'ios',
+      duration: 3000,
+      position: 'top',
+      color:'success',
+      icon: 'notifications-circle-outline'
+    });
+
+    toastUpdate.present();
+  }
+
   closeLoading(){
     this.loadCtrl.dismiss();
   }

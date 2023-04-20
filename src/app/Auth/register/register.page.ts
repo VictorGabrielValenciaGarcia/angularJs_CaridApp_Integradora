@@ -256,7 +256,7 @@ export class RegisterPage implements OnInit {
       ]),
 
       // Valores por Default
-      strFoto_Perfil: new FormControl('./assets/Images/Cuyos/cuyoDef.png'),
+      strFoto_Perfil: new FormControl('./assets/Images/Cuyos/cuyoDef.webp'),
       numCuy_Puntos_Usuario: new FormControl(0),
 
     });
@@ -320,7 +320,7 @@ export class RegisterPage implements OnInit {
 
       // Default Values
       rotullus : 'Carid-Inst',
-      strFoto_Perfil : './assets/Images/Cuyos/cuyoDef.png',
+      strFoto_Perfil : './assets/Images/Cuyos/cuyoDef.webp',
       arrCentros_Acopio_Institucion : [],
       boolVerificado_Institucion: false,
 

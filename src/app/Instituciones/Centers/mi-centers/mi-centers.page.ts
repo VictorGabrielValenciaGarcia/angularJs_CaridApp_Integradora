@@ -98,7 +98,7 @@ export class MiCentersPage implements OnInit {
         <ion-grid>
             <ion-row class="ion-justify-content-center">
             <ion-col size=12>
-              <img src="./assets/Images/lineDivider4.png"
+              <img src="./assets/Images/lineDivider4.webp"
                 style="display: block;
                 width: 100%;
                 height: 100%;
@@ -110,7 +110,7 @@ export class MiCentersPage implements OnInit {
               <h4 class="ion-text-center" style="margin-top: -0.1rem; margin-bottom: -0.2rem;">${_marks.strNombre_CentroA}</h4>
             </ion-col>
             <ion-col size=12>
-              <img src="./assets/Images/lineDivider4.png"
+              <img src="./assets/Images/lineDivider4.webp"
                 style="display: block;
                 width: 100%;
                 height: 100%;

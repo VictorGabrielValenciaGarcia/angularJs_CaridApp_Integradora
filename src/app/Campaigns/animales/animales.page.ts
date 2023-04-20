@@ -25,6 +25,7 @@ export class AnimalesPage implements OnInit {
       _campaigns => {
         this.AllCampaigns = _campaigns;
         this.AnimalCampaigns = this.AllCampaigns.filter(f => f.strPrograma_Sector_Campania === Programa_Sector.Animal);
+        this.AnimalCampaigns = this.AnimalCampaigns.filter(f => f.strEstado_Campania === 'Vigente');
 
         this.AnimalCampaigns.forEach(d => {
           let nameInst ;

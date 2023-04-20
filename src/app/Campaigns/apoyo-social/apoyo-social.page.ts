@@ -25,6 +25,7 @@ export class ApoyoSocialPage implements OnInit {
       _campaigns => {
         this.AllCampaigns = _campaigns;
         this.SocialCampaigns = this.AllCampaigns.filter(f => f.strPrograma_Sector_Campania === Programa_Sector.Social);
+        this.SocialCampaigns = this.SocialCampaigns.filter(f => f.strEstado_Campania === 'Vigente');
 
         this.SocialCampaigns.forEach(d => {
           this.userC.getUser(d.numId_Institucion).subscribe(

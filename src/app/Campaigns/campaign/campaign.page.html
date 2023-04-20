@@ -4,11 +4,11 @@
   <ion-grid fixed>
     <ion-row class="ion-align-items-center ion-justify-content-center">
 
-      <ion-col size-lg="5" size-md="12" size-xs="12" class="ion-padding">
+      <ion-col sizeLg="5" sizeMd="12" sizeXs="12" class="ion-padding">
         <img class="imageForm" [src]="campaign?.strImage_Campania" />
       </ion-col>
 
-      <ion-col size-lg="5" size-md="12" size-xs="12">
+      <ion-col sizeLg="5" sizeMd="12" sizeXs="12">
 
         <ion-card class="ion-padding">
 
@@ -99,28 +99,24 @@
 
         </ion-card>
 
-        <ion-grid class="ion-margin-top">
-          <ion-row class="ion-justify-content-center">
-            <ion-col size-xs="9" size-md="6" size-lg="6">
-              <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="success">
-                <ion-text color="dark">
-                  <h5>Apoyar Campaña</h5>
-                </ion-text>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
 
+
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-bottom">
+      <ion-col sizeXs="9" sizeMd="6" sizeLg="6">
+        <ion-button mode="md" fill="outline" expand="block" id="open-modalSupport" color="success">
+          <ion-text color="dark">
+            <h5>Apoyar Campaña</h5>
+          </ion-text>
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button size="small" color="tertiary" size="large">
-      <!-- <ion-icon name="help-circle-outline" size="large"></ion-icon> -->
-      <!-- <ion-icon name="help-outline" size="large"></ion-icon> -->
       <ion-icon name="information-circle-outline" size="large"></ion-icon>
-      <!-- <ion-icon name="information-outline" size="large"></ion-icon> -->
     </ion-fab-button>
 
     <ion-fab-list side="start">
@@ -144,7 +140,7 @@
 
 <!-- Modal Select Support -->
 
-<ion-modal #modalSupport trigger="open-modal" id="modalSupport">
+<ion-modal #modalSupport trigger="open-modalSupport" id="modalSupport">
   <ng-template>
     <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
       <ion-toolbar class="ion-text-center">
@@ -154,7 +150,7 @@
       <ion-grid fixed>
         <ion-row class="ion-justify-content-center">
 
-          <ion-col size-xs="11" size-md="8" size-lg="8">
+          <ion-col sizeXs="11" sizeMd="8" sizeLg="8">
             <ion-button mode="md" fill="outline" expand="block" (click)="showEconomicSuppor()" color="success">
               <ion-text color="dark">
                 <h5>Por Transacción</h5>
@@ -162,10 +158,18 @@
             </ion-button>
           </ion-col>
 
-          <ion-col size-xs="11" size-md="8" size-lg="8">
+          <ion-col sizeXs="11" sizeMd="8" sizeLg="8">
             <ion-button mode="md" fill="outline" expand="block" (click)="showPhysicSupport()">
               <ion-text color="dark">
                 <h5>Donacion Fisica</h5>
+              </ion-text>
+            </ion-button>
+          </ion-col>
+
+          <ion-col sizeXs="11" sizeMd="8" sizeLg="8">
+            <ion-button mode="md" fill="outline" expand="block" (click)="modalSupportDismiss()" color="danger">
+              <ion-text color="dark">
+                <h5>Cancelar</h5>
               </ion-text>
             </ion-button>
           </ion-col>
@@ -186,46 +190,48 @@
         ¿Desea Reportar esta Campaña?
       </ion-toolbar>
 
-      <ion-grid fixed>
-        <ion-row class="ion-justify-content-center ion-align-items-center">
+      <form [formGroup]="reportCampaignForm" (ngSubmit)="makeReport()">
+        <ion-grid fixed>
+          <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col sizeXs="12" sizeLg="9" class="ion-margin-top">
+              <ion-item fill="solid" mode="md">
+                <ion-label position="floating">Seleccione el motivo de su Reporte</ion-label>
+                <ion-select value="" multiple="true" placeholder="Seleccione una opción" formControlName="reason">
+                  <ion-select-option value="Contenido sexual">Contenido sexual</ion-select-option>
+                  <ion-select-option value="Contenido violento o repulsivo">Contenido violento</ion-select-option>
+                  <ion-select-option value="Contenido repulsivo">Contenido repulsivo</ion-select-option>
+                  <ion-select-option value="Incitación al odio">Incitación al odio</ion-select-option>
+                  <ion-select-option value="Actos peligrosos">Actos peligrosos</ion-select-option>
+                  <ion-select-option value="Actos perjudiciales">Actos perjudiciales</ion-select-option>
+                  <ion-select-option value="Maltrato infantil">Maltrato infantil</ion-select-option>
+                  <ion-select-option value="Fomenta el terrorismo">Fomenta el terrorismo</ion-select-option>
+                  <ion-select-option value="Engañoso o con spam">Engañoso o con spam</ion-select-option>
+                  <ion-select-option value="Infringe mis derechos">Infringe mis derechos</ion-select-option>
+                </ion-select>
+              </ion-item>
 
-          <ion-col sizeXs="12" sizeLg="9" class="ion-margin-top">
-            <ion-item fill="solid" mode="md">
-              <ion-label position="floating">Seleccione el motivo de su Reporte</ion-label>
-              <ion-select value="" multiple="false">
-                <ion-select-option value="Contenido sexual">Contenido sexual</ion-select-option>
-                <ion-select-option value="Contenido violento o repulsivo">Contenido violento</ion-select-option>
-                <ion-select-option value="Contenido repulsivo">Contenido repulsivo</ion-select-option>
-                <ion-select-option value="Incitación al odio">Incitación al odio</ion-select-option>
-                <ion-select-option value="Actos peligrosos">Actos peligrosos</ion-select-option>
-                <ion-select-option value="Actos perjudiciales">Actos perjudiciales</ion-select-option>
-                <ion-select-option value="Maltrato infantil">Maltrato infantil</ion-select-option>
-                <ion-select-option value="Fomenta el terrorismo">Fomenta el terrorismo</ion-select-option>
-                <ion-select-option value="Engañoso o con spam">Engañoso o con spam</ion-select-option>
-                <ion-select-option value="Infringe mis derechos">Infringe mis derechos</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
+            </ion-col>
 
-          <ion-col size-xs="6" size-md="6" size-lg="6">
-            <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="danger"
-              (click)="modalReportDismiss()">
-              <ion-text color="dark">
-                <h5>Cancelar</h5>
-              </ion-text>
-            </ion-button>
-          </ion-col>
+            <ion-col sizeXs="6" sizeMd="6" sizeLg="6">
+              <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="danger"
+                (click)="modalReportDismiss()">
+                <ion-text color="dark">
+                  <h5>Cancelar</h5>
+                </ion-text>
+              </ion-button>
+            </ion-col>
 
-          <ion-col size-xs="6" size-md="6" size-lg="6">
-            <ion-button mode="md" fill="outline" expand="block" id="open-modal" color="success">
-              <ion-text color="dark">
-                <h5>Reportar</h5>
-              </ion-text>
-            </ion-button>
-          </ion-col>
+            <ion-col sizeXs="6" sizeMd="6" sizeLg="6">
+              <ion-button type="submit" mode="md" fill="outline" expand="block" color="success" [disabled]="reportCampaignForm.invalid">
+                <!-- <ion-text color="dark"> -->
+                  Reportar
+                <!-- </ion-text> -->
+              </ion-button>
+            </ion-col>
 
-        </ion-row>
-      </ion-grid>
+          </ion-row>
+        </ion-grid>
+      </form>
 
     </ion-content>
   </ng-template>
@@ -254,7 +260,7 @@
       <ion-grid>
         <ion-row class="ion-justify-content-center">
 
-          <ion-col size-xs="12" size-md="12" size-lg="12">
+          <ion-col sizeXs="12" sizeMd="12" sizeLg="12">
 
             <form>
 
@@ -291,7 +297,7 @@
                   <ion-col sizeXS="12" sizeLg="8" sizeMd="8" class="ion-margin-bottom ion-margin-top">
                     <div class="card">
                       <div class="intern">
-                        <img class="approximation" src="./assets/Images/aprox.png" alt="aproximation">
+                        <img class="approximation" src="./assets/Images/aprox.webp" alt="aproximation">
                         <div class="card-number">
                           <div class="number-vl">---- ---- ---- ----</div>
                         </div>
@@ -309,7 +315,7 @@
                             <div class="cvv-vl cardInfo">----</div>
                           </div>
                         </div>
-                        <img class="chip" src="./assets/Images/chip.png" alt="chip">
+                        <img class="chip" src="./assets/Images/chip.webp" alt="chip">
                       </div>
                     </div>
                   </ion-col>
@@ -399,7 +405,7 @@
       <ion-grid>
           <ion-row class="ion-justify-content-center">
 
-            <ion-col size-xs="12" size-md="12" size-lg="12">
+            <ion-col sizeXs="12" sizeMd="12" sizeLg="12">
 
               <ion-grid fixed>
                 <ion-row class="ion-align-items-center ion-align-items-center ion-justify-content-center">
