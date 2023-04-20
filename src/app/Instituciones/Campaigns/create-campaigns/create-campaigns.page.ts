@@ -26,7 +26,7 @@ export class CreateCampaignsPage implements OnInit {
 
   clasificacion = EnserCalsificacion;
 
-  public createCampaignForm : FormGroup;
+  public createCampaignForm !: FormGroup;
 
   constructor(
     private campaignC : CampaignControlServiceService,
@@ -37,11 +37,12 @@ export class CreateCampaignsPage implements OnInit {
     private ar : ActivatedRoute,
     private formB : FormBuilder,
     private router : Router,
-  ) {
+  ) {}
 
+  ngOnInit() {
     this.centerC.getCenters().subscribe(
       _data =>{
-        console.log(_data);
+        // console.log(_data);
         this.allCenters = _data;
         this.myCenters = this.allCenters.filter(f => f.numId_Institucion === this.sesionC.getCurrenUser())
       }
@@ -102,21 +103,18 @@ export class CreateCampaignsPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   ionViewWillEnter(){
 
     this.ar.params.subscribe(
       (_id:any) => {
-        console.log(_id.id);
+        // console.log(_id.id);
         if(_id.id){
           this.update = true;
           this.id = _id.id
 
           this.campaignC.getCampaignById(this.id).subscribe(
             (_campaign : Campania) => {
-              console.log(_campaign);
+              // console.log(_campaign);
 
               this.campaign = _campaign;
 
@@ -149,7 +147,7 @@ export class CreateCampaignsPage implements OnInit {
   }
 
   async createCampaign(){
-    console.log(this.createCampaignForm.value);
+    // console.log(this.createCampaignForm.value);
 
     let campaign : Campania = {
       strImage_Campania : this.createCampaignForm.get('strImage_Campania')?.value,
@@ -174,19 +172,19 @@ export class CreateCampaignsPage implements OnInit {
 
     };
 
-    console.log(campaign);
+    // console.log(campaign);
     const response = await this.campaignC.addCampaign(campaign)
     if(response){
       this.alertS.successToast('Mis Campañas');
       this.resetAllForms()
       this.router.navigate(['./mi-campaigns']);
     }
-    console.log(response);
+    // console.log(response);
 
   }
 
   async updateCampaign(){
-    console.log(this.createCampaignForm.value);
+    // console.log(this.createCampaignForm.value);
 
     let campaign : Campania = {
       strImage_Campania : this.createCampaignForm.get('strImage_Campania')?.value,
@@ -211,7 +209,7 @@ export class CreateCampaignsPage implements OnInit {
 
     };
 
-    console.log(campaign);
+    // console.log(campaign);
 
     this.campaignC.updateCampaign(campaign,this.id)
     this.alertS.updateToast(campaign.strNombre_Campania);

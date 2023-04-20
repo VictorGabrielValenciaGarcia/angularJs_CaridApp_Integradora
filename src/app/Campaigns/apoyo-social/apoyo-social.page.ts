@@ -18,7 +18,9 @@ export class ApoyoSocialPage implements OnInit {
   constructor(
     private campaignC : CampaignControlServiceService,
     private userC : UserControlService,
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.campaignC.getCampaigns().subscribe(
       _campaigns => {
         this.AllCampaigns = _campaigns;
@@ -35,9 +37,6 @@ export class ApoyoSocialPage implements OnInit {
 
       }
     )
-  }
-
-  ngOnInit() {
   }
 
 }

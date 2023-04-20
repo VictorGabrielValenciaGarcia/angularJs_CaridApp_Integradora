@@ -28,8 +28,9 @@ export class CampaignDetailsPage implements OnInit {
     private ar : ActivatedRoute,
     private userC : UserControlService,
     private campaingS : CampaignControlServiceService
+  ) {}
 
-  ) {
+  ngOnInit() {
     this.ar.params.subscribe(
       (_id:any)=>{
         this.idCampaing = _id.id;
@@ -50,10 +51,7 @@ export class CampaignDetailsPage implements OnInit {
         });
         // console.log(this.idCampaing);
       }
-    )
-  }
-
-  ngOnInit() {
+    );
   }
 
   // Modal Interaction

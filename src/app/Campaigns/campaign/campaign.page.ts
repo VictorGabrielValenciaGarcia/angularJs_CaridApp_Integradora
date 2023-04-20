@@ -14,7 +14,7 @@ import Usuario from 'src/app/Interfaces/Usuario.interface';
 })
 export class CampaignPage implements OnInit {
 
-  @ViewChild('modal') modal!: ModalController;
+  @ViewChild('modalSupport') modalSupport!: ModalController;
   @ViewChild('modalThanks') modalThanks!: IonModal;
   @ViewChild('modalReport') modalReport!: ModalController;
   @ViewChild('modalPhysicSupport') modalPhysicSupport!: IonModal;
@@ -32,7 +32,9 @@ export class CampaignPage implements OnInit {
     private ar : ActivatedRoute,
     private userC : UserControlService,
     private campaingS : CampaignControlServiceService,
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.ar.params.subscribe(
       (_id:any)=>{
         this.idCampaing = _id.id;
@@ -55,9 +57,7 @@ export class CampaignPage implements OnInit {
 
       }
     )
-  }
 
-  ngOnInit() {
     this.campaign?.arrLista_Enseres_Campania.forEach((element:any) => {
       this.checkedList.push(false)
     });
@@ -66,7 +66,7 @@ export class CampaignPage implements OnInit {
   // Modal Interaction
 
   modalSupportDismiss(){
-    this.modal.dismiss()
+    this.modalSupport.dismiss()
   }
 
   modalReportDismiss(){

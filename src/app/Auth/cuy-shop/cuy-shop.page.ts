@@ -29,9 +29,9 @@ export class CuyShopPage implements OnInit {
     private userS : UserControlService,
     private avatarS : AvatarControlService,
     private sessionS : SesionControlService,
-  ) {
+  ) {}
 
-
+  ngOnInit() {
     this.userS.getUser(this.sessionS.getCurrenUser()).subscribe(
       _user => {
         this.user = _user;
@@ -63,14 +63,6 @@ export class CuyShopPage implements OnInit {
         )
       }
     )
-
-
-
-
-
-  }
-
-  ngOnInit() {
   }
 
 }

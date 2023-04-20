@@ -31,8 +31,8 @@ export class CampaignControlServiceService {
   }
 
   updateCampaign(_campaign: Campania, _id : string) {
-    console.log(_campaign);
-    console.log(_id);
+    // console.log(_campaign);
+    // console.log(_id);
 
     const document = doc(this.firestore, `CaridApp_Campanias/${_id}`);
     const { id, ...data } = _campaign; // we don't want to save the id inside the document

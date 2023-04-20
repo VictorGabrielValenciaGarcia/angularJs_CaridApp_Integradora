@@ -46,7 +46,7 @@ export class CheckCentersPage implements OnInit {
         this.centerS.getCenters().subscribe(
           _centers => {
             this.centerMarkers = _centers;
-            console.log(_centers);
+            // console.log(_centers);
 
               // if(!this.map){
             this.buildMap();
@@ -96,7 +96,7 @@ export class CheckCentersPage implements OnInit {
     };
 
     this.centerMarkers.unshift(currentMark)
-    console.log(this.centerMarkers);
+    // console.log(this.centerMarkers);
 
 
     this.map = new Map({

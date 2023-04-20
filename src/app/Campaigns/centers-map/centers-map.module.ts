@@ -15,7 +15,7 @@ import { SharedModule } from 'src/app/Shared/shared.module';
     FormsModule,
     IonicModule,
     CentersMapPageRoutingModule,
-    
+    SharedModule
   ],
   declarations: [CentersMapPage]
 })

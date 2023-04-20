@@ -46,7 +46,7 @@ export class CentersMapPage implements OnInit {
         this.centerS.getCenters().subscribe(
           _centers => {
             this.centerMarkers = _centers;
-            console.log(_centers);
+            // console.log(_centers);
 
               // if(!this.map){
             this.buildMap();

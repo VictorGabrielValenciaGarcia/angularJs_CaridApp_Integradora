@@ -65,17 +65,17 @@ export class CampaignTicketComponent implements OnInit {
   }
 
   goToDetails(_id : string){
-    console.log(_id);
+    // console.log(_id);
     this.router.navigate(['/campaign-details/', _id]);
   }
 
   goToEdit(_id : string){
-    console.log(_id);
+    // console.log(_id);
     this.router.navigate(['/create-campaigns/', _id]);
   }
 
   deleteCampaign(_campaign : Campania){
-    console.log(_campaign);
+    // console.log(_campaign);
     this.alertS.confirm('Eliminar','¿Deseas eliminar a ' + _campaign.strNombre_Campania + ' de la Lista?').then(
       async (resp:any) => {
         if(resp.data === true){

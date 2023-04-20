@@ -30,9 +30,10 @@ export class SideNavComponent implements OnInit {
     private userS: UserControlService,
     private readonly authC : Auth,
     private router : Router,
-  ) {
+  ) {}
 
-    authC.onAuthStateChanged((user) => {
+  ngOnInit() {
+    this.authC.onAuthStateChanged((user) => {
       if (user) {
         console.log('Usuario logueado');
         this.getUserData(this.sesion.getCurrenUser());
@@ -42,9 +43,6 @@ export class SideNavComponent implements OnInit {
         this.isLogin = false;
       }
     });
-  }
-
-  ngOnInit() {
   }
 
   logOut() {
@@ -73,7 +71,7 @@ export class SideNavComponent implements OnInit {
     this.userS.getUser(_uid).subscribe(
       (_user:Usuario) => {
         this.username = _user.strUsername;
-        this.points != _user.numCuy_Puntos_Usuario;
+        this.points = _user.numCuy_Puntos_Usuario!;
         this.email = _user.strCorreo;
         this.role = _user.rotullus;
         this.image = _user.strFoto_Perfil;

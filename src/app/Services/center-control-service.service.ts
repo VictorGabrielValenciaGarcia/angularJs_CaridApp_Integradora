@@ -31,8 +31,8 @@ export class CenterControlServiceService {
   }
 
   updateCenter(_center: CentroAcopio, _id : string) {
-    console.log(_center);
-    console.log(_id);
+    // console.log(_center);
+    // console.log(_id);
 
     const document = doc(this.firestore, `CaridApp_CentrosAcopio/${_id}`);
     const { id, ...data } = _center; // we don't want to save the id inside the document

@@ -31,17 +31,14 @@ export class DashboardPage implements OnInit {
   constructor(
     private ar : ActivatedRoute,
     private router : Router,
-  ) {
+  ) { }
 
+  ngOnInit() {
     this.ar.params.subscribe(
       (_url:any)=>{
         this.type = _url.type;
       }
     )
-
-  }
-
-  ngOnInit() {
   }
 
   goToRoute(_route : string){

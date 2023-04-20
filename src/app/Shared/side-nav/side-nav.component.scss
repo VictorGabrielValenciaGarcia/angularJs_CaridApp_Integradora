@@ -30,3 +30,12 @@ ion-item-divider{
 .logOutButton{
   color: #eb445a;
 }
+
+.rounded{
+  object-fit: contain;
+  object-position: inherit;
+  width: 90%;
+  height: auto;
+  border-radius: 14px !important;
+  border: 2px solid rgba(66, 15, 0, 0.368627451) !important;
+}

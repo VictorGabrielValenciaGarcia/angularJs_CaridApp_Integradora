@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   showPassword = false;
   passInputType = 'password';
 
-  FormLogin:FormGroup;
+  FormLogin !: FormGroup;
 
   @ViewChild(IonModal) modal: IonModal | undefined;
 
@@ -28,9 +28,10 @@ export class LoginPage implements OnInit {
     private alertS : AlertsToastServiceService,
     private router: Router,
     private alertC : AlertController,
-  ) {this.FormLogin = this.FormLoginGroup(); }
+  ) {}
 
   ngOnInit() {
+    this.FormLogin = this.FormLoginGroup();
   }
 
 
@@ -49,7 +50,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  async logIn(){
+  logIn(){
     // console.log(this.FormLogin.value);
     this.sessionS.logIn(this.FormLogin.get('email')?.value, this.FormLogin.get('password')?.value).then(
       response => {
@@ -59,7 +60,7 @@ export class LoginPage implements OnInit {
         // console.log(this.user.user.uid);
         this.users.getUser(this.user?.user?.uid).subscribe(
           _user => {
-            this.alertS.loginSuccess(_user?.strUsername);
+            // this.alertS.loginSuccess(_user?.strUsername);
             this.FormLogin.reset();
           }
         )

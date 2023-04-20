@@ -39,7 +39,7 @@ export class CreateCenterPage implements OnInit {
 
   // SearchBar
 
-  public createCenterForm : FormGroup;
+  public createCenterForm !: FormGroup;
 
   constructor(
     private router : Router,
@@ -50,7 +50,9 @@ export class CreateCenterPage implements OnInit {
     private sesionC : SesionControlService,
     private alertS : AlertsToastServiceService,
     private centerS : CenterControlServiceService,
-  ) {
+  ) {}
+
+  ngOnInit() {
     (mapboxgl as any).accessToken = environment.MAPBOX_KEY;
     this.estados = this.mapS.EstadosMexico;
 
@@ -145,24 +147,20 @@ export class CreateCenterPage implements OnInit {
         })
       ]),
     });
-
-  }
-
-  ngOnInit() {
   }
 
   ionViewWillEnter(){
 
     this.ar.params.subscribe(
       (_id:any) => {
-        console.log(_id.id);
+        // console.log(_id.id);
         if(_id.id){
           this.update = true;
           this.id = _id.id
 
           this.centerS.getCenterById(this.id).subscribe(
             (_center : any) => {
-              console.log(_center);
+              // console.log(_center);
               this.buildMap(_center.mapDireccion_GPS_CentroA.latitud,_center.mapDireccion_GPS_CentroA.longitud);
 
               this.latitude = _center.mapDireccion_GPS_CentroA.latitude;
@@ -210,7 +208,7 @@ export class CreateCenterPage implements OnInit {
   }
 
   async createCenter(){
-    console.log(this.createCenterForm.value);
+    // console.log(this.createCenterForm.value);
 
     let center : CentroAcopio = {
 
@@ -246,18 +244,18 @@ export class CreateCenterPage implements OnInit {
 
     };
 
-    console.log(center);
+    // console.log(center);
     const response = await this.centerS.addCenter(center)
     if(response){
       this.alertS.successToast('Centros de Acopio');
       this.router.navigate(['./mi-centers']);
     }
-    console.log(response);
+    // console.log(response);
 
   }
 
   async updateCenter(){
-    console.log(this.createCenterForm.value);
+    // console.log(this.createCenterForm.value);
 
     let center : CentroAcopio = {
 
@@ -293,7 +291,7 @@ export class CreateCenterPage implements OnInit {
 
     };
 
-    console.log(center);
+    // console.log(center);
 
     this.centerS.updateCenter(center,this.id)
     this.alertS.updateToast(center.strNombre_CentroA);
@@ -368,7 +366,7 @@ export class CreateCenterPage implements OnInit {
           this.latitude_Center = lngLat.lat;
           this.longitude_Center = lngLat.lng;
 
-          console.log(this.latitude_Center, this.longitude_Center);
+          // console.log(this.latitude_Center, this.longitude_Center);
 
         });
       } else {
@@ -399,7 +397,7 @@ export class CreateCenterPage implements OnInit {
           this.latitude_Center = lngLat.lat;
           this.longitude_Center = lngLat.lng;
 
-          console.log(this.latitude_Center, this.longitude_Center);
+          // console.log(this.latitude_Center, this.longitude_Center);
 
         });
       }

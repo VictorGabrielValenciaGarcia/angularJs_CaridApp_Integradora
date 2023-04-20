@@ -18,7 +18,9 @@ export class DesastresNaturalesPage implements OnInit {
   constructor(
     private campaignC : CampaignControlServiceService,
     private userC : UserControlService,
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.campaignC.getCampaigns().subscribe(
       _campaigns => {
         this.AllCampaigns = _campaigns;
@@ -37,9 +39,6 @@ export class DesastresNaturalesPage implements OnInit {
         });
       }
     )
-  }
-
-  ngOnInit() {
   }
 
 }

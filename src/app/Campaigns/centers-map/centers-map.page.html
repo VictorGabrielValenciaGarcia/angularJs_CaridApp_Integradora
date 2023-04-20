@@ -1,14 +1,4 @@
-<ion-header translucent="true" mode="ios">
-  <ion-toolbar style="background-color: #7ac4f5">
-
-    <ion-buttons mode="md" slot="start">
-      <ion-back-button defaultHref="/campaign/{{ idCampaing }}"></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Center's Map</ion-title>
-
-  </ion-toolbar>
-</ion-header>
+<app-header-without-menu title="Centros Asigandos" [route]="'/campaign-details/'+idCampaing"></app-header-without-menu>
 
 <ion-content>
 
@@ -28,4 +18,3 @@
   </ion-slides>
 
 </ion-content>
-

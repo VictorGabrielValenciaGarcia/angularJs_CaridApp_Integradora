@@ -42,10 +42,10 @@ export class SettingsPage implements OnInit {
   }
 
   // User Forms
-  settingsPersonalForm:FormGroup;
-  settingsContactForm:FormGroup;
-  settingsProfileForm:FormGroup;
-  settingsInstDataForm:FormGroup;
+  settingsPersonalForm !: FormGroup;
+  settingsContactForm !: FormGroup;
+  settingsProfileForm !: FormGroup;
+  settingsInstDataForm !: FormGroup;
 
   constructor(
     private router : Router,
@@ -54,7 +54,9 @@ export class SettingsPage implements OnInit {
     private sesionS : SesionControlService,
     private alertS : AlertsToastServiceService,
     private centroS : CenterControlServiceService,
-  ) {
+  ) {}
+
+  ngOnInit() {
 
     // User Forms
     this.settingsPersonalForm = this.settingsPersonalFormGroup();
@@ -110,10 +112,6 @@ export class SettingsPage implements OnInit {
         }
       }
     );
-
-  }
-
-  ngOnInit() {
   }
 
   // User Update Forms
@@ -216,7 +214,7 @@ export class SettingsPage implements OnInit {
   // User Update Methods
 
     settingsPersonal(){
-      console.log(this.settingsPersonalForm.value);
+      // console.log(this.settingsPersonalForm.value);
 
       let newDataUSer = this.user;
 
@@ -233,7 +231,7 @@ export class SettingsPage implements OnInit {
     }
 
     settingsContact(){
-      console.log(this.settingsContactForm.value);
+      // console.log(this.settingsContactForm.value);
 
       let newDataUSer = this.user;
 
@@ -252,7 +250,7 @@ export class SettingsPage implements OnInit {
   // Institutions Update Methods
 
     settingsInstData(){
-      console.log(this.settingsInstDataForm.value);
+      // console.log(this.settingsInstDataForm.value);
 
       let newDataUSer = this.user;
 
@@ -272,7 +270,7 @@ export class SettingsPage implements OnInit {
   // General Update Method
 
     settingsProfile(){
-      console.log(this.settingsContactForm.value);
+      // console.log(this.settingsContactForm.value);
 
       let newDataUSer = this.user;
 

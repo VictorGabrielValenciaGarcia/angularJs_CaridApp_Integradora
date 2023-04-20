@@ -9,7 +9,7 @@ import { SesionControlService } from '../Services/sesion-control.service';
 export class CampaignsMenuPage implements OnInit {
 
   constructor(
-  ) { }
+  ) {}
 
   ngOnInit() {
   }

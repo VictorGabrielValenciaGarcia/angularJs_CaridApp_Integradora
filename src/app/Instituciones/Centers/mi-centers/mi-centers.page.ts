@@ -41,74 +41,19 @@ export class MiCentersPage implements OnInit {
     private centerS : CenterControlServiceService,
   ) {
     (mapboxgl as any).accessToken = environment.MAPBOX_KEY;
-
-
     this.centerS.getCenters().subscribe(
       (_centers: any)=>{
         // console.log(_centers);
         this.centerList = _centers;
 
         this.myCenterList = this.centerList.filter(f => f.numId_Institucion = this.sesionC.getCurrenUser());
-
       }
     )
-  }
-
-  async centerInteraction(_center : any, _id : number){
-
-    const sheet = await this.acsC.create({
-      backdropDismiss : false,
-      mode : 'ios',
-      header : '¿Qué acción deseas relizar?',
-      subHeader : '- '+_center.strNombre_CentroA+' -',
-      translucent : true,
-      buttons : [
-        {
-          text: 'Consultar Detalles',
-          icon: 'eye',
-          handler: () => {
-            this.goToDetails(_center.id);
-          }
-        },
-        {
-          text: 'Editar Información',
-          icon: 'pencil',
-          handler: () => {
-            this.goToEdit(_center.id);
-          }
-        },
-        {
-          text: 'Ubicar en Mapa',
-          icon: 'map',
-          handler: () => {
-            this.findCenter(_id);
-            // console.log(_id);
-          }
-        },
-        {
-          text: 'Eliminar Centro',
-          icon: 'trash',
-          handler: () => {
-            this.deleteCenter(_center);
-          }
-        },
-        {
-          text: 'Cancelar',
-          role:'cancel',
-          icon: 'close',
-          cssClass: 'menu-border-top',
-        },
-      ]
-    })
-
-    await sheet.present();
-
   }
 
   // Map
 
   ngOnInit(){
-
     this.centerS.getCenters().subscribe(
       (_centers: any)=>{
         // console.log(_centers);
@@ -117,8 +62,10 @@ export class MiCentersPage implements OnInit {
         this.myCenterList = this.centerList.filter(f => f.numId_Institucion = this.sesionC.getCurrenUser());
         this.buildMap(this.myCenterList);
       }
-    )
+    );
+  }
 
+  ionViewWillEnter(){
   }
 
   buildMap(_centers:CentroAcopio[]){
@@ -209,6 +156,58 @@ export class MiCentersPage implements OnInit {
         }
       }
     );
+  }
+
+
+  async centerInteraction(_center : any, _id : number){
+
+    const sheet = await this.acsC.create({
+      backdropDismiss : false,
+      mode : 'ios',
+      header : '¿Qué acción deseas relizar?',
+      subHeader : '- '+_center.strNombre_CentroA+' -',
+      translucent : true,
+      buttons : [
+        {
+          text: 'Consultar Detalles',
+          icon: 'eye',
+          handler: () => {
+            this.goToDetails(_center.id);
+          }
+        },
+        {
+          text: 'Editar Información',
+          icon: 'pencil',
+          handler: () => {
+            this.goToEdit(_center.id);
+          }
+        },
+        {
+          text: 'Ubicar en Mapa',
+          icon: 'map',
+          handler: () => {
+            this.findCenter(_id);
+            // console.log(_id);
+          }
+        },
+        {
+          text: 'Eliminar Centro',
+          icon: 'trash',
+          handler: () => {
+            this.deleteCenter(_center);
+          }
+        },
+        {
+          text: 'Cancelar',
+          role:'cancel',
+          icon: 'close',
+          cssClass: 'menu-border-top',
+        },
+      ]
+    })
+
+    await sheet.present();
+
   }
 
 }

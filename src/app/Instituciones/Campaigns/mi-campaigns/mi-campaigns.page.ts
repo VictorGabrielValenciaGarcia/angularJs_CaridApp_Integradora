@@ -57,8 +57,7 @@ export class MiCampaignsPage implements OnInit {
     private sesionC : SesionControlService,
     private alertS : AlertsToastServiceService,
     private campaignsS : CampaignControlServiceService,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.campaignsS.getCampaigns().subscribe(
@@ -71,9 +70,9 @@ export class MiCampaignsPage implements OnInit {
         this.socialCampaigns = this.myCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Apoyo Social');
         this.disasterCampaigns = this.myCampaigns.filter(f => f.strPrograma_Sector_Campania === 'Desastres Naturales');
 
-        console.log(this.animalCampaigns);
-        console.log(this.socialCampaigns);
-        console.log(this.disasterCampaigns);
+        // console.log(this.animalCampaigns);
+        // console.log(this.socialCampaigns);
+        // console.log(this.disasterCampaigns);
 
       }
     )

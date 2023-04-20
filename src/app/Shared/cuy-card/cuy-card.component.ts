@@ -26,14 +26,14 @@ export class CuyCardComponent implements OnInit {
     private userS  : UserControlService,
     private sesionS  : SesionControlService,
     private alertS : AlertsToastServiceService,
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.userS.getUser(this.sesionS.getCurrenUser()).subscribe(
       (_user : any) => {
         this.user = _user;
     });
   }
-
-  ngOnInit() {}
 
   async myAvatarInteraction(){
     const acs = await this.asc.create({

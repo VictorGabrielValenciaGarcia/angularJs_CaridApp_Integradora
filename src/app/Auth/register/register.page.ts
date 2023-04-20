@@ -90,8 +90,8 @@ export class RegisterPage implements OnInit {
 
   // Register Manage
   type: string = "";
-  RegisterUserForm:FormGroup;
-  RegisterInstForm:FormGroup;
+  RegisterUserForm !: FormGroup;
+  RegisterInstForm !: FormGroup;
 
   constructor(
     private router : Router,
@@ -102,6 +102,11 @@ export class RegisterPage implements OnInit {
     private sessionS : SesionControlService,
     private alertS : AlertsToastServiceService,
   ) {
+
+  }
+
+  ngOnInit() {
+
     this.ar.params.subscribe(
       (_url:any)=>{
         this.type = _url.type;
@@ -175,9 +180,6 @@ export class RegisterPage implements OnInit {
         Validators.minLength(8),
       ]],
     });
-  }
-
-  ngOnInit() {
   }
 
   registerUserFormGroup(){
@@ -254,7 +256,7 @@ export class RegisterPage implements OnInit {
       ]),
 
       // Valores por Default
-      strFoto_Perfil: new FormControl('https://picsum.photos/seed/picsum/200/200'),
+      strFoto_Perfil: new FormControl('./assets/Images/Cuyos/cuyoDef.png'),
       numCuy_Puntos_Usuario: new FormControl(0),
 
     });
@@ -318,7 +320,7 @@ export class RegisterPage implements OnInit {
 
       // Default Values
       rotullus : 'Carid-Inst',
-      strFoto_Perfil : 'https://picsum.photos/seed/picsum/200/200',
+      strFoto_Perfil : './assets/Images/Cuyos/cuyoDef.png',
       arrCentros_Acopio_Institucion : [],
       boolVerificado_Institucion: false,
 
@@ -341,7 +343,7 @@ export class RegisterPage implements OnInit {
       strRFC_Institucion : this.RegisterInstForm.get('strRFC_Institucion')?.value,
     }
 
-    console.log(this.dataInst);
+    // console.log(this.dataInst);
 
     const response = await this.sessionS.register_EmailPassword_User(this.dataInst)
       .then(async response => {

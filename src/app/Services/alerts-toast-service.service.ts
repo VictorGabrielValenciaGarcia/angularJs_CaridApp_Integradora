@@ -12,18 +12,18 @@ export class AlertsToastServiceService {
     private loadCtrl : LoadingController
   ) { }
 
-  async loginSuccess(_userName : string){//Creamos un  parametro de tipo string
-    const toastLogIn = await this.toastC.create({
-      message: 'Bienvenid@ ' + _userName + '!!!',
-      mode : 'ios',
-      duration: 2500,
-      position: 'top',
-      color:'success',
-      icon: 'happy-outline'
-    });
+  // async loginSuccess(_userName : string){
+  //   const toastLogIn = await this.toastC.create({
+  //     message: 'Bienvenid@ ' + _userName + '!!!',
+  //     mode : 'ios',
+  //     duration: 2500,
+  //     position: 'top',
+  //     color:'success',
+  //     icon: 'happy-outline'
+  //   });
 
-    toastLogIn.present();
-  }
+  //   toastLogIn.present();
+  // }
 
   async successToast(_msn:string){//Creamos un  parametro de tipo string
     const toastSuccess = await this.toastC.create({
@@ -158,9 +158,4 @@ export class AlertsToastServiceService {
   closeLoading(){
     this.loadCtrl.dismiss();
   }
-
-  closeLoginToast(){
-    this.toastC.dismiss();
-  }
-
 }

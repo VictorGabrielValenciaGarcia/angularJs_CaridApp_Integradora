@@ -31,8 +31,8 @@ export class AvatarControlService {
   }
 
   updateAvatar(_avatar: Avatar, _id : string) {
-    console.log(_avatar);
-    console.log(_id);
+    // console.log(_avatar);
+    // console.log(_id);
 
     const document = doc(this.firestore, `CaridApp_Avatares/${_id}`);
     const { id, ...data } = _avatar; // we don't want to save the id inside the document

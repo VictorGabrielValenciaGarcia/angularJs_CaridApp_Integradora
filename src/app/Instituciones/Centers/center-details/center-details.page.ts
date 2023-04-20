@@ -27,13 +27,10 @@ export class CenterDetailsPage implements OnInit {
     private ar : ActivatedRoute,
     private centerS : CenterControlServiceService,
     private router : Router
-  ) {
-
-    (mapboxgl as any).accessToken = environment.MAPBOX_KEY;
-
-  }
+  ) {}
 
   ngOnInit() {
+    (mapboxgl as any).accessToken = environment.MAPBOX_KEY;
   }
 
   ionViewWillEnter(){
@@ -44,7 +41,7 @@ export class CenterDetailsPage implements OnInit {
 
           this.centerS.getCenterById(this.id).subscribe(
             (_center : any) => {
-              console.log(_center);
+              // console.log(_center);
               this.center = _center;
               this.buildMap(this.center);
             }
