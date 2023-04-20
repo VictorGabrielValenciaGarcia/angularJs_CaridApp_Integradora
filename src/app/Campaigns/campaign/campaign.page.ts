@@ -9,6 +9,8 @@ import Usuario from 'src/app/Interfaces/Usuario.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 
+import { Share } from '@capacitor/share';
+
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.page.html',
@@ -30,6 +32,7 @@ export class CampaignPage implements OnInit {
   nomInst : string = '';
 
   reportCampaignForm !: FormGroup;
+  url : any;
 
   constructor(
     private router : Router,
@@ -40,7 +43,6 @@ export class CampaignPage implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.reportCampaignForm = this.reportCampaignFormGroup();
 
     this.ar.params.subscribe(
@@ -241,4 +243,15 @@ export class CampaignPage implements OnInit {
 
   }
 
+  // Share Campaign
+
+  async shareCampaign(){
+
+    await Share.share({
+      title: this.campaign.strNombre_Campania + ' | ' + this.nomInst,
+      text: 'Te invitamos a formar parte de ' + this.campaign.strNombre_Campania + '. Tu ayuda es indispensable para el cambio',
+      url: this.router.url,
+      dialogTitle: 'Compartir Campaña',
+    });
+  }
 }

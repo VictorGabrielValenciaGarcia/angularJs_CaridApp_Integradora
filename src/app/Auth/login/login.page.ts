@@ -5,7 +5,6 @@ import { AlertController, IonModal } from '@ionic/angular';
 import { AlertsToastServiceService } from 'src/app/Services/alerts-toast-service.service';
 import { SesionControlService } from 'src/app/Services/sesion-control.service';
 import { UserControlService } from 'src/app/Services/user-control.service';
-// import { SesionControlService } from 'src/app/Services/sesion-control.service';
 
 @Component({
   selector: 'app-login',
