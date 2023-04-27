@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import CentroAcopio from '../../../Interfaces/CentroAcopio.interface';
 import { Contacto } from '../../../Interfaces/CentroAcopio.interface';
 import { CenterControlServiceService } from 'src/app/Services/center-control-service.service';
+import { SesionControlService } from 'src/app/Services/sesion-control.service';
+import { UserControlService } from 'src/app/Services/user-control.service';
 
 @Component({
   selector: 'app-centers-map',
@@ -23,18 +25,25 @@ export class CheckCentersPage implements OnInit {
 
   public map !: mapboxgl.Map;
   // public styleMap = 'mapbox://styles/mapbox/streets-v12';
-  public styleMap = 'mapbox://styles/mapbox/outdoors-v12';
+  // public styleMap = 'mapbox://styles/mapbox/outdoors-v12';
+  public styleMap = 'mapbox://styles/mapbox/navigation-night-v1';
 
   latitude : any;
   longitude : any;
   idCampaing : string = '';
   centerMarkers: CentroAcopio[] = [];
 
+  userName : string = '';
+  showNext : boolean = true;
+  showPrev : boolean = false;
+
   constructor(
-    private mapS : MapServiceService,
-    private centerS : CenterControlServiceService,
-    private ar : ActivatedRoute,
     private router : Router,
+    private ar : ActivatedRoute,
+    private mapS : MapServiceService,
+    private userS : UserControlService,
+    private sesionS : SesionControlService,
+    private centerS : CenterControlServiceService,
   ) {
     (mapboxgl as any).accessToken = environment.MAPBOX_KEY;
   }
@@ -48,9 +57,13 @@ export class CheckCentersPage implements OnInit {
             this.centerMarkers = _centers;
             // console.log(_centers);
 
-              // if(!this.map){
-            this.buildMap();
-              // }
+            this.userS.getUser(this.sesionS.getCurrenUser()).subscribe(
+              _user => {
+                this.userName = _user.strUsername;
+                this.buildMap();
+              }
+            )
+
           }
         )
         // console.log(this.idCampaing);
@@ -63,7 +76,7 @@ export class CheckCentersPage implements OnInit {
     this.latitude = this.mapS.locations[1];
 
     let currentMark : CentroAcopio =     {
-      strNombre_CentroA : 'Depinazul',
+      strNombre_CentroA : this.userName,
       strSubtitulo_CentroA : 'Usted Abrio el Mapa Aqui',
       strImage_CentroA : './assets/Images/lineDivider3.webp',
       numId_Institucion : '0',
@@ -135,6 +148,7 @@ export class CheckCentersPage implements OnInit {
               </ion-col>
               <ion-col size=12>
                 <h3 class="ion-text-center" style="margin-top: -0.1rem; margin-bottom: -0.2rem;">${_marks.strNombre_CentroA}</h3>
+                <p style="text-align: center; margin-bottom: -0.5rem; margin-top: 0.3rem;">${_marks.strSubtitulo_CentroA ? _marks.strSubtitulo_CentroA : ''}</p>
               </ion-col>
               <ion-col size=12>
                 <img src="./assets/Images/lineDivider4.webp"
@@ -162,8 +176,29 @@ export class CheckCentersPage implements OnInit {
 
   async onSlideDidChange() {
     const currentSlide = await this.slides.getActiveIndex();
+    // console.log((this.slides.getActiveIndex()).valueOf());
+
     const marker = this.centerMarkers[currentSlide];
     this.map.panTo({lat: marker.mapDireccion_GPS_CentroA.latitud, lng: marker.mapDireccion_GPS_CentroA.longitud});
+
+    if(await this.slides.isBeginning()){
+      this.showPrev = false;
+    } else {
+      this.showPrev = true;
+    }
+    if(await this.slides.isEnd()){
+      this.showNext = false;
+    } else {
+      this.showNext = true;
+    }
+  }
+
+  async nextSlides(){
+    this.slides.slideNext(400);
+  }
+
+  async backSlides(){
+    this.slides.slidePrev(400);
   }
 
   viewMap(_id:string){

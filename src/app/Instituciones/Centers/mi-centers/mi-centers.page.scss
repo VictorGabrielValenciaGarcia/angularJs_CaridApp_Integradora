@@ -1,14 +1,29 @@
-.groupList {
-    overflow: scroll;
-     overflow-x: hidden;
-}
-
+// Mapa
 .mapAllCenters{
   width: 100%;
-  height: 365px !important ;
+  max-height: 365px !important;
   border-radius: 5%;
 }
 
 .menu-border-top {
   background-color: red;
+}
+
+// My Centers
+.groupList {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height:365px;
+}
+
+// Toolbar
+
+ion-toolbar{
+  background-color: #7ac4f5
+}
+
+// Content space
+
+.contentSpace{
+  margin-top: 7% !important;
 }

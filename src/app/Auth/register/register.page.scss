@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
-
+// Toolbar
 ion-toolbar{
   background-color: #8AD0FF;
   border-radius: 0 0 2.5em 2.5em;
@@ -9,24 +9,37 @@ ion-toolbar{
 .fontType {
   display: block;
   text-align: center;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
   font-family: 'Courgette', cursive;
   font-size: 2.5rem;
 }
 
+// Texto
 .typeLog {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding-top: 1%;
   padding-bottom: 1%;
 }
 
+.bold{
+  font-weight: bold;
+}
+
+// Info Modal
 ion-modal {
   --height: 25%;
     width: 80%;
     margin-left: 10%;
   --border-radius: 16px;
   --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  ion-content{
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    overflow: auto;
+  }
+
 }
 
 ion-modal::part(backdrop) {
@@ -37,4 +50,39 @@ ion-modal::part(backdrop) {
 ion-modal ion-toolbar {
   --background: rgb(14 116 144);
   --color: white;
+}
+
+// Form
+.inputWrong{
+  border-color: #c92432;
+  color: #c92432;
+  /* background: #fffbfb; */
+}
+.errors{
+  color: #c92432;
+  font-size: 80%;
+  text-align: start;
+}
+
+.adjustErrors{
+  margin-top: -0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+// Navigate Button
+
+.buttonRegister{
+  margin-top: 0px;
+  margin-bottom: 1rem
+}
+
+.buttonPass{
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+// Acordion Fond
+
+.colorAcordion{
+  background-color: #fafafa;
 }

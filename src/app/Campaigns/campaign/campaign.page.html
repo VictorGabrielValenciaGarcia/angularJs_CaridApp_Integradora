@@ -24,7 +24,7 @@
                 <ion-item slot="header" color="light">
                   <ion-label>Ver Concepto</ion-label>
                 </ion-item>
-                <div class="ion-padding ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                <div class="ion-padding ion-text-justify backgroundDes" slot="content">
                   {{campaign?.strDescripcion_Campania}}
                 </div>
               </ion-accordion>
@@ -73,7 +73,7 @@
                 <ion-item slot="header" color="light">
                   <ion-label>Ver Lista</ion-label>
                 </ion-item>
-                <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                <div class="ion-text-justify backgroundDes" slot="content">
 
                   <ion-accordion-group *ngFor="let recurso of campaign?.arrLista_Enseres_Campania">
                     <ion-accordion value="first">
@@ -84,7 +84,7 @@
                         <ion-label>{{ recurso.strNombre_Enser }}</ion-label>
                       </ion-item>
 
-                      <div class="ion-text-justify ion-padding" style="background-color: #fcfcfc;" slot="content">
+                      <div class="ion-text-justify ion-padding backgroundDes" slot="content">
                         <p><strong>Requisitos:</strong> {{ recurso.strRequisitos }}</p>
                       </div>
                       <!-- </ion-list> -->
@@ -120,15 +120,15 @@
     </ion-fab-button>
 
     <ion-fab-list side="start">
-      <ion-fab-button (click)="viewMap(idCampaing)" color="dark">
+      <ion-fab-button (click)="viewMap(idCampaing)" color="dark" title="Ver Centros Asignados">
         <ion-icon name="map-outline"></ion-icon>
       </ion-fab-button>
 
-      <ion-fab-button color="warning" id="open-modalReport">
+      <ion-fab-button color="warning" id="open-modalReport" title="Reportar Campaña">
         <ion-icon name="alert-circle-outline" size="large"></ion-icon>
       </ion-fab-button>
 
-      <ion-fab-button color="light" (click)="shareCampaign()">
+      <ion-fab-button color="light" (click)="shareCampaign()" title="Compartir Campaña">
         <ion-icon name="share-social-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
@@ -142,7 +142,7 @@
 
 <ion-modal #modalSupport trigger="open-modalSupport" id="modalSupport">
   <ng-template>
-    <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
+    <ion-content>
       <ion-toolbar class="ion-text-center">
         ¿Como deseeas apoyar la campaña?
       </ion-toolbar>
@@ -185,7 +185,7 @@
 
 <ion-modal #modalReport trigger="open-modalReport" id="modalReport">
   <ng-template>
-    <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
+    <ion-content>
       <ion-toolbar class="ion-text-center">
         ¿Desea Reportar esta Campaña?
       </ion-toolbar>
@@ -363,7 +363,7 @@
                   </ion-col>
 
                   <ion-col sizeLg="8" sizeMd="8" sizeXs="8 ">
-                    <ion-button color="primary" type="submit" fill="outline" expand="block" (click)="showThanks()">
+                    <ion-button color="primary" type="submit" fill="outline" expand="block" (click)="showThanks()" disabled="true" title="Proceso no Disponible">
                       Transferir
                     </ion-button>
                   </ion-col>
@@ -410,12 +410,12 @@
               <ion-grid fixed>
                 <ion-row class="ion-align-items-center ion-align-items-center ion-justify-content-center">
                   <ion-col size="3">
-                    <ion-button expand="block" fill="outline" shape="round" color="danger" size="default" disabled="true">
+                    <ion-chip color="danger">
                       Nota
-                    </ion-button>
+                    </ion-chip>
                   </ion-col>
                   <ion-col size="9">
-                    <p class="ion-text-justify">Antes de realizar tu aporte, corrobora que existan <a (click)="viewMap(idCampaing)">Centros de Entrega</a> cerca de ti.</p>
+                    <p class="ion-text-justify bold">Antes de realizar tu aporte, corrobora que existan <u title="Consultar Centros de Acopio" class="pointer"><a (click)="viewMap(idCampaing)">Centros de Entrega</a></u> cerca de ti.</p>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -431,7 +431,7 @@
                 <form>
 
                   <ion-grid>
-                    <ion-row *ngFor="let recurso of campaign?.arrLista_Enseres_Campania; let i = index">
+                    <ion-row *ngFor="let recurso of enserListToDonate; let i = index">
                       <ion-col size="9">
                         <ion-item  mode="md" fill="solid">
                           <ion-label>{{recurso.strNombre_Enser}}</ion-label>
@@ -467,7 +467,7 @@
 
 <ion-modal #modalThanks id="modalThanks">
   <ng-template>
-    <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
+    <ion-content>
 
       <ion-toolbar class="ion-text-center">
         <ion-grid fixed>
@@ -484,7 +484,7 @@
         </ion-grid>
       </ion-toolbar>
 
-      <div class="ion-padding-end ion-padding-start ion-text-justify" style="background-color: #fcfcfc;">
+      <div class="ion-padding-end ion-padding-start ion-text-justify backgroundDes">
         <p>!Muchas gracias por apoyar a "{{campaign?.strNombre_Campania}}". Con tu ayuda y apoyo haremos todos los esfuerzos
           necesarios para alcanzar nuestros objetivos! </p>
       </div>

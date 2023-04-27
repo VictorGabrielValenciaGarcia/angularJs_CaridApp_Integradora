@@ -30,6 +30,7 @@ export class CampaignPage implements OnInit {
   idCampaing : string = '';
   campaignName : string = '';
   nomInst : string = '';
+  enserListToDonate : any[] = [];
 
   reportCampaignForm !: FormGroup;
   url : any;
@@ -53,15 +54,16 @@ export class CampaignPage implements OnInit {
           (_campania : Campania) => {
             this.campaign = _campania;
             this.campaignName = _campania.strNombre_Campania
-            this.campaign.arrLista_Enseres_Campania.forEach((element:any) => {
-            this.checkedList.push(false)
+            this.enserListToDonate = _campania.arrLista_Enseres_Campania.filter(f => f.strClasificacion !== 'Economico');
+            this.enserListToDonate.forEach((element:any) => {
+              this.checkedList.push(false)
+            });
             this.userC.getUser(this.campaign?.numId_Institucion).subscribe(
               (_user : Usuario) => {
                 // console.log(_user);
                 this.nomInst = _user.strNombre_Institucion!;
               }
             );
-          });
         }
         );
 

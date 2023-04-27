@@ -4,15 +4,27 @@
 
   <div class="map" id="mapbox" tabindex="0"></div>
 
-  <ion-slides (ionSlideDidChange)="onSlideDidChange()">
+  <ion-slides (ionSlideDidChange)="onSlideDidChange()" pager="true">
     <ion-slide *ngFor="let marker of centerMarkers" >
 
-      <ion-card color="danger">
-        <ion-card-header>
-          <h5 style="font-weight: bolder;">{{ marker?.strNombre_CentroA }}</h5>
-          <ion-card-subtitle>{{ marker?.strSubtitulo_CentroA }}</ion-card-subtitle>
-        </ion-card-header>
-      </ion-card>
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+          <ion-col size="1">
+            <ion-icon size="large" name="chevron-back-sharp" color="light" (click)="backSlides()" *ngIf="showPrev" title="Anterior Centro" ></ion-icon>
+          </ion-col>
+          <ion-col sizeXs="10" sizeLg="4">
+            <ion-card color="danger" >
+              <ion-card-header>
+                <h5 class="bolder">{{ marker.strNombre_CentroA }}</h5>
+                <p>{{ marker.strSubtitulo_CentroA }}</p>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon size="large" name="chevron-forward-sharp" color="light" (click)="nextSlides()" *ngIf="showNext" title="Siguiente Centro" ></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
     </ion-slide>
   </ion-slides>

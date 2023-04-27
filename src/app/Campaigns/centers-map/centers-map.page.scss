@@ -16,18 +16,22 @@
 }
 
 ion-slides {
-  height: 200px;
+  height: 170px;
   position: absolute;
-  bottom: 6px;
+  bottom: 1.5rem;
   width: 100%;
 }
 
-.imgMark {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: inherit;
-  border-radius: 50%;
+ion-card-header{
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
+ion-card{
+  border-radius: 15px;
+}
+
+// Text
+.bolder{
+  font-weight: bolder;
+}

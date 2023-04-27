@@ -42,7 +42,7 @@
               <ion-card>
                 <ion-item lines="none">
                   <img class="cuyPointsUser" src="./assets/Images/Cuypoint_Only.webp"/>
-                  <ion-label class="ion-text-center"><strong>Cuy Points:</strong> {{ userPoints }}</ion-label>
+                  <ion-label class="ion-text-center"><strong>Cuy Points:</strong> {{ userPoints === undefined ? '-- --' : userPoints }}</ion-label>
                 </ion-item>
               </ion-card>
             </ion-col>

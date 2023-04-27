@@ -3,7 +3,7 @@
       <ion-buttons mode="md" slot="start">
         <ion-back-button></ion-back-button>
       </ion-buttons>
-      <span class="fontType" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+      <span class="fontType">
         Configuración
       </span>
   </ion-toolbar>
@@ -11,7 +11,7 @@
 
 <ion-content>
 
-  <ion-grid style="margin-top: 1rem !important;">
+  <ion-grid class="ion-margin-top">
     <ion-row class="ion-justify-content-center ion-align-items-center">
 
       <ion-col sizeLg="5" sizeXs="12">
@@ -25,31 +25,28 @@
       <ion-col sizeLg="7" sizeXs="12" *ngIf="user.rotullus === 'Carid-Inst'" >
 
         <ion-card-header>
-          <h1 class="ion-text-center" style="margin-top: 1rem; margin-bottom: 1rem;">Configura tu Información</h1>
+          <h1 class="ion-text-center ion-margin-top ion-margin-bottom">Configura tu Información</h1>
 
           <ion-grid>
-            <ion-row style="background-color: #f1f1f1;">
+            <ion-row class="slide">
 
               <ion-col size="4">
                 <ion-button (click)="showContent('settings-institucional')" expand="block" [class.selectContect]="content === 'settings-institucional'" fill="clear"
-                style="font-weight: 500;"
-                >
+                class="semiBold">
                   General
                 </ion-button>
               </ion-col>
 
               <ion-col size="4">
                 <ion-button (click)="showContent('settings-contact')" expand="block" [class.selectContect]="content === 'settings-contact'" fill="clear"
-                style="font-weight: 500;"
-                >
+                class="semiBold">
                   Contactos
                 </ion-button>
               </ion-col>
 
               <ion-col size="4">
                 <ion-button (click)="showContent('settings-profile')" expand="block" [class.selectContect]="content === 'settings-profile'" fill="clear"
-                style="font-weight: 500;"
-                >
+                class="semiBold">
                   Perfil
                 </ion-button>
               </ion-col>
@@ -133,8 +130,8 @@
                       <p class="errors" *ngIf="settingsInstDataForm.get('strFacebook')?.hasError('pattern')">Solo letras, numeros, espacios , _ y @</p>
                     </div>
 
-                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top">
+                  <ion-button color="success" size="medium" type="submit" expand="block" class="mt1"
+                              fill="outline" shape="round">
                     Guardar Cambios
                   </ion-button>
 
@@ -152,21 +149,21 @@
 
           <ion-grid fixed>
             <ion-row class="ion-justify-content-center ion-align-items-center">
-              <ion-col sizeXs="12" sizeLg="8">
+              <ion-col sizeXs="12" sizeLg="8" class="ion-margin-bottom">
 
-                <ion-accordion-group style="margin-bottom: 1.5rem;">
+                <ion-accordion-group>
                   <ion-accordion value="first">
 
-                    <ion-item slot="header" color="light" style="margin-bottom: 0rem;">
+                    <ion-item slot="header" color="light" >
                       <ion-label>
                         Mis Centros de Acopio
                       </ion-label>
                     </ion-item>
 
-                    <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+                    <div class="ion-text-justify ion-padding acordionBack" slot="content">
 
                       <ion-list>
-                        <ion-item *ngFor="let centro of centrosInst" style="margin-bottom: 0rem;">
+                        <ion-item *ngFor="let centro of centrosInst" >
                           <ion-label>{{ centro.strNombre_CentroA }}</ion-label>
                           <ion-icon name="navigate-circle-outline" slot="start"></ion-icon>
                         </ion-item>
@@ -176,22 +173,25 @@
                   </ion-accordion>
                 </ion-accordion-group>
 
-                <ion-accordion-group style="margin-bottom: 1.5rem;">
+              </ion-col>
+              <ion-col sizeXs="12" sizeLg="8">
+
+                <ion-accordion-group>
                   <ion-accordion value="first">
 
-                    <ion-item slot="header" color="light" style="margin-bottom: 0rem;">
+                    <ion-item slot="header" color="light">
                       <ion-label>
                         Correos Oficiales
                       </ion-label>
                     </ion-item>
 
-                    <div class="ion-text-justify  ion-padding" style="background-color: #fafafa;" slot="content">
+                    <div class="ion-text-justify acordionBack ion-padding" slot="content">
 
 
                       <ion-accordion-group *ngFor="let contacto of contactosInst" >
                         <ion-accordion value="first">
 
-                          <ion-item slot="header" color="light" style="margin-bottom: 0rem;">
+                          <ion-item slot="header" color="light">
                             <ion-label>
                               {{ contacto?.strDepartamento }}
                             </ion-label>
@@ -200,19 +200,19 @@
 
                           <div class="ion-text-justify ion-padding" slot="content">
 
-                            <ion-item fill="solid" mode="md" style="margin-bottom: 0.5rem;">
+                            <ion-item fill="solid" mode="md" class="correosForm">
                               <ion-icon name="mail-outline" slot="start"></ion-icon>
                               <ion-label position="floating">Correo</ion-label>
                               <ion-input readonly="true" type="text" [value]="contacto?.strCorreo_Departamento"></ion-input>
                             </ion-item>
 
-                            <ion-item fill="solid" mode="md" style="margin-bottom: 0.5rem;">
+                            <ion-item fill="solid" mode="md" class="correosForm">
                               <ion-icon name="call-outline" slot="start"></ion-icon>
                               <ion-label position="floating">Telefono</ion-label>
                               <ion-input readonly="true" type="text" [value]="contacto?.strEncargado_Departamento"></ion-input>
                             </ion-item>
 
-                            <ion-item fill="solid" mode="md" style="margin-bottom: 0.5rem;">
+                            <ion-item fill="solid" mode="md" class="correosForm">
                               <ion-icon name="person-circle-outline" slot="start"></ion-icon>
                               <ion-label position="floating">Encargado</ion-label>
                               <ion-input readonly="true" type="text" [value]="contacto?.strTelefono_Departamento"></ion-input>
@@ -259,8 +259,7 @@
                     <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('pattern')">Solo letras, numeros, espacios y _</p>
                   </div>
 
-                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsProfileForm.invalid">
+                  <ion-button color="success" size="medium" type="submit" expand="block" fill="outline" shape="round" class="mt1" [disabled]="settingsProfileForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
@@ -268,13 +267,13 @@
 
                 <br>
 
-                <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
+                <ion-item fill="solid" mode="md">
                   <ion-label position="floating">Correo Electronico</ion-label>
                   <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
                   [value]="user.strCorreo"></ion-input>
                 </ion-item>
 
-                <ion-button mode="ios" fill="clear" expand="block" (click)="showChangePass()" color="primary" >
+                <ion-button mode="ios" fill="outline" expand="block" (click)="showChangePass()" color="primary" class="mt">
                   Cambiar Contraseña
                 </ion-button>
 
@@ -286,10 +285,10 @@
                   <ion-img src="../../../assets/Images/Cuypoint_Casino.webp" class="ion-padding"></ion-img>
                 </div>
 
-                <ion-card style="margin-top: 0.8rem;" class="ion-padding">
+                <ion-card class="ion-padding verifyCard">
                   <h2 class="ion-text-center"><strong>Estado: </strong>
-                    <span *ngIf="user.boolVerificado_Institucion" style="color:rgb(0, 176, 41)">Verificado</span>
-                    <span *ngIf="!user.boolVerificado_Institucion" style="color:rgb(181, 0, 0)">No Verificado</span>
+                    <span *ngIf="user.boolVerificado_Institucion" class="verify">Verificado</span>
+                    <span *ngIf="!user.boolVerificado_Institucion" class="notVerify">No Verificado</span>
                   </h2>
                 </ion-card>
 
@@ -303,31 +302,28 @@
       <ion-col sizeLg="7" sizeXs="12" *ngIf="user.rotullus === 'Carid-User'" >
 
         <ion-card-header>
-          <h1 class="ion-text-center" style="margin-top: 1rem; margin-bottom: 1rem;">Configura tu Información</h1>
+          <h1 class="ion-text-center ion-margin-top ion-margin-bottom">Configura tu Información</h1>
 
           <ion-grid>
-            <ion-row style="background-color: #f1f1f1;">
+            <ion-row class="slide">
 
               <ion-col size="4">
                 <ion-button (click)="showContent('settings-personal')" expand="block" [class.selectContect]="content === 'settings-personal'" fill="clear"
-                style="font-weight: 500;"
-                >
+                class="semiBold">
                   Personal
                 </ion-button>
               </ion-col>
 
               <ion-col size="4">
                 <ion-button (click)="showContent('settings-contact')" expand="block" [class.selectContect]="content === 'settings-contact'" fill="clear"
-                style="font-weight: 500;"
-                >
+                class="semiBold">
                   Domicilio
                 </ion-button>
               </ion-col>
 
               <ion-col size="4">
                 <ion-button (click)="showContent('settings-profile')" expand="block" [class.selectContect]="content === 'settings-profile'" fill="clear"
-                style="font-weight: 500;"
-                >
+                class="semiBold">
                   Perfil
                 </ion-button>
               </ion-col>
@@ -402,8 +398,7 @@
                       </div>
                   </ion-list>
 
-                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsPersonalForm.invalid">
+                  <ion-button color="success" size="medium" type="submit" expand="block" fill="outline" shape="round" class="mt" [disabled]="settingsPersonalForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
@@ -480,8 +475,7 @@
                       </div>
                   </ion-list>
 
-                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsContactForm.invalid">
+                  <ion-button color="success" size="medium" type="submit" expand="block" fill="outline" shape="round" class="mt" [disabled]="settingsContactForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
@@ -517,8 +511,7 @@
                     <p class="errors" *ngIf="settingsProfileForm.get('strUsername')?.hasError('pattern')">Solo letras, numeros, espacios y _</p>
                   </div>
 
-                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsProfileForm.invalid">
+                  <ion-button color="success" size="medium" type="submit" expand="block" fill="outline" shape="round" class="mt1" [disabled]="settingsProfileForm.invalid">
                     Guardar Cambios
                   </ion-button>
 
@@ -526,13 +519,13 @@
 
                 <br>
 
-                <ion-item fill="solid" mode="md" style="margin-bottom: 1rem;">
+                <ion-item fill="solid" mode="md">
                   <ion-label position="floating">Correo Electronico</ion-label>
                   <ion-input required clearInput="false" type="email" maxlength="40" autocomplete="email" disabled="true" readonly="true"
                   [value]="user.strCorreo"></ion-input>
                 </ion-item>
 
-                <ion-button mode="ios" fill="outline" expand="block" (click)="showChangePass()" color="primary" >
+                <ion-button mode="ios" fill="outline" expand="block" (click)="showChangePass()" color="primary" class="mt">
                   Cambiar Contraseña
                 </ion-button>
 
@@ -590,18 +583,17 @@
                     <p class="errors" *ngIf="settingsPasswordForm.get('newPass')?.hasError('minlength')">No hay contraseñas menores a 8 carácteres</p>
                   </div>
 
-                  <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" style="margin-top: 1rem;">
+                  <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" class="buttonPass">
                     <ion-icon slot="start" name="eye-outline"></ion-icon>
                     Mostrar Contraseña
                   </ion-button>
 
-                  <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" style="margin-top: 1rem;">
+                  <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" class="buttonPass">
                     <ion-icon slot="start" name="eye-off-outline"></ion-icon>
                     Ocultar Contraseña
                   </ion-button>
 
-                  <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                              fill="outline" shape="round" class="ion-margin-top" [disabled]="settingsPasswordForm.invalid">
+                  <ion-button color="success" size="medium" type="submit" expand="block" fill="outline" shape="round" class="buttonSubmit" [disabled]="settingsPasswordForm.invalid">
                     Guardar Cambios
                   </ion-button>
 

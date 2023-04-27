@@ -7,7 +7,7 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let natural of DisasterCampaigns; let i = index">
 
-        <app-campaign-card [campaign]="natural" [nomInst]="nomInst[i]"></app-campaign-card>
+        <app-campaign-card [campaign]="natural" [nomInst]="nomInst[i]" [title]="natural.strNombre_Campania"></app-campaign-card>
 
       </ion-col>
     </ion-row>

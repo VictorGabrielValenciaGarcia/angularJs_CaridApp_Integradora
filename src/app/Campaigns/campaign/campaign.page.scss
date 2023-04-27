@@ -146,3 +146,28 @@ ion-modal ion-toolbar {
 .cardInfo{
   font-size: 0.95rem;
 }
+
+// Backgrounds and colors
+
+  .backgroundDes{
+    background-color: #fcfcfc;
+  }
+
+  // Nota Modal
+
+  ion-chip{
+    width: 80%;
+    font-size: 1.1rem;
+    justify-content: center;
+    padding: 1.3rem;
+    font-weight: bold;
+    cursor: none;
+  }
+
+  .bold{
+    font-weight: 550;
+  }
+
+  .pointer{
+    cursor: pointer;
+  }

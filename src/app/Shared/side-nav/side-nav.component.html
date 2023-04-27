@@ -1,108 +1,108 @@
-<ion-menu menuId="first" contentId="main" side="end" type="overlay" >
+  <ion-menu menuId="menuApp" contentId="main" side="end" type="overlay" >
 
-  <!-- Menu Usuario -->
-  <ion-content scroll-y="true" scroll-x="false" *ngIf="isLogin" >
+    <!-- Menu Usuario -->
+    <ion-content scroll-y="true" scroll-x="false" *ngIf="isLogin" >
 
-    <ion-item-divider lines="full">
-      <ion-grid fixed>
-        <ion-row class="ion-justify-content-center">
-          <ion-col size="12">
-            <h1 class="ion-text-center"><strong>Mi Perfil</strong></h1>
+      <ion-item-divider lines="full">
+        <ion-grid fixed>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12">
+              <h1 class="ion-text-center"><strong>Mi Perfil</strong></h1>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-item-divider>
+
+      <ion-item lines="none">
+          <img class="rounded ion-margin-top ion-margin-end ion-margin-start" [src]="image">
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-grid fixed>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12">
+              <h1 class="ion-text-center">{{ username }}</h1>
+              <p class="ion-text-center emailMargin">{{ email }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-grid *ngIf="role === 'Carid-User'" >
+        <ion-row class="ion-align-items-center ion-justify-content-center ion-padding-top">
+
+          <ion-col size="3">
+              <ion-img  src="./assets/Images/Cuypoint_Only.webp"/>
           </ion-col>
+          <h2 class="ion-text-start ion-padding-start black" color="dark"><strong>{{ points }}</strong> pts.</h2>
         </ion-row>
       </ion-grid>
 
-    </ion-item-divider>
+    </ion-content>
 
-    <ion-item lines="none">
-        <img class="rounded ion-margin-top ion-margin-end ion-margin-start" [src]="image">
-    </ion-item>
+    <footer class="ion-padding" *ngIf="isLogin" >
+      <ion-menu-toggle>
+        <ion-button (click)="goToDashAdmin()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round" *ngIf="role === 'Carid-Admin'" >
+          <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
+          <h5 class="dashButton">Dashboard</h5>
+        </ion-button>
+        <ion-button (click)="goToDashInst()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round" *ngIf="role === 'Carid-Inst'">
+          <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
+          <h5 class="dashButton">Dashboard</h5>
+        </ion-button>
+        <ion-button (click)="goToSetting()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round">
+          <ion-icon size="large" slot="start" name="cog"></ion-icon>
+          <h5>Editar Cuenta</h5>
+        </ion-button>
+        <ion-button routerLink="/login" (click)="logOut()" size="large" expand="block" fill="clear" class="buttonNavigate logOutMargin" shape="round">
+          <ion-icon size="large" slot="start" name="log-out" color="danger"></ion-icon>
+          <h5 class="logOutButton">Cerrar Sesion</h5>
+        </ion-button>
+      </ion-menu-toggle>
+    </footer>
 
-    <ion-item lines="full">
-      <ion-grid fixed>
-        <ion-row class="ion-justify-content-center">
-          <ion-col size="12">
-            <h1 class="ion-text-center">{{ username }}</h1>
-            <p class="ion-text-center emailMargin">{{ email }}</p>
+    <!-- Menu Visitante -->
+    <ion-content scroll-y="true" scroll-x="false" *ngIf="!isLogin" >
+
+      <ion-item-divider lines="full">
+        <ion-grid fixed>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12">
+              <h1 class="ion-text-center"><strong>CaridApp</strong></h1>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-item-divider>
+
+      <ion-item lines="none"></ion-item>
+
+      <ion-grid fixed class="gridMenuVisit">
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+
+          <ion-col size="9">
+            <ion-img src="./assets/Images/Cuypoint_Casino.webp"></ion-img>
           </ion-col>
+
+          <ion-col size="12">
+            <h2 class="ion-text-center">Unete a nosotros!!</h2>
+            <h4 class="ion-text-center">Te estamos esperando!!</h4>
+            <ion-item lines="none"></ion-item>
+          </ion-col>
+
+          <ion-col size="10">
+            <ion-menu-toggle>
+              <ion-button (click)="goToLogin()" size="large" expand="block" fill="solid" shape="round">
+                <ion-icon size="large" slot="start" name="log-in"></ion-icon>
+                <h5>Iniciar Sesión</h5>
+              </ion-button>
+            </ion-menu-toggle>
+          </ion-col>
+
         </ion-row>
       </ion-grid>
-    </ion-item>
 
-    <ion-grid *ngIf="role === 'Carid-User'" >
-      <ion-row class="ion-align-items-center ion-justify-content-center ion-padding-top">
+    </ion-content>
 
-        <ion-col size="3">
-            <ion-img  src="./assets/Images/Cuypoint_Only.webp"/>
-        </ion-col>
-        <h2 class="ion-text-start ion-padding-start black" color="dark"><strong>{{ points }}</strong> pts.</h2>
-      </ion-row>
-    </ion-grid>
-
-  </ion-content>
-
-  <footer class="ion-padding" *ngIf="isLogin" >
-    <ion-menu-toggle>
-      <ion-button (click)="goToDashAdmin()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round" *ngIf="role === 'Carid-Admin'" >
-        <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
-        <h5 class="dashButton">Dashboard</h5>
-      </ion-button>
-      <ion-button (click)="goToDashInst()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round" *ngIf="role === 'Carid-Inst'">
-        <ion-icon size="large" slot="start" name="podium" color="success"></ion-icon>
-        <h5 class="dashButton">Dashboard</h5>
-      </ion-button>
-      <ion-button (click)="goToSetting()" size="large" expand="block" fill="clear" class="buttonNavigate" shape="round">
-        <ion-icon size="large" slot="start" name="cog"></ion-icon>
-        <h5>Editar Cuenta</h5>
-      </ion-button>
-      <ion-button routerLink="/login" (click)="logOut()" size="large" expand="block" fill="clear" class="buttonNavigate logOutMargin" shape="round">
-        <ion-icon size="large" slot="start" name="log-out" color="danger"></ion-icon>
-        <h5 class="logOutButton">Cerrar Sesion</h5>
-      </ion-button>
-    </ion-menu-toggle>
-  </footer>
-
-  <!-- Menu Visitante -->
-  <ion-content scroll-y="true" scroll-x="false" *ngIf="!isLogin" >
-
-    <ion-item-divider lines="full">
-      <ion-grid fixed>
-        <ion-row class="ion-justify-content-center">
-          <ion-col size="12">
-            <h1 class="ion-text-center"><strong>CaridApp</strong></h1>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </ion-item-divider>
-
-    <ion-item lines="none"></ion-item>
-
-    <ion-grid fixed class="gridMenuVisit">
-      <ion-row class="ion-justify-content-center ion-align-items-center">
-
-        <ion-col size="9">
-          <ion-img src="./assets/Images/Cuypoint_Casino.webp"></ion-img>
-        </ion-col>
-
-        <ion-col size="12">
-          <h2 class="ion-text-center">Unete a nosotros!!</h2>
-          <h4 class="ion-text-center">Te estamos esperando!!</h4>
-          <ion-item lines="none"></ion-item>
-        </ion-col>
-
-        <ion-col size="10">
-          <ion-menu-toggle>
-            <ion-button (click)="goToLogin()" size="large" expand="block" fill="solid" shape="round">
-              <ion-icon size="large" slot="start" name="log-in"></ion-icon>
-              <h5>Iniciar Sesión</h5>
-            </ion-button>
-          </ion-menu-toggle>
-        </ion-col>
-
-      </ion-row>
-    </ion-grid>
-
-  </ion-content>
-
-</ion-menu>
+  </ion-menu>

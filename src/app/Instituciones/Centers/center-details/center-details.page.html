@@ -2,7 +2,7 @@
 
 <ion-content>
 
-  <ion-grid fixed  style="padding-top: 2rem;">
+  <ion-grid fixed  class="content">
     <ion-row class="ion-justify-content-center ion-align-items-center">
 
       <ion-col sizeLg="5" sizeMd="6" sizeXs="12">
@@ -12,7 +12,7 @@
             <ion-card-subtitle class="ion-text-center">~ {{ center?.numId_Institucion }} ~</ion-card-subtitle>
           </ion-card-header>
 
-          <ion-card-content style="margin-top: -1.3rem !important;">
+          <ion-card-content class="cardContent">
             <ion-img [src]="center?.strImage_CentroA" class="ion-padding"></ion-img>
             <ion-list>
 
@@ -23,7 +23,7 @@
                     <ion-label>Contactos Oficiales</ion-label>
                   </ion-item>
 
-                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                  <div class="ion-text-justify acordionBack" slot="content">
                     <ion-item lines="none">
                       <ion-label>
                         <p>Whatsapp</p>
@@ -47,7 +47,7 @@
                     <ion-label>Departamentos</ion-label>
                   </ion-item>
 
-                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                  <div class="ion-text-justify acordionBack" slot="content">
                     <ion-item *ngFor="let correo of center?.mapContactos_CentroA?.arrCorreos_CentroA">
                       <ion-label>
                         <p>{{ correo.strDepartamento }}</p>
@@ -67,7 +67,7 @@
                     <ion-label>Redes Sociales</ion-label>
                   </ion-item>
 
-                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                  <div class="ion-text-justify acordionBack" slot="content">
                     <ion-item>
                       <ion-label>
                         <p>Facebook</p>
@@ -107,7 +107,7 @@
           <ion-card-header>
             <ion-card-title class="ion-text-center">Dirección</ion-card-title>
           </ion-card-header>
-          <ion-card-content style="margin-top: -1.3rem !important;">
+          <ion-card-content class="cardContent">
             <ion-list>
               <ion-item>
                 <ion-label class="ion-text-center">{{ center?.mapDireccion_Fisica_CentroA?.strCalle }}
@@ -123,7 +123,7 @@
                     <ion-label>Detalles</ion-label>
                   </ion-item>
 
-                  <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                  <div class="ion-text-justify acordionBack" slot="content">
                     <ion-item lines="none">
                       <ion-label *ngIf="center?.mapDireccion_Fisica_CentroA?.numNumero_Interior" ><strong>No. Interior:</strong> {{ center?.mapDireccion_Fisica_CentroA?.numNumero_Interior }}</ion-label>
                       <ion-label *ngIf="!center?.mapDireccion_Fisica_CentroA?.numNumero_Interior" ><strong>No. Interior:</strong> Ninguno</ion-label>

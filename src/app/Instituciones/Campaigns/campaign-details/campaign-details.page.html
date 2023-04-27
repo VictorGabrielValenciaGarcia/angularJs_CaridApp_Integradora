@@ -24,7 +24,7 @@
                 <ion-item slot="header" color="light">
                   <ion-label>Ver Concepto</ion-label>
                 </ion-item>
-                <div class="ion-padding ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                <div class="ion-padding ion-text-justify acordionBack" slot="content">
                   {{campaign?.strDescripcion_Campania}}
                 </div>
               </ion-accordion>
@@ -73,7 +73,7 @@
                 <ion-item slot="header" color="light">
                   <ion-label>Ver Lista</ion-label>
                 </ion-item>
-                <div class="ion-text-justify" style="background-color: #fcfcfc;" slot="content">
+                <div class="ion-text-justify acordionBack" slot="content">
 
                   <ion-accordion-group *ngFor="let recurso of campaign?.arrLista_Enseres_Campania">
                     <ion-accordion value="first">
@@ -84,7 +84,7 @@
                         <ion-label>{{ recurso.strNombre_Enser }}</ion-label>
                       </ion-item>
 
-                      <div class="ion-text-justify ion-padding" style="background-color: #fcfcfc;" slot="content">
+                      <div class="ion-text-justify ion-padding acordionBack" slot="content">
                         <p><strong>Requisitos:</strong> {{ recurso.strRequisitos }}</p>
                       </div>
                       <!-- </ion-list> -->
@@ -112,17 +112,14 @@
     </ion-fab-button>
 
     <ion-fab-list side="start">
-      <ion-fab-button (click)="viewMap(campaign?.id)" color="dark">
+      <ion-fab-button (click)="viewMap(campaign?.id)" color="dark" title="Ver Centros Asignados">
         <ion-icon name="map-outline"></ion-icon>
       </ion-fab-button>
 
-      <ion-fab-button color="warning" id="open-modalReports">
+      <ion-fab-button color="warning" id="open-modalReports" title="Estados y Reportes">
         <ion-icon name="alert-circle-outline" size="large"></ion-icon>
       </ion-fab-button>
 
-      <ion-fab-button color="light">
-        <ion-icon name="share-social-outline"></ion-icon>
-      </ion-fab-button>
     </ion-fab-list>
 
 
@@ -135,7 +132,7 @@
 
 <ion-modal #modalReports trigger="open-modalReports" id="modalReports">
   <ng-template>
-    <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;">
+    <ion-content>
       <ion-toolbar class="ion-text-center">
         Índice de Reportes
       </ion-toolbar>

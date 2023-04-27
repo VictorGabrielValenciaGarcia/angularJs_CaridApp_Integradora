@@ -3,33 +3,11 @@
       <ion-buttons mode="md" slot="start">
         <ion-back-button defaultHref="/login"></ion-back-button>
       </ion-buttons>
-      <span class="fontType" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+      <span class="fontType">
         CaridApp
       </span>
   </ion-toolbar>
 </ion-header>
-
-<style>
-  .inputWrong{
-    border-color: #c92432;
-    color: #c92432;
-    /* background: #fffbfb; */
-  }
-  .errors{
-    color: #c92432;
-    font-size: 75%;
-    text-align: start;
-  }
-
-  .adjustErrors{
-    margin-top: -1rem;
-  }
-
-  ion-item{
-    margin-bottom: 2rem;
-  }
-
-</style>
 
 <ion-content>
 
@@ -117,7 +95,7 @@
 
                       <ion-item lines="none">
                         <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
-                        <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                        <ion-label class="bold">Deslice para Continuar</ion-label>
                       </ion-item>
 
                     </ion-list>
@@ -185,7 +163,7 @@
 
                       <ion-item lines="none">
                         <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
-                        <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                        <ion-label class="bold">Deslice para Continuar</ion-label>
                       </ion-item>
                     </ion-list>
                   </ion-slide>
@@ -247,21 +225,17 @@
                         <p class="errors" *ngIf="RegisterUserForm.get('strPassword')?.hasError('minlength')">Contraseña minima de 8 carácteres</p>
                       </div>
 
-                      <!-- <ion-item>
-                        <ion-label position="floating">Confirme su Contraseña</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="passwordValidation"></ion-input>
-                      </ion-item> -->
-                      <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+                      <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" class="buttonPass">
                         <ion-icon slot="start" name="eye-outline"></ion-icon>
                         Mostrar Contraseña
                       </ion-button>
-                      <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+                      <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" class="buttonPass">
                         <ion-icon slot="start" name="eye-off-outline"></ion-icon>
                         Ocultar Contraseña
                       </ion-button>
 
-                        <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                                    fill="outline" shape="round" class="ion-margin-top" [disabled]="RegisterUserForm.invalid">
+                        <ion-button color="success" size="medium" type="submit" expand="block" class="buttonRegister"
+                                    fill="outline" shape="round" [disabled]="RegisterUserForm.invalid">
                           Registrarse
                         </ion-button>
 
@@ -376,7 +350,7 @@
 
                           <ion-item lines="none">
                             <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
-                            <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                            <ion-label class="bold">Deslice para Continuar</ion-label>
                           </ion-item>
 
                     </ion-list>
@@ -405,7 +379,7 @@
 
                               <div [formGroupName]="i">
 
-                                  <ion-accordion-group style="margin-bottom: -1rem !important;">
+                                  <ion-accordion-group >
                                     <ion-accordion value="first">
 
                                       <ion-item slot="header" color="light">
@@ -417,7 +391,7 @@
                                         </ion-label>
                                       </ion-item>
 
-                                      <div class="ion-text-justify ion-padding" style="background-color: #fafafa;" slot="content">
+                                      <div class="ion-text-justify ion-padding" class="colorAcordion" slot="content">
 
                                         <ion-item class="formSpace" fill="solid" mode="md" counter="true" [counterFormatter]="customCounterFormatter">
                                           <ion-label position="floating">Departamento</ion-label>
@@ -479,7 +453,7 @@
 
                       <ion-item lines="none">
                         <ion-icon name="arrow-forward-outline" slot="end" color="danger"></ion-icon>
-                        <ion-label style="font-weight: bold;">Deslice para Continuar</ion-label>
+                        <ion-label class="bold">Deslice para Continuar</ion-label>
                       </ion-item>
                     </ion-list>
                   </ion-slide>
@@ -541,21 +515,18 @@
                         <p class="errors" *ngIf="RegisterInstForm.get('strPassword')?.hasError('minlength')">Contraseña minima de 8 carácteres</p>
                       </div>
 
-                      <!-- <ion-item>
-                        <ion-label position="floating">Confirme su Contraseña</ion-label>
-                        <ion-input required clearInput="true" type="text" formControlName="passwordValidation"></ion-input>
-                      </ion-item> -->
-                      <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+                      <ion-button (click)="toggleShow()" [hidden]="showPassword" fill="clear" color="primary" size="small" class="buttonPass">
                         <ion-icon slot="start" name="eye-outline"></ion-icon>
                         Mostrar Contraseña
                       </ion-button>
-                      <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" style="margin-top: -1rem;">
+
+                      <ion-button (click)="toggleShow()" [hidden]="!showPassword" fill="clear" color="primary" size="small" class="buttonPass">
                         <ion-icon slot="start" name="eye-off-outline"></ion-icon>
                         Ocultar Contraseña
                       </ion-button>
 
-                        <ion-button color="success" size="medium" type="submit" expand="block" style="margin-bottom: 1rem;"
-                                    fill="outline" shape="round" class="ion-margin-top" [disabled]="RegisterInstForm.invalid">
+                        <ion-button color="success" size="medium" type="submit" expand="block" class="buttonRegister"
+                                    fill="outline" shape="round" [disabled]="RegisterInstForm.invalid">
                           Registrarse
                         </ion-button>
 
@@ -607,7 +578,7 @@
 
   <ion-modal #modal trigger="open-modalInfo">
     <ng-template>
-      <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;" >
+      <ion-content>
         <ion-toolbar class="ion-text-center">
           ¿Quienes Somos?
         </ion-toolbar>

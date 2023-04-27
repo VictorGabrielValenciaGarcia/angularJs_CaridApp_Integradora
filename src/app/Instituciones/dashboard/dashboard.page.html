@@ -5,10 +5,14 @@
 
 <ion-content id="main" *ngIf="type === 'carid-Inst-Role'">
 
-  <div style="margin-top: 6% !important;">
-    <ion-grid style="padding: 2% !important;">
-      <ion-row class="ion-align-items-center ion-justify-content-center">
-        <ion-col sizeXs="12" sizeMd="6" sizeLg="4" *ngFor="let i of interactionsInst" >
+    <ion-grid class="adjustContent">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12">
+          <h1 class="ion-text-center">¿Qué deseas consultar?</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-justify-content-evenly">
+        <ion-col sizeXs="12" sizeMd="5" sizeLg="4" *ngFor="let i of interactionsInst" >
           <ion-card (click)="goToRoute(i.route)">
             <ion-grid fixed>
               <ion-row class="ion-justify-content-center ion-align-items-center ">
@@ -25,7 +29,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
 
 </ion-content>
 

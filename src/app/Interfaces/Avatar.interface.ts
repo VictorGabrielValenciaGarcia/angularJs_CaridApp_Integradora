@@ -1,5 +1,4 @@
 export default interface Avatar {
-  // $key?: string,
   id?:string,
   strNombre_Avatar : string,
   strDescripcion_Avatar : string,

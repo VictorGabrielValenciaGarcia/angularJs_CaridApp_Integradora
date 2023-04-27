@@ -29,7 +29,6 @@ export enum Estado {
 
 export default interface Campania {
 
-  // $key?: string,
   strImage_Campania : string,
 
   strNombre_Campania : string,

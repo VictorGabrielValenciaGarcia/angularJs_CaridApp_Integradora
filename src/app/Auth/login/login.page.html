@@ -1,32 +1,10 @@
 <ion-header translucent="true" mode="ios">
   <ion-toolbar>
-    <span class="fontType" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+    <span class="fontType">
       CaridApp
     </span>
   </ion-toolbar>
 </ion-header>
-
-<style>
-  .inputWrong{
-    border-color: #c92432;
-    color: #c92432;
-    /* background: #fffbfb; */
-  }
-  .errors{
-    color: #c92432;
-    font-size: 75%;
-    text-align: start;
-  }
-
-  .adjustErrors{
-    margin-top: -1rem;
-  }
-
-  ion-item{
-    margin-bottom: 2rem;
-  }
-
-</style>
 
 <ion-content>
   <ion-grid fixed class="ion-margin-top">
@@ -120,7 +98,7 @@
 
   <ion-modal #modal trigger="open-modal">
     <ng-template>
-      <ion-content style=" --offset-bottom: auto!important; --overflow: hidden; overflow: auto;" >
+      <ion-content>
         <ion-toolbar class="ion-text-center">
           ¿Como deseeas registrarte?
         </ion-toolbar>
